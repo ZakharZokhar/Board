@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux';
-iport thunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import { fetchDog } from '../../pages/MainPage/redux/actions';
 
