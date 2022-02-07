@@ -50,6 +50,7 @@ const ClosePopUpButton = styled('button')`
   &:hover {
   color: #838080;
   border: 1px solid #838080;
+  cursor: pointer;
   }
 `;
 
@@ -86,6 +87,7 @@ const PopUpCreateButton = styled('button')`
     
   &:hover {
   color: #1037aa;
+  cursor: pointer;
   background: white;
   border: 1px solid #1037aa;
   }
