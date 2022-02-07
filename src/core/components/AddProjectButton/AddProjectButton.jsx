@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import { BsPlusLg } from 'react-icons/bs';
 import { AddProjectButtonContainer, PlusIcon } from './AddProjectButtonStyles';
 
-function AddProjectButton() {
+function AddProjectButton({ onAddClick }) {
   return (
-    <AddProjectButtonContainer type="submit">
+    <AddProjectButtonContainer onClick={onAddClick} type="submit">
       <PlusIcon>
         <BsPlusLg />
       </PlusIcon>
@@ -11,5 +12,13 @@ function AddProjectButton() {
     </AddProjectButtonContainer>
   );
 }
+
+AddProjectButton.propTypes = {
+  onAddClick: PropTypes.func,
+};
+
+AddProjectButton.defaultProps = {
+  onAddClick: null,
+};
 
 export default AddProjectButton;
