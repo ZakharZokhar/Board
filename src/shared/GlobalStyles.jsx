@@ -15,6 +15,10 @@ const styles = css`
     font-size: ${fontSize};
     font-family: ${fontFamily};
   }
+
+  hr {
+    border: 1px solid #e5e5e5;
+  }
 `;
 
 const GlobalStyle = () => (

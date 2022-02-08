@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { BsTrash } from 'react-icons/bs';
 import { FcLikePlaceholder } from 'react-icons/fc';
 import {
-  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, Icon, BotProject,
+  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, Icon, BotProject, ProjectName,
 } from './ProjectStyles';
 
 function Project({ projectName, projectId, onDeleteProject }) {
@@ -22,7 +22,9 @@ function Project({ projectName, projectId, onDeleteProject }) {
         <Icon>
           <FcLikePlaceholder />
         </Icon>
-        {projectName}
+        <ProjectName>
+          {projectName}
+        </ProjectName>
       </MidProject>
       <hr />
       <BotProject>12 users</BotProject>

@@ -14,7 +14,7 @@ const PopUpWindow = styled('div')`
   position: relative;
   width: 300px;
   margin: 0 auto;
-  height: 250px;
+  height: 220px;
   max-height: 70vh;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;

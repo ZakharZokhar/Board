@@ -50,7 +50,14 @@ const MidProject = styled('div')`
   display: flex;
   align-items: center;
   color: #262626;
-  padding: 10% 0 10% 0;
+  padding: 7% 0 7% 0;
+`;
+
+const ProjectName = styled('div')`
+  width: 210px;
+  word-break: break-word;
+  position: absolute;
+  left: 30px;
 `;
 
 const Icon = styled('span')`
@@ -66,5 +73,5 @@ const BotProject = styled('div')`
 `;
 
 export {
-  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, Icon, BotProject,
+  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, Icon, BotProject, ProjectName,
 };
