@@ -13,10 +13,9 @@ const PopUp = styled('div')`
 const PopUpWindow = styled('div')`
   position: relative;
   width: 300px;
-  margin: 0 auto;
+  margin: calc(100vh - 85vh - 20px) auto 0;
   height: 220px;
   max-height: 70vh;
-  margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
   border-radius: 8px;
   padding: 20px;
@@ -67,7 +66,6 @@ const InputPopUp = styled('input')`
   box-sizing: border-box;
   border-radius: 8px;
   height: 30px;
-  box-sizing: border-box;
 `;
 
 const PopUpCreateButton = styled('button')`
@@ -76,7 +74,7 @@ const PopUpCreateButton = styled('button')`
   margin-top: 5px;
   box-sizing: border-box;
   align-items: center;
-  padding: 0px 16px;
+  padding: 0 16px;
   background: #1037aa;
   border-radius: 8px;
   color: white;
