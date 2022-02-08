@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const Main = ({ children }) => (
   <main>
-    <div className="container">
+    <div className="container wrapper">
       {children}
     </div>
   </main>
