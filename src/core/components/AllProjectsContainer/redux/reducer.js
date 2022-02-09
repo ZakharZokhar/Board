@@ -1,5 +1,13 @@
+import { handleActions } from 'redux-actions';
 import {
-  togglePopUpOn, togglePopUpOff, addNewProject, deleteProject,
+  fetchUsersRequest,
+  fetchUsersPriceSuccess,
+  fetchUsersPriceFailure,
+  togglePopUpOn,
+  togglePopUpOff,
+  addNewProject,
+  deleteProject,
+  showProjects,
 } from './actions';
 
 function togglePopUpReducer(state = { isPopUpOpen: false }, action) {
@@ -28,12 +36,18 @@ function nextProjectId(projects) {
 
 function projectsReducer(state = [], action) {
   switch (action.type) {
+    case showProjects.type:
+      return [
+        ...state,
+        action.payload,
+      ];
     case addNewProject.type:
       return [
         ...state,
         {
           id: nextProjectId(state),
           name: action.payload,
+          description: '',
         },
       ];
     case deleteProject.type:
@@ -46,4 +60,37 @@ function projectsReducer(state = [], action) {
   }
 }
 
-export { togglePopUpReducer, projectsReducer };
+const defaultUsersState = {
+  users: [],
+  error: null,
+  isFetching: false,
+};
+
+const defaultFetchReducer = (state) => ({
+  ...state,
+  isFetching: true,
+});
+
+const defaultSuccessReducer = (state, { payload }) => ({
+  ...state,
+  ...payload,
+  isFetching: false,
+  error: null,
+});
+
+const defaultFailureReducer = (state, { payload }) => ({
+  ...state,
+  isFetching: false,
+  error: payload,
+});
+
+const usersReducer = handleActions(
+  {
+    [fetchUsersRequest]: defaultFetchReducer,
+    [fetchUsersPriceSuccess]: defaultSuccessReducer,
+    [fetchUsersPriceFailure]: defaultFailureReducer,
+  },
+  defaultUsersState,
+);
+
+export { togglePopUpReducer, projectsReducer, usersReducer };

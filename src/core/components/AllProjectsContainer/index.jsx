@@ -1,3 +1,3 @@
-import AllProjectsHolder from './AllProjectsHolder';
+import AllProjectsContainer from './AllProjectsContainer';
 
-export default AllProjectsHolder;
+export default AllProjectsContainer;

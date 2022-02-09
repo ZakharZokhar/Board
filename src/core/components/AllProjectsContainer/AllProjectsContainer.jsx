@@ -2,10 +2,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import AddProjectButton from '../AddProjectButton';
 import PopUpAddProject from '../PopUpAddProject';
 import Project from '../Project';
-import { togglePopUpOn, togglePopUpOff } from './redux/actions';
-import AllProjectsContainer from './AllProjectHolderStyles';
+import {
+  togglePopUpOn, togglePopUpOff, deleteProject, addNewProject,
+} from './redux/actions';
+import AllProjectsHolder from './AllProjectContainerStyles';
 
-function AllProjectsHolder() {
+function AllProjectsContainer() {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => (state.popup.isPopUpOpen));
   const projects = useSelector((state) => (state.project));
@@ -15,31 +17,32 @@ function AllProjectsHolder() {
   const closePopUp = () => {
     dispatch(togglePopUpOff);
   };
-  const addNewProject = (name) => {
-    dispatch({ type: 'ADD_NEW_PROJECT', payload: name });
+  const onAddNewProject = (name) => {
+    dispatch({ ...addNewProject, payload: name });
     dispatch(togglePopUpOff);
   };
-  const deleteProject = (id) => (dispatch({ type: 'DELETE_PROJECT', payload: id }));
+  const onDeleteProject = (id) => (dispatch({ ...deleteProject, payload: id }));
+
   return (
-    <AllProjectsContainer>
+    <AllProjectsHolder>
       <AddProjectButton onAddClick={showPopUp} />
       {projects.map((project) => (
         <Project
           key={project.id}
           projectName={project.name}
           projectId={project.id}
-          onDeleteProject={deleteProject}
+          onDeleteProject={onDeleteProject}
         />
       ))}
       {isOpen
         && (
           <PopUpAddProject
             onCloseClick={closePopUp}
-            onCreateClick={addNewProject}
+            onCreateClick={onAddNewProject}
           />
         )}
-    </AllProjectsContainer>
+    </AllProjectsHolder>
   );
 }
 
-export default AllProjectsHolder;
+export default AllProjectsContainer;

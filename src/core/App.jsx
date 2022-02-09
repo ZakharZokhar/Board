@@ -1,12 +1,9 @@
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from './redux/configureStore';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Main from './components/Main';
-import Routes from './Routes';
 import GlobalStyles from '../shared/GlobalStyles';
-import AllProjectsHolder from './components/AllProjectsContainer';
+import AllProjectsContainer from './components/AllProjectsContainer';
 
 const store = configureStore();
 
@@ -16,12 +13,7 @@ function App() {
       <Provider store={store}>
         <GlobalStyles />
         <Header />
-        <AllProjectsHolder />
-        <BrowserRouter>
-          <Main>
-            <Routes />
-          </Main>
-        </BrowserRouter>
+        <AllProjectsContainer />
         <Footer />
       </Provider>
     </div>
