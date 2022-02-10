@@ -1,4 +1,5 @@
 // import PropTypes from 'prop-types';
+import React from 'react';
 import Logo from '../../../shared/LogoAsperiod.svg';
 import {
   Button, ButtonText, ButtonWrapper, CenterLayout, TextWrapper,
@@ -18,9 +19,9 @@ function Welcome() {
         <Button onClick={clickMe} theme="blue">
           <ButtonText color="#ffffff">Continue</ButtonText>
         </Button>
-        <Button theme="white">
-          <ButtonText style={{ color: '#000' }}>Sign in</ButtonText>
-        </Button>
+          <Button theme="white">
+            <ButtonText style={{ color: '#000' }}>Sign in</ButtonText>
+          </Button>
       </ButtonWrapper>
 
     </CenterLayout>
