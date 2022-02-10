@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
+import {
+  MainBlueColor, BackgroundWhiteColor, BorderColor, BorderHoverColor, TransparentBlack,
+} from '../../../shared/colors';
 
 const PopUp = styled('div')`
   position: fixed;
-  background: #00000050;
+  background: ${TransparentBlack};
   width: 100%;
   height: 100vh;
   top: 0;
   left: 0;
-  font-family: "Poppins";
 `;
 
 const PopUpWindow = styled('div')`
@@ -16,17 +18,15 @@ const PopUpWindow = styled('div')`
   margin: calc(100vh - 85vh - 20px) auto 0;
   height: 220px;
   max-height: 70vh;
-  background: #fff;
+  background: ${BackgroundWhiteColor};
   border-radius: 8px;
   padding: 20px;
-  border: 1px solid #999;
+  border: 1px solid ${BorderColor};
   overflow: auto;
   font-weight: 600;
 `;
 
 const PopUpHeader = styled('div')`
-  font-family: Poppins;
-  font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
@@ -40,15 +40,13 @@ const ClosePopUpButton = styled('button')`
   top: 30px;
   height: 40px;
   width: 40px;
-  background: white;
-  border: 1px solid #e5e5e5;
+  background: ${BackgroundWhiteColor};
+  border: 1px solid ${BorderColor};
   box-sizing: border-box;
   border-radius: 8px;
-  color: #e5e5e5;
     
   &:hover {
-  color: #838080;
-  border: 1px solid #838080;
+  border: 1px solid ${BorderHoverColor};
   cursor: pointer;
   }
 `;
@@ -62,7 +60,7 @@ const InputPopUp = styled('input')`
   display: block;
   margin: 5% 0;
   padding: 0 10px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid ${BorderColor};
   box-sizing: border-box;
   border-radius: 8px;
   height: 30px;
@@ -75,19 +73,18 @@ const PopUpCreateButton = styled('button')`
   box-sizing: border-box;
   align-items: center;
   padding: 0 16px;
-  background: #1037aa;
+  background: ${MainBlueColor};
   border-radius: 8px;
-  color: white;
+  color: ${BackgroundWhiteColor};
   border: none;
   width: 80px;
   height: 40px;
-  font-family: "Poppins";
     
   &:hover {
-  color: #1037aa;
+  color: ${MainBlueColor};
   cursor: pointer;
-  background: white;
-  border: 1px solid #1037aa;
+  background: ${BackgroundWhiteColor};
+  border: 1px solid ${MainBlueColor};
   }
 `;
 

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+import { CloseIcon } from '../../../shared/icons/icons';
 import {
   PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
 } from './PopUpAddProjectStyles';
@@ -22,7 +22,7 @@ function PopUpAddProject({ onCloseClick }) {
         <PopUpHeader>
           Create new project
           <ClosePopUpButton onClick={onCloseClick}>
-            <AiOutlineClose />
+            <CloseIcon />
           </ClosePopUpButton>
         </PopUpHeader>
         <hr />

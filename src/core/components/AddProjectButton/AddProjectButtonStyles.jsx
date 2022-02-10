@@ -1,4 +1,10 @@
 import styled from '@emotion/styled';
+import {
+  BorderColor, BorderHoverColor, MainBlueColor, BackgroundWhiteColor,
+} from '../../../shared/colors';
+import {
+  BaseFontFamily,
+} from '../../../shared/variables';
 
 const AddProjectButtonContainer = styled('button')`
   display: inline-block;
@@ -9,27 +15,17 @@ const AddProjectButtonContainer = styled('button')`
   padding: 7px;
   box-sizing: border-box;
   border-radius: 8px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: normal;
-  border: 3px dashed #e5e5e5;
-  font-size: 14px;
-  background: white;
-  color: blue;
+  border: 3px dashed ${BorderColor};
+  background: ${BackgroundWhiteColor};
+  color: ${MainBlueColor};
+  font-family: ${BaseFontFamily};
     
   &:hover {
   cursor: pointer;
   text-decoration: underline;
-  color: rgba(52, 52, 238, 0.986);
-  border: 3px dashed #838080;
+  color: ${MainBlueColor};
+  border: 3px dashed ${BorderHoverColor};
   }
 `;
 
-const PlusIcon = styled('span')`
-    color: #bfbfbf;
-    position: relative;
-    top: 2px;
-    padding-right: 5px;
-`;
-
-export { AddProjectButtonContainer, PlusIcon };
+export default AddProjectButtonContainer;

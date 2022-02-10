@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
-import { BsPlusLg } from 'react-icons/bs';
-import { AddProjectButtonContainer, PlusIcon } from './AddProjectButtonStyles';
+import { PlusIcon } from '../../../shared/icons/icons';
+import AddProjectButtonContainer from './AddProjectButtonStyles';
 
 function AddProjectButton({ onAddClick }) {
   return (
     <AddProjectButtonContainer onClick={onAddClick} type="submit">
-      <PlusIcon>
-        <BsPlusLg />
-      </PlusIcon>
+      <PlusIcon />
       Add new project
     </AddProjectButtonContainer>
   );

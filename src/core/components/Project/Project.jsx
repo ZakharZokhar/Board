@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import { BsTrash } from 'react-icons/bs';
-import { FcLikePlaceholder } from 'react-icons/fc';
+import { DiamondIcon, CloseIcon } from '../../../shared/icons/icons';
 import {
-  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, Icon, BotProject, ProjectName,
+  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, BotProject, ProjectName,
 } from './ProjectStyles';
 
 function Project({ projectName, projectId, onDeleteProject }) {
@@ -14,14 +13,12 @@ function Project({ projectName, projectId, onDeleteProject }) {
           type="submit"
           onClick={() => (onDeleteProject(projectId))}
         >
-          <BsTrash />
+          <CloseIcon />
         </TrashButton>
       </HeadProject>
       <hr />
       <MidProject>
-        <Icon>
-          <FcLikePlaceholder />
-        </Icon>
+        <DiamondIcon />
         <ProjectName>
           {projectName}
         </ProjectName>

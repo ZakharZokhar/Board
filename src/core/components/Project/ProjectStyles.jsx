@@ -1,4 +1,10 @@
 import styled from '@emotion/styled';
+import {
+  BorderColor,
+  MainBlueColor,
+  BackgroundWhiteColor,
+  RoleColor,
+} from '../../../shared/colors';
 
 const ProjectContainer = styled('div')`
   display: inline-block;
@@ -7,12 +13,9 @@ const ProjectContainer = styled('div')`
   height: 170px;
   margin: 15px 15px 15px 15px;
   padding: 7px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid ${BorderColor};
   box-sizing: border-box;
   border-radius: 8px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: normal;
 `;
 
 const HeadProject = styled('div')`
@@ -23,7 +26,7 @@ const RoleContainer = styled('div')`
   display: inline-block;
   align-items: center;
   padding: 3px 8px;
-  background: #f2f2f2;
+  background: ${RoleColor};
   border-radius: 4px;
   font-size: 12px;
 `;
@@ -31,25 +34,18 @@ const RoleContainer = styled('div')`
 const TrashButton = styled('button')`
   position: absolute;
   right: 5px;
-  color: #bfbfbf;
-  background: white;
+  background: ${BackgroundWhiteColor};
   border: none;
-  font-size: 20px;
     
   &:hover {
   cursor: pointer;
-  color: #8a8282;
   }
 `;
 
 const MidProject = styled('div')`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
   line-height: 20px;
   display: flex;
   align-items: center;
-  color: #262626;
   padding: 7% 0 7% 0;
 `;
 
@@ -60,18 +56,11 @@ const ProjectName = styled('div')`
   left: 30px;
 `;
 
-const Icon = styled('span')`
-  padding-right: 5px;
-  font-size: 20px;
-`;
-
 const BotProject = styled('div')`
-  font-weight: normal;
-  font-size: 14px;
   padding-top: 10px;
-  color: blue;
+  color: ${MainBlueColor};
 `;
 
 export {
-  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, Icon, BotProject, ProjectName,
+  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, BotProject, ProjectName,
 };
