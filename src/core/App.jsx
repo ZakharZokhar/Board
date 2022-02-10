@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import configureStore from './redux/configureStore';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Welcome from './components/Welcome';
 import Main from './components/Main';
 import Routes from './Routes';
 import GlobalStyles from '../shared/GlobalStyles';
@@ -15,6 +16,7 @@ function App() {
       <Provider store={store}>
         <GlobalStyles />
         <Header />
+        <Welcome />
         <BrowserRouter>
           <Main>
             <Routes />

@@ -1,4 +1,4 @@
-import { Global, css } from '@emotion/core';
+import { css, Global } from '@emotion/core';
 import { fontFamily, fontSize } from './variables';
 
 const styles = css`
@@ -11,6 +11,7 @@ const styles = css`
     font-size: ${fontSize};
     font-family: ${fontFamily};
   }
+}
 `;
 
 const GlobalStyle = () => (
