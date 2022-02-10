@@ -1,0 +1,6 @@
+.feed{
+    flex: 6.13;
+    /*background-color: #c5c5c5;*/
+    width: 100%;
+    height: calc(100vh-56px);
+}
