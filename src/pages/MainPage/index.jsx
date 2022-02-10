@@ -14,7 +14,6 @@ const MainPage = () => {
 
   return (
     <Container>
-      <img src={image} alt="" />
       <Button onClick={onRollDog}>Roll dog</Button>
     </Container>
   );
