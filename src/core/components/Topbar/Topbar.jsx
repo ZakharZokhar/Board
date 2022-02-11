@@ -6,7 +6,7 @@ export default function Topbar(){
         <div className={"topbarContainer"}>
             <div className={"topbarLeft"}>
                 <img className={"topbarLogo"} src="/assets/a1png.png" alt=""/>
-                <Link to="/">
+                <Link to="/" style={{textDecoration:"none"}}>
                     <div className={"topbarAsperiod"}>asperiod</div>
                 </Link>
             </div>

@@ -46,7 +46,9 @@ export const GearIcon = () => (
 )
 export const UserCircleIcon = () => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M9 2H11V14H9V2ZM7 2C7 0.895431 7.89543 0 9 0H11C12.1046 0 13 0.895431 13 2V14C13 15.1046 12.1046 16 11 16H9C7.89543 16 7 15.1046 7 14V2ZM4 6H2L2 14H4V6ZM2 4C0.895431 4 0 4.89543 0 6V14C0 15.1046 0.89543 16 2 16H4C5.10457 16 6 15.1046 6 14V6C6 4.89543 5.10457 4 4 4H2ZM16 10H18V14H16V10ZM14 10C14 8.89543 14.8954 8 16 8H18C19.1046 8 20 8.89543 20 10V14C20 15.1046 19.1046 16 18 16H16C14.8954 16 14 15.1046 14 14V10ZM1 18C0.447715 18 0 18.4477 0 19C0 19.5523 0.447715 20 1 20H19C19.5523 20 20 19.5523 20 19C20 18.4477 19.5523 18 19 18H1Z" fill="#BFBFBF"/>
+        <circle cx="10" cy="8" r="3" stroke="#BFBFBF" stroke-width="2"/>
+        <path d="M16 17C16 13.6863 13.3137 11 10 11C6.68629 11 4 13.6863 4 17" stroke="#BFBFBF" stroke-width="2"/>
+        <circle cx="10" cy="10" r="9" stroke="#BFBFBF" stroke-width="2"/>
     </svg>
 )
 export const ChartBarIcon = () => (

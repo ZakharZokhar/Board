@@ -8,46 +8,44 @@ import {
     ViewBoardsIcon,
     PlusIcon
 } from '../../../shared/icons/icons';
-
+import {SidebarWrapper, SidebarList,SidebarListItem} from './SidebarStyles'
 
 export default function Sidebar() {
     return (
-        <div className="sidebar">
-            <div className="sidebarWrapper">
-                <ul className="sidebarList">
-                    <li className="sidebarlistItem">
-                        <Link to='/boards'>
-                            <ViewGridIcon className="sidebarIcon"/>
-                            <span className="sidebarListItemText">All boards</span>
+        <SidebarWrapper>
+                <SidebarList>
+                    <SidebarListItem>
+                        <ViewGridIcon className="sidebarIcon"/>
+                        <Link to='/boards' style={{textDecoration:"none"}}>
+                          <span className="sidebarListItemText">All boards</span>
                         </Link>
-                    </li>
-                    <li className="sidebarlistItem">
-                        <PlusIcon className="sidebarIcon"/>
+                    </SidebarListItem>
+                    <SidebarListItem>
+                    <PlusIcon className="sidebarIcon"/>
                         <span className="sidebarListItemText">New board</span>
-                    </li>
-                    <li className="sidebarlistItem">
+                    </SidebarListItem>
+                    <SidebarListItem>
                         <GearIcon className="sidebarIcon"/>
                         <span className="sidebarListItemText">Settings</span>
-                    </li>
+                    </SidebarListItem>
                     <hr/>
                     <li className="sidebarCurrent">
                         <span>CURRENT BOARD MENU</span>
                     </li>
-                    <li className="sidebarlistItem">
+                    <SidebarListItem>
                         {/* <KanbanIcon className={"sidebarIcon"}/>*/}
                         <ViewBoardsIcon className="sidebarIcon"/>
                         <span className="sidebarListItemText">Kanban</span>
-                    </li>
-                    <li className="sidebarlistItem">
+                    </SidebarListItem>
+                    <SidebarListItem>
                         <UserCircleIcon className="sidebarIcon"/>
                         <span className="sidebarListItemText">Members</span>
-                    </li>
-                    <li className="sidebarlistItem">
+                    </SidebarListItem>
+                    <SidebarListItem>
                         <ChartBarIcon className="sidebarIcon"/>
                         <span className="sidebarListItemText">Statistics</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                    </SidebarListItem>
+                </SidebarList>
+        </SidebarWrapper>
     );
 }
