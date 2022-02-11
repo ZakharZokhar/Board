@@ -1,12 +1,16 @@
-import { Switch, Route } from 'react-router-dom';
-import Home from '../pages/Home/Home'
-import Welcome from '../pages/Welcome/Welcome'
+import { Route, Switch } from 'react-router-dom';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
+import AllBoardPage from '../pages/AllBoardPage';
+import WelcomePage from "../pages/WelcomePage";
 
-const Routes = () => (
+const Router = () => (
   <Switch>
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/welcome" component={Welcome} />
+    <Route exact path="/" component={WelcomePage} />
+    <Route path="/auth" component={LoginPage} />
+    <Route path="/reg" component={RegistrationPage} />
+    <Route path="/boards" component={AllBoardPage} />
   </Switch>
 );
 
-export default Routes;
+export default Router;

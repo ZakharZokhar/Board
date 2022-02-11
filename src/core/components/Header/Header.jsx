@@ -2,9 +2,7 @@ import Container from '../../../shared/basic-components/Container';
 
 const Header = () => (
   <header>
-    <Container>
-      header
-    </Container>
+    <Container />
   </header>
 );
 

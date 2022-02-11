@@ -6,7 +6,6 @@ const defaultButtonStyles = css`
   border-radius: 4px;
   outline: none;
   border: 0;
-  
   &:hover {
     cursor: pointer;
   }

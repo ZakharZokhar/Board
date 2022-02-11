@@ -1,15 +1,24 @@
 import { Global, css } from '@emotion/core';
-import { fontFamily, fontSize } from './variables';
+import { BaseFontFamily, BaseFont } from './variables';
+import { BorderColor } from './colors';
 
 const styles = css`
+  * {
+    vertical-align: top;
+  }
+
   html {
     text-rendering: optimizeLegibility;
   }
 
   body {
     margin: 0;
-    font-size: ${fontSize};
-    font-family: ${fontFamily};
+    font-family: ${BaseFontFamily};
+    ${BaseFont};
+  }
+
+  hr {
+    border: 1px solid ${BorderColor};
   }
 `;
 
