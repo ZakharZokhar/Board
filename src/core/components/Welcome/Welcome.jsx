@@ -1,7 +1,7 @@
 // import PropTypes from 'prop-types';
 import Logo from '../../../shared/LogoAsperiod.svg';
 import {
-  Button, ButtonText, ButtonWrapper, CenterLayout, TextWrapper,
+  Button, ButtonText, ButtonWrapper, CenterLayout, Image, TextWrapper,
 } from './WelcomeStyles';
 
 function clickMe() {
@@ -12,13 +12,13 @@ function clickMe() {
 function Welcome() {
   return (
     <CenterLayout>
-      <img src={Logo} alt="Logo" />
+      <Image src={Logo} alt="Logo" width="auto" />
       <TextWrapper>asperiod - it’s the best site in the world</TextWrapper>
       <ButtonWrapper>
         <Button onClick={clickMe} theme="blue">
           <ButtonText color="#ffffff">Continue</ButtonText>
         </Button>
-        <Button theme="white">
+        <Button onClick={clickMe} theme="white">
           <ButtonText style={{ color: '#000' }}>Sign in</ButtonText>
         </Button>
       </ButtonWrapper>
@@ -26,13 +26,5 @@ function Welcome() {
     </CenterLayout>
   );
 }
-
-// Welcome.propTypes = {
-//   children: PropTypes.node,
-// };
-//
-// Welcome.defaultProps = {
-//   children: null,
-// };
 
 export default Welcome;
