@@ -1,13 +1,12 @@
 import './style.css';
 import {
     ViewGridIcon,
-    PlusSmIcon,
-    CogIcon,
+    GearIcon,
     UserCircleIcon,
     ChartBarIcon,
-    ViewBoardsIcon
-} from '@heroicons/react/outline';
-import {Link} from 'react-router-dom';
+    ViewBoardsIcon,
+    PlusIcon
+} from '../../../shared/icons/icons';
 
 {/*function KanbanIcon() {
     return <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,11 +27,11 @@ export default function Sidebar() {
                         <span className="sidebarListItemText">All boards</span>
                     </li>
                     <li className="sidebarlistItem">
-                        <PlusSmIcon className="sidebarIcon"/>
+                        <PlusIcon className="sidebarIcon"/>
                         <span className="sidebarListItemText">New board</span>
                     </li>
                     <li className="sidebarlistItem">
-                        <CogIcon className="sidebarIcon"/>
+                        <GearIcon className="sidebarIcon"/>
                         <span className="sidebarListItemText">Settings</span>
                     </li>
                     <hr/>
