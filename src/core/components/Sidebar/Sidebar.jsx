@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './style.css';
 import {
     ViewGridIcon,
@@ -8,23 +9,17 @@ import {
     PlusIcon
 } from '../../../shared/icons/icons';
 
-{/*function KanbanIcon() {
-    return <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="7" height="9" rx="1" stroke="#BFBFBF" stroke-width="2"/>
-        <rect x="12" y="10" width="7" height="9" rx="1" stroke="#BFBFBF" stroke-width="2"/>
-        <rect x="12" y="1" width="7" height="5" rx="1" stroke="#BFBFBF" stroke-width="2"/>
-        <rect x="1" y="14" width="7" height="5" rx="1" stroke="#BFBFBF" stroke-width="2"/>
-    </svg>
-}*/
-}
+
 export default function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
                 <ul className="sidebarList">
                     <li className="sidebarlistItem">
-                        <ViewGridIcon className="sidebarIcon"/>
-                        <span className="sidebarListItemText">All boards</span>
+                        <Link to='/boards'>
+                            <ViewGridIcon className="sidebarIcon"/>
+                            <span className="sidebarListItemText">All boards</span>
+                        </Link>
                     </li>
                     <li className="sidebarlistItem">
                         <PlusIcon className="sidebarIcon"/>
@@ -55,5 +50,4 @@ export default function Sidebar() {
             </div>
         </div>
     );
-
 }
