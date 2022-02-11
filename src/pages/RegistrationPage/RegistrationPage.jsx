@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useHistory  } from 'react-router-dom';
 // import WhiteButton from '../../UI/Buttons/whiteButton';
 import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
@@ -7,12 +7,13 @@ import './RegistrationPage.css';
 import AuthService from '../../services/api/auth.service';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  const history = useHistory ();
   const login = React.createRef();
   const password = React.createRef();
   const name = React.createRef();
   const handleSubmit = () => {
-    AuthService.register(login.current.value, name.current.value, password.current.value).then(navigate('/boards'));
+    AuthService.register(login.current.value, name.current.value, password.current.value)
+        .then((res)=> {history.push("/boards")});
   };
   return (
     <div

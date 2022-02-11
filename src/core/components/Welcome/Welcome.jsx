@@ -1,39 +1,25 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../../../shared/LogoAsperiod.svg';
 import {
-  Button, ButtonText, ButtonWrapper, CenterLayout, TextWrapper,
+    Button, ButtonText, ButtonWrapper, CenterLayout, TextWrapper,
 } from './WelcomeStyles';
 
-function clickMe() {
-  // eslint-disable-next-line no-alert
-  alert('You clicked me!');
-}
-
-function Welcome() {
-  return (
+export const Welcome = () => (
     <CenterLayout>
-      <img src={Logo} alt="Logo" />
-      <TextWrapper>asperiod - it’s the best site in the world</TextWrapper>
-      <ButtonWrapper>
-        <Button onClick={clickMe} theme="blue">
-          <ButtonText color="#ffffff">Continue</ButtonText>
-        </Button>
-          <Button theme="white">
-            <ButtonText style={{ color: '#000' }}>Sign in</ButtonText>
-          </Button>
-      </ButtonWrapper>
-
+        <img src={Logo} alt="Logo"/>
+        <TextWrapper>asperiod - it’s the best site in the world</TextWrapper>
+        <ButtonWrapper>
+            <Link to="/reg">
+            <Button theme="blue">
+                <ButtonText color="#ffffff">Continue</ButtonText>
+            </Button>
+            </Link>
+            <Link to="/auth">
+            <Button theme="white">
+                <ButtonText style={{color: '#000'}}>Sign in</ButtonText>
+            </Button>
+            </Link>
+        </ButtonWrapper>
     </CenterLayout>
-  );
-}
-
-// Welcome.propTypes = {
-//   children: PropTypes.node,
-// };
-//
-// Welcome.defaultProps = {
-//   children: null,
-// };
-
-export default Welcome;
+);

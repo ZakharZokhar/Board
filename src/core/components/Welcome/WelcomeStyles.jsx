@@ -14,7 +14,6 @@ export const CenterLayout = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 45px 475px;
 
   position: relative;
   width: 100%;

@@ -6,7 +6,6 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Routes from './Routes';
 import GlobalStyles from '../shared/GlobalStyles';
-import AllProjectsContainer from './components/AllProjectsContainer';
 
 const store = configureStore();
 
@@ -16,7 +15,6 @@ function App() {
       <Provider store={store}>
         <GlobalStyles />
         <Header />
-        <AllProjectsContainer />
         <BrowserRouter>
           <Main>
             <Routes />
