@@ -16,6 +16,10 @@ const styles = css`
     font-family: ${BaseFontFamily};
     ${BaseFont};
   }
+  
+  body a {
+    text-decoration: none;
+  }
 
   hr {
     border: 1px solid ${BorderColor};
