@@ -4,7 +4,7 @@ import AddProjectButton from '../AddProjectButton';
 import PopUpAddProject from '../PopUpAddProject';
 import Project from '../Project';
 import {
-  togglePopUpOn, togglePopUpOff, deleteProject, addNewProject, fetchProjectById, fetchProjectIds
+  togglePopUpOn, togglePopUpOff, deleteProject, fetchProjectById, fetchProjectIds
 } from './redux/actions';
 import AllProjectsHolder from './AllProjectContainerStyles';
 
@@ -15,9 +15,11 @@ function AllProjectsContainer() {
   const isOpen = useSelector((state) => (state.popup.isPopUpOpen));
   const onGetProjectsById = (ids) => {
     ids.forEach((id) => dispatch(fetchProjectById(id)));
+    console.log(ids);
   }
   useEffect(() => {
     onGetProjectsById(projectIds);
+    console.log('getting');
   }, [projectIds]);
   useEffect(() => {
     dispatch(fetchProjectIds());
@@ -28,10 +30,6 @@ function AllProjectsContainer() {
   const closePopUp = () => {
     dispatch(togglePopUpOff);
   };
-  const onAddNewProject = (name) => {
-    dispatch({ ...addNewProject, payload: name });
-    dispatch(togglePopUpOff);
-  };
   const onDeleteProject = (id) => (dispatch({ ...deleteProject, payload: id }));
 
   return (
@@ -39,9 +37,9 @@ function AllProjectsContainer() {
       <AddProjectButton onAddClick={showPopUp} />
       {projects.map((project) => (
         <Project
-          key={project.id}
+          key={project._id}
           projectName={project.name}
-          projectId={project.id}
+          projectId={project._id}
           onDeleteProject={onDeleteProject}
         />
       ))}
@@ -49,7 +47,6 @@ function AllProjectsContainer() {
         && (
           <PopUpAddProject
             onCloseClick={closePopUp}
-            onCreateClick={onAddNewProject}
           />
         )}
     </AllProjectsHolder>

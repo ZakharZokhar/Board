@@ -8,6 +8,7 @@ import {
   fetchProjectIdsSuccess,
   fetchProjectIdsFailure,
 } from './actions';
+import {createProject, getUsers, updateUserProjectsIds} from '../../../../services/api/user.service';
 
 function togglePopUpReducer(state = { isPopUpOpen: false }, action) {
   switch (action.type) {
@@ -36,6 +37,7 @@ function projectIdsReducer(state={ids:[], error:null}, action) {
         ids: action.payload,
       };
     case fetchProjectIdsFailure.type:
+      console.log(action.payload);
       return {
         ...state,
         error: action.payload,
@@ -47,14 +49,24 @@ function projectIdsReducer(state={ids:[], error:null}, action) {
   }
 }
 
-function nextProjectId(projects) {
-  const maxId = projects.reduce((curMaxId, project) => Math.max(project.id, curMaxId), -1);
-  return maxId + 1;
-}
-
 function isProjectAlreadyHere(projects, potentialProject) {
   const ids = projects.map((project) => project._id);
   return ids.includes(potentialProject._id)
+}
+
+async function updateId (project) {
+  try {
+    const { data } = await createProject(project);
+    console.log(data._id);
+    //Until the API returns an id
+    const users = await getUsers();
+    const login = localStorage.getItem('login')
+    const userId = users.data.filter((user) => (user.email === login)).map((user) => (user._id));
+    console.log(userId);
+    await updateUserProjectsIds(userId, data._id);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function projectsReducer(state = [], action) {
@@ -69,22 +81,15 @@ function projectsReducer(state = [], action) {
         action.payload
       ]
     case fetchProjectByIdFailure.type:
+      console.log(action.payload);
       return [
         ...state,
-        {
-          id: nextProjectId(state),
-          name: action.payload,
-          description: '',
-        },
       ];
     case addNewProject.type:
-      return [
+      updateId(action.payload);
+      console.log(action.payload);
+      return  [
         ...state,
-        {
-          id: nextProjectId(state),
-          name: action.payload,
-          description: '',
-        },
       ];
     case deleteProject.type:
       return (

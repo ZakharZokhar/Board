@@ -6,6 +6,10 @@ import {
   RoleColor,
 } from '../../../shared/colors';
 
+const HrStyled = styled('hr')`
+  margin-top: 10px;
+`;
+
 const ProjectContainer = styled('div')`
   display: inline-block;
   position: relative;
@@ -63,4 +67,5 @@ const BotProject = styled('div')`
 
 export {
   ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, BotProject, ProjectName,
+  HrStyled,
 };

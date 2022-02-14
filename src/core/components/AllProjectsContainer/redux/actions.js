@@ -18,8 +18,10 @@ export const fetchProjectIdsFailure = { type: 'GET_PROJECT_IDS_FAILURE' };
 
 export const fetchProjectIds = () => async (dispatch) => {
   try {
+    //Until the API returns an id
     const { data } = await getUsers();
-    const [projectids] = data.filter((user) => (user.email === 'zakhar2@test.com')).map((user) => (user.projectIds));
+    const login = localStorage.getItem('login')
+    const [projectids] = data.filter((user) => (user.email === login)).map((user) => (user.projectIds));
     dispatch({...fetchProjectIdsSuccess, payload: projectids});
   } catch (error) {
     dispatch({...fetchProjectIdsFailure, payload: error});

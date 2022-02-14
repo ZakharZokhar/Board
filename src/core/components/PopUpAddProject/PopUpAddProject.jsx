@@ -4,15 +4,19 @@ import { useState } from 'react';
 import { CloseIcon } from '../../../shared/icons/icons';
 import {
   PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
+  HrStyled,
 } from './PopUpAddProjectStyles';
-import { togglePopUpOff, addNewProject } from '../AllProjectsContainer/redux/actions';
+import {togglePopUpOff, addNewProject, fetchProjectIds} from '../AllProjectsContainer/redux/actions';
 
 function PopUpAddProject({ onCloseClick }) {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
-  const handleChange = (even) => (setText(even.target.value));
-  const handleCreateClick = (name) => {
-    dispatch({ ...addNewProject, payload: name });
+  const [description, setDescription] = useState('');
+  const handleChangeName = (even) => (setText(even.target.value));
+  const handleChangeDesc = (even) => (setDescription(even.target.value));
+  const handleCreateClick = (name, description) => {
+    dispatch({ ...addNewProject, payload: {name: name, description: description} });
+    dispatch(fetchProjectIds())
     dispatch(togglePopUpOff);
   };
 
@@ -25,12 +29,15 @@ function PopUpAddProject({ onCloseClick }) {
             <CloseIcon />
           </ClosePopUpButton>
         </PopUpHeader>
-        <hr />
+        <HrStyled />
         <PopUpMid>
-          Board title
-          <InputPopUp value={text} onChange={handleChange} />
+          Project title
+          <InputPopUp value={text} onChange={handleChangeName} />
+          Project description
+          <InputPopUp value={description} onChange={handleChangeDesc} />
           <PopUpCreateButton onClick={() => {
-            handleCreateClick(text.length < 60 ? text : `${text.substring(0, 60)}...`);
+            handleCreateClick(text.length < 60 ? text : `${text.substring(0, 60)}...`,
+              description);
           }}
           >
             Create

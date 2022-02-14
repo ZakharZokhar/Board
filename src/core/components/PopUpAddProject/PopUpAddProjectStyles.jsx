@@ -3,6 +3,10 @@ import {
   MainBlueColor, BackgroundWhiteColor, BorderColor, BorderHoverColor, TransparentBlack,
 } from '../../../shared/colors';
 
+const HrStyled = styled('hr')`
+  margin-top: 10px;
+`;
+
 const PopUp = styled('div')`
   position: fixed;
   background: ${TransparentBlack};
@@ -16,7 +20,7 @@ const PopUpWindow = styled('div')`
   position: relative;
   width: 300px;
   margin: calc(100vh - 85vh - 20px) auto 0;
-  height: 220px;
+  height: 300px;
   max-height: 70vh;
   background: ${BackgroundWhiteColor};
   border-radius: 8px;
@@ -90,4 +94,5 @@ const PopUpCreateButton = styled('button')`
 
 export {
   PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
+  HrStyled,
 };

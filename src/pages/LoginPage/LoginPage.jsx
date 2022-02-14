@@ -15,7 +15,10 @@ const LoginPage = () => {
     // if (login.current.value.length > 128) return
     // if (password.current.value.length < 8) return
     AuthService.login(login.current.value, password.current.value).then(
-      () => {history.push("/boards");},
+      () => {
+        //Until the API returns an id
+        localStorage.setItem('login', login.current.value);
+        history.push("/projects");},
     ).catch((error) => {
       console.log({ error });
     });
