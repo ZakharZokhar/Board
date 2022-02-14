@@ -1,16 +1,27 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AddProjectButton from '../AddProjectButton';
 import PopUpAddProject from '../PopUpAddProject';
 import Project from '../Project';
 import {
-  togglePopUpOn, togglePopUpOff, deleteProject, addNewProject,
+  togglePopUpOn, togglePopUpOff, deleteProject, addNewProject, fetchProjectById, fetchProjectIds
 } from './redux/actions';
 import AllProjectsHolder from './AllProjectContainerStyles';
 
 function AllProjectsContainer() {
   const dispatch = useDispatch();
-  const isOpen = useSelector((state) => (state.popup.isPopUpOpen));
+  const projectIds = useSelector((state) => state.projectids.ids)
   const projects = useSelector((state) => (state.project));
+  const isOpen = useSelector((state) => (state.popup.isPopUpOpen));
+  const onGetProjectsById = (ids) => {
+    ids.forEach((id) => dispatch(fetchProjectById(id)));
+  }
+  useEffect(() => {
+    onGetProjectsById(projectIds);
+  }, [projectIds]);
+  useEffect(() => {
+    dispatch(fetchProjectIds());
+  }, []);
   const showPopUp = () => {
     dispatch(togglePopUpOn);
   };

@@ -6,9 +6,13 @@ const getPublicContent = () => axios.get(`${API_URL}all`);
 const getUserBoard = () => axios.get(`${API_URL}user`, { headers: authHeader() });
 const getModeratorBoard = () => axios.get(`${API_URL}mod`, { headers: authHeader() });
 const getAdminBoard = () => axios.get(`${API_URL}admin`, { headers: authHeader() });
-export default {
+const getUsers = () => axios.get(`${API_URL}users`, authHeader()).then((response) => response);
+const getProjectById = (id) => axios.get(`${API_URL}projects/${id}`, authHeader()).then((response) => response);
+export {
   getPublicContent,
   getUserBoard,
   getModeratorBoard,
   getAdminBoard,
+  getUsers,
+  getProjectById,
 };
