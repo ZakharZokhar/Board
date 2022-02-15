@@ -9,5 +9,5 @@ export default {
   dog: dogReducer,
   popup: togglePopUpReducer,
   project: projectsReducer,
-  projectids: projectIdsReducer,
+  projectIds: projectIdsReducer,
 };

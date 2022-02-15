@@ -16,13 +16,16 @@ export const fetchProjectIdsSuccess = { type: 'GET_PROJECT_IDS_SUCCESS' };
 
 export const fetchProjectIdsFailure = { type: 'GET_PROJECT_IDS_FAILURE' };
 
+export const addProjectId = { type: 'ADD_PROJECT_ID' };
+
 export const fetchProjectIds = () => async (dispatch) => {
   try {
     //Until the API returns an id
     const { data } = await getUsers();
     const login = localStorage.getItem('login')
-    const [projectids] = data.filter((user) => (user.email === login)).map((user) => (user.projectIds));
-    dispatch({...fetchProjectIdsSuccess, payload: projectids});
+    const [projectIds] = data.filter((user) => (user.email === login)).map((user) => (user.projectIds));
+    console.log(projectIds);
+    dispatch({...fetchProjectIdsSuccess, payload: projectIds});
   } catch (error) {
     dispatch({...fetchProjectIdsFailure, payload: error});
   }

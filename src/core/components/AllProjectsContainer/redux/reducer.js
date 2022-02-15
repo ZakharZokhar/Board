@@ -7,6 +7,7 @@ import {
   fetchProjectByIdFailure,
   fetchProjectIdsSuccess,
   fetchProjectIdsFailure,
+  addProjectId,
 } from './actions';
 import {createProject, getUsers, updateUserProjectsIds} from '../../../../services/api/user.service';
 
@@ -31,6 +32,11 @@ function togglePopUpReducer(state = { isPopUpOpen: false }, action) {
 
 function projectIdsReducer(state={ids:[], error:null}, action) {
   switch (action.type) {
+    case addProjectId.type:
+      return {
+      ...state,
+      ids: [...state.ids, action.payload]
+    }
     case fetchProjectIdsSuccess.type:
       return {
         ...state,
@@ -81,7 +87,6 @@ function projectsReducer(state = [], action) {
         action.payload
       ]
     case fetchProjectByIdFailure.type:
-      console.log(action.payload);
       return [
         ...state,
       ];

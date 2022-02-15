@@ -6,7 +6,7 @@ import {
   PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
   HrStyled,
 } from './PopUpAddProjectStyles';
-import {togglePopUpOff, addNewProject, fetchProjectIds} from '../AllProjectsContainer/redux/actions';
+import {togglePopUpOff, addNewProject} from '../AllProjectsContainer/redux/actions';
 
 function PopUpAddProject({ onCloseClick }) {
   const dispatch = useDispatch();
@@ -16,7 +16,8 @@ function PopUpAddProject({ onCloseClick }) {
   const handleChangeDesc = (even) => (setDescription(even.target.value));
   const handleCreateClick = (name, description) => {
     dispatch({ ...addNewProject, payload: {name: name, description: description} });
-    dispatch(fetchProjectIds())
+    //delay(2000).then(() => dispatch(fetchProjectIds()));
+
     dispatch(togglePopUpOff);
   };
 

@@ -10,11 +10,11 @@ import AllProjectsHolder from './AllProjectContainerStyles';
 
 function AllProjectsContainer() {
   const dispatch = useDispatch();
-  const projectIds = useSelector((state) => state.projectids.ids)
+  const projectIds = useSelector((state) => state.projectIds.ids)
   const projects = useSelector((state) => (state.project));
   const isOpen = useSelector((state) => (state.popup.isPopUpOpen));
   const onGetProjectsById = (ids) => {
-    ids.forEach((id) => dispatch(fetchProjectById(id)));
+    Promise.all(ids.map((id) => dispatch(fetchProjectById(id))))
     console.log(ids);
   }
   useEffect(() => {
