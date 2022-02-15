@@ -53,7 +53,6 @@ if (emailError || passwordError) {
       setEmailError('')
     }
   }
-
   const passwordHandler = (e) => {
     setPassword(e.target.value)
     if(e.target.value.length < 8) {
@@ -95,7 +94,7 @@ if (emailError || passwordError) {
           <input onChange={e => passwordHandler(e)} defaultValue={password}
                  onBlur={e => blurHandler(e)} name='password' type="text" ref={pass} />
           {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{passwordError}</div>}
-
+          <button className="whiteButton">Звездочки</button>
           <div className="signIn">
             <button disabled={!formValid} type="button"
                     aria-label="Sign In" className="whiteButton" onClick={handleSubmit}>
