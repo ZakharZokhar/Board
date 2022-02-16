@@ -112,9 +112,7 @@ function isProjectAlreadyHere(projects, potentialProject) {
 async function updateId (project) {
   try {
     const { data } = await createProject(project);
-    console.log(data._id);
     const { userId } = JSON.parse(localStorage.getItem('tokens'));
-    console.log(userId);
     await updateUserProjectsIds(userId, data._id);
   } catch (error) {
     console.log(error);

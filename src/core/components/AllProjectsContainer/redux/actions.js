@@ -33,10 +33,8 @@ export const hideWarningLongName = { type: 'HIDE_WARNING_LONG_NAME' };
 export const fetchProjectIds = () => async (dispatch) => {
   try {
     const { userId } = JSON.parse(localStorage.getItem('tokens'));
-    console.log(userId)
     const { data } = await getUserById(userId);
     const projectIds = data.projectIds;
-    console.log(projectIds);
     dispatch({...fetchProjectIdsSuccess, payload: projectIds});
   } catch (error) {
     dispatch({...fetchProjectIdsFailure, payload: error});

@@ -16,11 +16,9 @@ function AllProjectsContainer() {
   const isOpen = useSelector((state) => (state.popup.isPopUpOpen));
   const onGetProjectsById = (ids) => {
     Promise.all(ids.map((id) => dispatch(fetchProjectById(id))))
-    console.log(ids);
   }
   useEffect(() => {
     onGetProjectsById(projectIds);
-    console.log('getting');
   }, [projectIds]);
   useEffect(() => {
     dispatch(fetchProjectIds());

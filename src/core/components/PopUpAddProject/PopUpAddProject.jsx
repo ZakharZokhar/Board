@@ -24,10 +24,16 @@ function PopUpAddProject({ onCloseClick }) {
   const handleCreateClick = (name, description) => {
     if (name === '') {
       dispatch(displayWarningEmptyName);
+      dispatch(hideWarningLongName);
+      dispatch(hideWarningLongDescription);
     } else if (description.length > 1024) {
       dispatch(displayWarningLongDescription);
+      dispatch(hideWarningEmptyName);
+      dispatch(hideWarningLongName);
     } else if (name.length > 128) {
       dispatch(displayWarningLongName);
+      dispatch(hideWarningEmptyName);
+      dispatch(hideWarningLongDescription);
     } else {
       dispatch(hideWarningEmptyName);
       dispatch(hideWarningLongDescription);
