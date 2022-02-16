@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-// import WhiteButton from '../../UI/Buttons/whiteButton';
+import React from 'react';
+import { Link, useHistory  } from 'react-router-dom';
+import {useEffect, useState} from 'react';
 import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './RegistrationPage.css';
 import AuthService from '../../services/api/auth.service';
-import {useHistory} from "react-router";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -25,7 +24,7 @@ const LoginPage = () => {
         .then((res)=> {history.push("/boards")});
   };
 
-  /* eslint-disable */
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailDirty, setEmailDirty] = useState(false);
@@ -45,14 +44,14 @@ const LoginPage = () => {
 
 
   const latinValid = (e, err) => {
-    const reg = /^[A-z\0-9\u00C0-\u00ff\s'\.,-\/#@!$%\^&\*;:{}=\-_`~()]+$/;
+    // /* eslint-disable-next-line */
+    // const reg = /^[A-z\0-9\u00C0-\u00ff\s'\.,-\/#@!$%\^&\*;:{}=\-_`~()]+$/;
+    const reg = 't'
     if (e.target.value && !reg.test(String(e.target.value).toLowerCase())) {
       err('Только латиница!')
-      console.log('only latin')
       return false
     } else {
       setEmailError('')
-      console.log('ok')
       return true
     }
   }
@@ -88,7 +87,7 @@ const LoginPage = () => {
     }
   }
 
-  /* eslint-enable */
+
   const blurHandler = (e) => {
     switch (e.target.name) {
       case 'email':

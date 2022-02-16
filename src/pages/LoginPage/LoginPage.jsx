@@ -1,12 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
-// import WhiteButton from '../../UI/Buttons/whiteButton';
+import React from 'react';
+import {Link, useHistory} from 'react-router-dom';
+import {useState, useEffect} from 'react';
 import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './LoginPage.css';
-// import getUsers from '../../services/api/getUsers';
 import AuthService from '../../services/api/auth.service';
-import {useHistory} from "react-router";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -14,20 +12,13 @@ const LoginPage = () => {
   const pass = React.createRef();
   const [loginError, setLoginError] = useState(false);
   const handleSubmit = () => {
-    // if (login.current.value.length > 128) return console.log('too long name');
-    // if (password.current.value.length < 8) return console.log('8 chars minimum');
     AuthService.login(email, password).then(
       () => {history.push("/boards");},
     ).catch((error) => {
-      console.log({ error });
       setLoginError(true)
 
     });
   };
-  // const getUs = () => {
-  //   console.log(getUsers());
-  // };
-  /* eslint-disable */
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailDirty, setEmailDirty] = useState(false);
@@ -65,7 +56,6 @@ if (emailError || passwordError) {
     }
   }
 
-  /* eslint-enable */
   const blurHandler = (e) => {
     switch (e.target.name) {
       case 'email':
@@ -74,7 +64,6 @@ if (emailError || passwordError) {
       case 'password':
         setPasswordDirty(true)
         break;
-
     }
   }
   return (
@@ -101,9 +90,6 @@ if (emailError || passwordError) {
               Sign In
             </button>
             {loginError ? <div style={{color: 'red'}}>Такой пользователь не найден</div> : ''}
-            {/*<button type="button" aria-label="Sign In" className="whiteButton" onClick={getUs}>*/}
-            {/*  Get Users*/}
-            {/*</button>*/}
           </div>
           <hr />
           <div className="signUp"><Link to="/reg"><BlueButton title="Sign Up" /></Link>

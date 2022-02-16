@@ -22,6 +22,7 @@ const login = (email, password) => axios
     return response.data;
   });
 
+
 const logout = () => {
   localStorage.removeItem('tokens');
 };
