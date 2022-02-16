@@ -1,4 +1,4 @@
-import { getProjectById, getUsers } from '../../../../services/api/user.service';
+import {getProjectById, getUserById} from '../../../../services/api/user.service';
 
 export const togglePopUpOn = { type: 'TOGGLE_POPUP_ON' };
 
@@ -18,12 +18,24 @@ export const fetchProjectIdsFailure = { type: 'GET_PROJECT_IDS_FAILURE' };
 
 export const addProjectId = { type: 'ADD_PROJECT_ID' };
 
+export const displayWarningEmptyName = { type: 'DISPLAY_WARNING_EMPTY_NAME_FIELD' };
+
+export const hideWarningEmptyName = { type: 'HIDE_WARNING_EMPTY_NAME_FIELD' };
+
+export const displayWarningLongDescription = { type: 'DISPLAY_WARNING_LONG_DESCRIPTION' };
+
+export const hideWarningLongDescription = { type: 'HIDE_WARNING_LONG_DESCRIPTION' };
+
+export const displayWarningLongName = { type: 'DISPLAY_WARNING_LONG_NAME' };
+
+export const hideWarningLongName = { type: 'HIDE_WARNING_LONG_NAME' };
+
 export const fetchProjectIds = () => async (dispatch) => {
   try {
-    //Until the API returns an id
-    const { data } = await getUsers();
-    const login = localStorage.getItem('login')
-    const [projectIds] = data.filter((user) => (user.email === login)).map((user) => (user.projectIds));
+    const { userId } = JSON.parse(localStorage.getItem('tokens'));
+    console.log(userId)
+    const { data } = await getUserById(userId);
+    const projectIds = data.projectIds;
     console.log(projectIds);
     dispatch({...fetchProjectIdsSuccess, payload: projectIds});
   } catch (error) {

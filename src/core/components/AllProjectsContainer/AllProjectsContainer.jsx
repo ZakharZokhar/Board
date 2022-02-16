@@ -4,7 +4,8 @@ import AddProjectButton from '../AddProjectButton';
 import PopUpAddProject from '../PopUpAddProject';
 import Project from '../Project';
 import {
-  togglePopUpOn, togglePopUpOff, deleteProject, fetchProjectById, fetchProjectIds
+  togglePopUpOn, togglePopUpOff, deleteProject, fetchProjectById, fetchProjectIds,
+  hideWarningEmptyName, hideWarningLongDescription, hideWarningLongName,
 } from './redux/actions';
 import AllProjectsHolder from './AllProjectContainerStyles';
 
@@ -28,6 +29,9 @@ function AllProjectsContainer() {
     dispatch(togglePopUpOn);
   };
   const closePopUp = () => {
+    dispatch(hideWarningEmptyName);
+    dispatch(hideWarningLongDescription);
+    dispatch(hideWarningLongName);
     dispatch(togglePopUpOff);
   };
   const onDeleteProject = (id) => (dispatch({ ...deleteProject, payload: id }));
@@ -38,7 +42,7 @@ function AllProjectsContainer() {
       {projects.map((project) => (
         <Project
           key={project._id}
-          projectName={project.name}
+          projectName={project.name.length < 52 ? project.name : `${project.name.substring(0, 52)}...` }
           projectId={project._id}
           onDeleteProject={onDeleteProject}
         />

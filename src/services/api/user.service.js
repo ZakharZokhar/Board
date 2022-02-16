@@ -16,6 +16,7 @@ const updateUserProjectsIds = (userId, newProjectId) => axios.put(
     `${API_URL}users/update/${userId}`,
     {projectIds: [newProjectId]},
     authHeader()).then((response) => response);
+const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
 export {
   getPublicContent,
   getUserBoard,
@@ -25,4 +26,5 @@ export {
   getProjectById,
   createProject,
   updateUserProjectsIds,
+  getUserById,
 };

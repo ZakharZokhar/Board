@@ -3,6 +3,7 @@ import {
   togglePopUpReducer,
   projectsReducer,
   projectIdsReducer,
+  warningPopUpReducer,
 } from '../components/AllProjectsContainer/redux/reducer';
 
 export default {
@@ -10,4 +11,5 @@ export default {
   popup: togglePopUpReducer,
   project: projectsReducer,
   projectIds: projectIdsReducer,
+  warningsPopUp: warningPopUpReducer,
 };

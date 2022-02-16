@@ -8,8 +8,57 @@ import {
   fetchProjectIdsSuccess,
   fetchProjectIdsFailure,
   addProjectId,
+  displayWarningEmptyName,
+  hideWarningEmptyName,
+  displayWarningLongDescription,
+  hideWarningLongDescription,
+  displayWarningLongName,
+  hideWarningLongName,
 } from './actions';
-import {createProject, getUsers, updateUserProjectsIds} from '../../../../services/api/user.service';
+import {createProject, updateUserProjectsIds} from '../../../../services/api/user.service';
+
+function warningPopUpReducer(state = {
+  emptyName: false,
+  longDescription: false,
+  longName: false,
+}, action) {
+  switch (action.type) {
+    case displayWarningEmptyName.type:
+      return {
+        ...state,
+        emptyName: true,
+      };
+    case hideWarningEmptyName.type:
+      return {
+        ...state,
+        emptyName: false,
+      };
+    case displayWarningLongDescription.type:
+      return {
+        ...state,
+        longDescription: true,
+      };
+    case hideWarningLongDescription.type:
+      return {
+        ...state,
+        longDescription: false,
+      };
+    case displayWarningLongName.type:
+      return {
+        ...state,
+        longName: true,
+      };
+    case hideWarningLongName.type:
+      return {
+        ...state,
+        longName: false,
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+}
 
 function togglePopUpReducer(state = { isPopUpOpen: false }, action) {
   switch (action.type) {
@@ -64,10 +113,7 @@ async function updateId (project) {
   try {
     const { data } = await createProject(project);
     console.log(data._id);
-    //Until the API returns an id
-    const users = await getUsers();
-    const login = localStorage.getItem('login')
-    const userId = users.data.filter((user) => (user.email === login)).map((user) => (user._id));
+    const { userId } = JSON.parse(localStorage.getItem('tokens'));
     console.log(userId);
     await updateUserProjectsIds(userId, data._id);
   } catch (error) {
@@ -106,4 +152,7 @@ function projectsReducer(state = [], action) {
   }
 }
 
-export { togglePopUpReducer, projectsReducer, projectIdsReducer };
+export {
+  togglePopUpReducer, projectsReducer, projectIdsReducer,
+  warningPopUpReducer,
+};

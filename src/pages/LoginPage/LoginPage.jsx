@@ -17,7 +17,6 @@ const LoginPage = () => {
     AuthService.login(login.current.value, password.current.value).then(
       () => {
         //Until the API returns an id
-        localStorage.setItem('login', login.current.value);
         history.push("/projects");},
     ).catch((error) => {
       console.log({ error });

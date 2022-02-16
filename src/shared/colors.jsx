@@ -4,3 +4,4 @@ export const MainBlueColor = '#1037aa';
 export const BackgroundWhiteColor = '#fff';
 export const RoleColor = '#f2f2f2';
 export const TransparentBlack = 'rgba(0,0,0,0.5)';
+export const WarningRedColor = 'red';
