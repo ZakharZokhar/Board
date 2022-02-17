@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import {blueButtonForProjects} from "../../../shared/basic-components/Buttons";
 
+const BoardsContainer = styled('div')`
+  position: absolute;
+`;
+
 const AllBoardsHolder = styled('div')`
   vertical-align: top;
 `;
@@ -16,4 +20,4 @@ const BackToProjectsButton = styled('button')`
 
 `;
 
-export { AllBoardsHolder, BackToProjectsButton };
+export { AllBoardsHolder, BackToProjectsButton, BoardsContainer };

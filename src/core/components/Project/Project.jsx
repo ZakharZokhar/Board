@@ -13,10 +13,12 @@ import {
 } from './ProjectStyles';
 import { HrStyled } from '../../../shared/basic-components/Hr';
 import { openBoards } from "../BigContainerForKanban/redux/actions";
+import { fetchBoardsByProjectId } from "../AllBoardsComponent/redux/actions";
 
 function Project({ projectName, projectId, onDeleteProject }) {
   const dispatch = useDispatch();
   const onOpenBoards = () => {
+    dispatch(fetchBoardsByProjectId(projectId));
     dispatch({...openBoards})
   };
 
