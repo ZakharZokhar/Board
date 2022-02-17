@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types';
 import { DiamondIcon, CloseIcon } from '../../../shared/icons/icons';
 import {
-  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, BotProject, ProjectName,
+  ProjectContainer,
+  HeadProject,
+  RoleContainer,
+  TrashButton,
+  MidProject,
+  BotProject,
+  ProjectName,
 } from './ProjectStyles';
+import { HrStyled } from '../../../shared/basic-components/Hr';
 
 function Project({ projectName, projectId, onDeleteProject }) {
   return (
@@ -16,14 +23,14 @@ function Project({ projectName, projectId, onDeleteProject }) {
           <CloseIcon />
         </TrashButton>
       </HeadProject>
-      <hr />
+      <HrStyled />
       <MidProject>
         <DiamondIcon />
         <ProjectName>
           {projectName}
         </ProjectName>
       </MidProject>
-      <hr />
+      <HrStyled />
       <BotProject>12 users</BotProject>
     </ProjectContainer>
   );
@@ -31,7 +38,7 @@ function Project({ projectName, projectId, onDeleteProject }) {
 
 Project.propTypes = {
   projectName: PropTypes.string,
-  projectId: PropTypes.number,
+  projectId: PropTypes.string,
   onDeleteProject: PropTypes.func,
 };
 

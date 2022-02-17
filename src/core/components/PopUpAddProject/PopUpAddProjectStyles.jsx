@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import {
   MainBlueColor, BackgroundWhiteColor, BorderColor, BorderHoverColor, TransparentBlack,
+  WarningRedColor,
 } from '../../../shared/colors';
 
 const PopUp = styled('div')`
@@ -16,7 +17,7 @@ const PopUpWindow = styled('div')`
   position: relative;
   width: 300px;
   margin: calc(100vh - 85vh - 20px) auto 0;
-  height: 220px;
+  height: 320px;
   max-height: 70vh;
   background: ${BackgroundWhiteColor};
   border-radius: 8px;
@@ -51,9 +52,15 @@ const ClosePopUpButton = styled('button')`
   }
 `;
 
+const PopUpWarnings = styled('div')`
+  font-size: 10px;
+  color: ${WarningRedColor};
+  position: absolute;
+`;
+
 const PopUpMid = styled('div')`
   position: relative;
-  padding-top: 7%;
+  padding-top: 13%;
 `;
 
 const InputPopUp = styled('input')`
@@ -90,4 +97,5 @@ const PopUpCreateButton = styled('button')`
 
 export {
   PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
+  PopUpWarnings,
 };

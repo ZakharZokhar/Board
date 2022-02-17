@@ -13,7 +13,7 @@ const LoginPage = () => {
   const name = React.createRef();
   const handleSubmit = () => {
     AuthService.register(login.current.value, name.current.value, password.current.value)
-        .then((res)=> {history.push("/boards")});
+        .then((res)=> {history.push("/projects")});
   };
   return (
     <div

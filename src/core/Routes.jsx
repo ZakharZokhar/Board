@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
-import AllBoardPage from '../pages/AllBoardPage';
+import AllProjectPage from '../pages/AllProjectPage';
 import WelcomePage from "../pages/WelcomePage";
 
 const Router = () => (
@@ -9,7 +9,7 @@ const Router = () => (
     <Route exact path="/" component={WelcomePage} />
     <Route path="/auth" component={LoginPage} />
     <Route path="/reg" component={RegistrationPage} />
-    <Route path="/boards" component={AllBoardPage} />
+    <Route path="/projects" component={AllProjectPage} />
   </Switch>
 );
 
