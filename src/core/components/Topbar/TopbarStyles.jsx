@@ -37,14 +37,14 @@ export const TopbarRight = styled('div')`
     height:32px;
     width:32px;
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 15px;
     margin-left: 0px;
     object-fit: cover;
     aspect-ratio: 1/1;
   }
   
   div{
-    margin-right: 10px;
+    margin-right: 20px;
 
   }
 `;

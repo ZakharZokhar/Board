@@ -35,6 +35,10 @@ const SidebarList = styled('ul')`
       flex:5;
       margin: 3px;
       color: black;
+      
+      &:hover {
+        cursor: pointer;
+      }
     }
   }  
 `;

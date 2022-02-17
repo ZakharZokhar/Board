@@ -8,8 +8,15 @@ import {
     PlusIcon1
 } from '../../../shared/icons/icons';
 import {SidebarWrapper, SidebarList, SidebarCurrent} from './SidebarStyles'
+import { togglePopUpOn } from '../AllProjectsContainer/redux/actions';
+import { useDispatch } from 'react-redux';
 
 export default function Sidebar() {
+    const showPopUp = () => {
+        dispatch(togglePopUpOn);
+    };
+    const dispatch = useDispatch();
+
     return (
         <SidebarWrapper>
             <SidebarList>
@@ -21,7 +28,7 @@ export default function Sidebar() {
                 </li>
                 <li>
                     <PlusIcon1 ml={13.5} mr={13.5} />
-                    <span>New project</span>
+                    <span onClick={showPopUp}>New project</span>
                 </li>
                 <li>
                     <GearIcon />
