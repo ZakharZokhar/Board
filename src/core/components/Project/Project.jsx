@@ -11,7 +11,7 @@ import {
 } from './ProjectStyles';
 import { HrStyled } from '../../../shared/basic-components/Hr';
 
-function Project({ projectName, projectId, onDeleteProject }) {
+function Project({ projectName, projectId, onDeleteProject, colUsersInProject }) {
   return (
     <ProjectContainer>
       <HeadProject>
@@ -31,7 +31,7 @@ function Project({ projectName, projectId, onDeleteProject }) {
         </ProjectName>
       </MidProject>
       <HrStyled />
-      <BotProject>12 users</BotProject>
+      <BotProject>{colUsersInProject === 1 ? `1 user` : `${colUsersInProject} users`}</BotProject>
     </ProjectContainer>
   );
 }
@@ -40,12 +40,14 @@ Project.propTypes = {
   projectName: PropTypes.string,
   projectId: PropTypes.string,
   onDeleteProject: PropTypes.func,
+  colUsersInProject: PropTypes.number,
 };
 
 Project.defaultProps = {
   projectName: null,
   projectId: null,
   onDeleteProject: null,
+  colUsersInProject: null,
 };
 
 export default Project;

@@ -32,7 +32,9 @@ function AllProjectsContainer() {
     dispatch(hideWarningLongName);
     dispatch(togglePopUpOff);
   };
-  const onDeleteProject = (id) => (dispatch({ ...deleteProject, payload: id }));
+  const onDeleteProject = (id) => {
+    dispatch({ ...deleteProject, payload: id });
+  };
 
   return (
     <AllProjectsHolder>
@@ -42,6 +44,7 @@ function AllProjectsContainer() {
           key={project._id}
           projectName={project.name.length < 52 ? project.name : `${project.name.substring(0, 52)}...` }
           projectId={project._id}
+          colUsersInProject = {project.colUsers}
           onDeleteProject={onDeleteProject}
         />
       ))}

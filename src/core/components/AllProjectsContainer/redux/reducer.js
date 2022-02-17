@@ -15,7 +15,7 @@ import {
   displayWarningLongName,
   hideWarningLongName,
 } from './actions';
-import {createProject, updateUserProjectsIds} from '../../../../services/api/user.service';
+import {createProject, updateUserProjectsIds, deleteProjectById} from '../../../../services/api/user.service';
 
 function warningPopUpReducer(state = {
   emptyName: false,
@@ -139,8 +139,8 @@ function projectsReducer(state = [], action) {
         ...state,
       ];
     case deleteProject.type:
-      return (
-        state.filter((project) => (project.id !== action.payload)));
+      deleteProjectById(action.payload);
+      return state.filter((project) => project._id !== action.payload);
     default:
       return [
         ...state,
