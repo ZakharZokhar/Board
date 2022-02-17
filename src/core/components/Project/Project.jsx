@@ -1,17 +1,25 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from "react-redux";
 import { DiamondIcon, CloseIcon } from '../../../shared/icons/icons';
 import {
-  ProjectContainer,
-  HeadProject,
-  RoleContainer,
-  TrashButton,
-  MidProject,
-  BotProject,
-  ProjectName,
+    ProjectContainer,
+    HeadProject,
+    RoleContainer,
+    TrashButton,
+    MidProject,
+    BotProject,
+    ProjectName, ProjectOpenButton,
+
 } from './ProjectStyles';
 import { HrStyled } from '../../../shared/basic-components/Hr';
+import { openBoards } from "../BigContainerForKanban/redux/actions";
 
 function Project({ projectName, projectId, onDeleteProject }) {
+  const dispatch = useDispatch();
+  const onOpenBoards = () => {
+    dispatch({...openBoards})
+  };
+
   return (
     <ProjectContainer>
       <HeadProject>
@@ -31,7 +39,12 @@ function Project({ projectName, projectId, onDeleteProject }) {
         </ProjectName>
       </MidProject>
       <HrStyled />
-      <BotProject>12 users</BotProject>
+      <BotProject>
+          12 users
+       <ProjectOpenButton onClick={() => (onOpenBoards())}>
+           Open
+       </ProjectOpenButton>
+      </BotProject>
     </ProjectContainer>
   );
 }

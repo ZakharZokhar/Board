@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import {
-  MainBlueColor, BackgroundWhiteColor, BorderColor, BorderHoverColor, TransparentBlack,
+  BackgroundWhiteColor, BorderColor, BorderHoverColor, TransparentBlack,
   WarningRedColor,
 } from '../../../shared/colors';
+import { blueButtonForProjects } from "../../../shared/basic-components/Buttons";
 
 const PopUp = styled('div')`
   position: fixed;
@@ -74,25 +75,16 @@ const InputPopUp = styled('input')`
 `;
 
 const PopUpCreateButton = styled('button')`
+  ${blueButtonForProjects};
   position: absolute;
   right: 0;
   margin-top: 5px;
   box-sizing: border-box;
   align-items: center;
   padding: 0 16px;
-  background: ${MainBlueColor};
-  border-radius: 8px;
-  color: ${BackgroundWhiteColor};
-  border: none;
   width: 80px;
   height: 40px;
-    
-  &:hover {
-  color: ${MainBlueColor};
-  cursor: pointer;
-  background: ${BackgroundWhiteColor};
-  border: 1px solid ${MainBlueColor};
-  }
+
 `;
 
 export {

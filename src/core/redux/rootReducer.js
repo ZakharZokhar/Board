@@ -5,6 +5,7 @@ import {
   projectIdsReducer,
   warningPopUpReducer,
 } from '../components/AllProjectsContainer/redux/reducer';
+import openingBoardsReducer from "../components/BigContainerForKanban/redux/reducer";
 
 export default {
   dog: dogReducer,
@@ -12,4 +13,5 @@ export default {
   project: projectsReducer,
   projectIds: projectIdsReducer,
   warningsPopUp: warningPopUpReducer,
+  openBoards: openingBoardsReducer,
 };

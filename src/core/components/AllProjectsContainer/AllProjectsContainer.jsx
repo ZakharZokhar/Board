@@ -36,7 +36,10 @@ function AllProjectsContainer() {
 
   return (
     <AllProjectsHolder>
-      <AddProjectButton onAddClick={showPopUp} />
+      <AddProjectButton
+        onAddClick={showPopUp}
+        buttonName={'Add new project'}
+      />
       {projects.map((project) => (
         <Project
           key={project._id}
