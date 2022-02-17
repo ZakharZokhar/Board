@@ -29,7 +29,7 @@ export const TopbarLeft = styled('div')`
   }
 `;
 export const TopbarRight = styled('div')`
-  flex:3;
+  flex:1.3;
   align-items: center;
   display:flex;
   justify-content: space-between;
@@ -38,14 +38,15 @@ export const TopbarRight = styled('div')`
     height:32px;
     width:32px;
     border-radius: 50%;
-    margin-right: 10px;
-    margin-left: 40%;
+    margin-right: 5px;
+    margin-left: 0px;
     object-fit: cover;
     aspect-ratio: 1/1;
   }
   
   div{
-    margin-right: 40px;
+    margin-right: 10px;
+
   }
 `;
 
