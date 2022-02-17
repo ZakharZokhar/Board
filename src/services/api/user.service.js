@@ -6,9 +6,25 @@ const getPublicContent = () => axios.get(`${API_URL}all`);
 const getUserBoard = () => axios.get(`${API_URL}user`, { headers: authHeader() });
 const getModeratorBoard = () => axios.get(`${API_URL}mod`, { headers: authHeader() });
 const getAdminBoard = () => axios.get(`${API_URL}admin`, { headers: authHeader() });
-export default {
+const getUsers = () => axios.get(`${API_URL}users`, authHeader()).then((response) => response);
+const getProjectById = (id) => axios.get(`${API_URL}projects/${id}`, authHeader()).then((response) => response);
+const createProject = (project) => axios.post(
+    `${API_URL}projects/create`,
+    project,
+    authHeader()).then((response) => response);
+const updateUserProjectsIds = (userId, newProjectId) => axios.put(
+    `${API_URL}users/update/${userId}`,
+    {projectIds: [newProjectId]},
+    authHeader()).then((response) => response);
+const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
+export {
   getPublicContent,
   getUserBoard,
   getModeratorBoard,
   getAdminBoard,
+  getUsers,
+  getProjectById,
+  createProject,
+  updateUserProjectsIds,
+  getUserById,
 };

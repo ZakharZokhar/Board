@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useHistory  } from 'react-router-dom';
-// import WhiteButton from '../../UI/Buttons/whiteButton';
 import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './LoginPage.css';
@@ -12,10 +11,9 @@ const LoginPage = () => {
   const login = React.createRef();
   const password = React.createRef();
   const handleSubmit = () => {
-    // if (login.current.value.length > 128) return
-    // if (password.current.value.length < 8) return
     AuthService.login(login.current.value, password.current.value).then(
-      () => {history.push("/boards");},
+      () => {
+        history.push("/projects");},
     ).catch((error) => {
       console.log({ error });
     });
