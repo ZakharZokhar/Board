@@ -8,8 +8,8 @@ import {
   MidProject,
   BotProject,
   ProjectName,
-  HrStyled,
 } from './ProjectStyles';
+import { HrStyled } from '../../../shared/basic-components/Hr';
 
 function Project({ projectName, projectId, onDeleteProject }) {
   return (

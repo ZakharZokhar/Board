@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { CloseIcon } from '../../../shared/icons/icons';
 import {
   PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
-  HrStyled, PopUpWarnings,
+  PopUpWarnings,
 } from './PopUpAddProjectStyles';
+import { HrStyled } from '../../../shared/basic-components/Hr';
 import {
   togglePopUpOff, addNewProject, fetchProjectIds,
   displayWarningEmptyName, hideWarningEmptyName,

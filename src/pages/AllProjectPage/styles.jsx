@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
 
-export const BoardWrap = styled('div')`
+export const ProjectWrap = styled('div')`
   display: flex;
 `;

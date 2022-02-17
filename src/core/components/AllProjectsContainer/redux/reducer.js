@@ -92,7 +92,6 @@ function projectIdsReducer(state={ids:[], error:null}, action) {
         ids: action.payload,
       };
     case fetchProjectIdsFailure.type:
-      console.log(action.payload);
       return {
         ...state,
         error: action.payload,
@@ -136,7 +135,6 @@ function projectsReducer(state = [], action) {
       ];
     case addNewProject.type:
       updateId(action.payload);
-      console.log(action.payload);
       return  [
         ...state,
       ];

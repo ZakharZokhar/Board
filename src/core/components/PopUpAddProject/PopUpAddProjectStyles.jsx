@@ -4,10 +4,6 @@ import {
   WarningRedColor,
 } from '../../../shared/colors';
 
-const HrStyled = styled('hr')`
-  margin-top: 10px;
-`;
-
 const PopUp = styled('div')`
   position: fixed;
   background: ${TransparentBlack};
@@ -101,5 +97,5 @@ const PopUpCreateButton = styled('button')`
 
 export {
   PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
-  HrStyled, PopUpWarnings,
+  PopUpWarnings,
 };
