@@ -5,12 +5,12 @@ export const TopbarContainer = styled('div')`
   width: 100%;
   background-color: #F2F2F2;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   top:0;
 `;
 export const TopbarLeft = styled('div')`
   display:flex;
-  flex:10;
   align-items: center;
   
   img{
@@ -29,7 +29,6 @@ export const TopbarLeft = styled('div')`
   }
 `;
 export const TopbarRight = styled('div')`
-  flex:1.3;
   align-items: center;
   display:flex;
   justify-content: space-between;
