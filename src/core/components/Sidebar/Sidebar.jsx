@@ -7,20 +7,18 @@ import {
     ViewBoardsIcon,
     PlusIcon1
 } from '../../../shared/icons/icons';
-import {SidebarWrapper, SidebarList, SidebarCurrent, Grey} from './SidebarStyles'
+import {SidebarWrapper, SidebarList, SidebarCurrent} from './SidebarStyles'
 
 export default function Sidebar() {
     return (
         <SidebarWrapper>
             <SidebarList>
-                <Grey>
                 <li>
                     <ViewGridIcon />
-                    <Link to='/boards'>
+                    <Link to='/projects'>
                         <span>All projects</span>
                     </Link>
                 </li>
-                </Grey>
                 <li>
                     <PlusIcon1 ml={13.5} mr={13.5} />
                     <span>New project</span>
