@@ -15,13 +15,13 @@ export default function Sidebar() {
             <SidebarList>
                 <li>
                     <ViewGridIcon />
-                    <Link to='/boards'>
-                        <span>All boards</span>
+                    <Link to='/projects'>
+                        <span>All projects</span>
                     </Link>
                 </li>
                 <li>
                     <PlusIcon1 ml={13.5} mr={13.5} />
-                    <span>New board</span>
+                    <span>New project</span>
                 </li>
                 <li>
                     <GearIcon />
