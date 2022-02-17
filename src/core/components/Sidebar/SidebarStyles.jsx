@@ -39,5 +39,8 @@ const SidebarCurrent=styled('a')`
   margin-left: 15px;
   margin-bottom: 10px;
 `;
+const Grey=styled('li')`
+  background-color: #F2F2F2;
+`
 
-export { SidebarWrapper, SidebarList, SidebarCurrent };
+export { SidebarWrapper, SidebarList, SidebarCurrent, Grey };

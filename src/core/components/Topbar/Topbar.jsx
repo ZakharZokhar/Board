@@ -6,8 +6,6 @@ function UserName(){
     localStorage.setItem('userAvatar',link)
     const userName=localStorage.getItem('userName');
     const userAvatar=localStorage.getItem('userAvatar');
-    console.log(userName);
-    console.log(userAvatar);
     return [userName,userAvatar];
 }
 
