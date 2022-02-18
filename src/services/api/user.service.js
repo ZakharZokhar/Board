@@ -18,6 +18,10 @@ const updateUserProjectsIds = (userId, newProjectId) => axios.put(
     authHeader()).then((response) => response);
 const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
 const getBoards = () => axios.get(`${API_URL}boards`, authHeader()).then((response) => response);
+const createBoard = (board) => axios.post(
+    `${API_URL}boards/create`,
+    board,
+    authHeader()).then((response) => response);
 export {
   getPublicContent,
   getUserBoard,
@@ -29,4 +33,5 @@ export {
   updateUserProjectsIds,
   getUserById,
   getBoards,
+  createBoard,
 };

@@ -6,12 +6,18 @@ import {
 import AddBoardButton from "../AddBoardButton";
 import { closeBoards } from "../BigContainerForKanban/redux/actions";
 import Board from "../Board";
+import PopUpAddBoard from "../PopUpAddBoard";
+import { togglePopUpBoardOn } from "./redux/actions";
 
 function AllBoardsComponent() {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
+  const isPopUpOpen = useSelector((state) => state.popupBoard.isBoardPopUpOpen)
   const onCloseBoards = () => {
     dispatch({...closeBoards});
+  };
+  const showPopUp = () => {
+    dispatch(togglePopUpBoardOn);
   };
 
   return (
@@ -21,6 +27,7 @@ function AllBoardsComponent() {
       </BackToProjectsButton>
       <BoardsContainer>
         <AddBoardButton
+          onAddBoardClick = {showPopUp}
           buttonName={'Add new board'}
         />
         {boards.map((board) => (
@@ -30,6 +37,7 @@ function AllBoardsComponent() {
             boardName={board.name}
           />
         ))}
+        {isPopUpOpen && (<PopUpAddBoard />)}
       </BoardsContainer>
     </AllBoardsHolder>
   );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { CloseIcon } from '../../../shared/icons/icons';
 import {
-  PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
+  PopUp, PopUpProjectWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
   PopUpWarnings,
 } from './PopUpAddProjectStyles';
 import { HrStyled } from '../../../shared/basic-components/Hr';
@@ -47,7 +47,7 @@ function PopUpAddProject({ onCloseClick }) {
 
   return (
     <PopUp>
-      <PopUpWindow>
+      <PopUpProjectWindow>
         <PopUpHeader>
           Create new project
           <ClosePopUpButton onClick={onCloseClick}>
@@ -72,7 +72,7 @@ function PopUpAddProject({ onCloseClick }) {
             Create
           </PopUpCreateButton>
         </PopUpMid>
-      </PopUpWindow>
+      </PopUpProjectWindow>
     </PopUp>
   );
 }

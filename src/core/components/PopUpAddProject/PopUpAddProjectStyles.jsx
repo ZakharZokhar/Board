@@ -4,6 +4,7 @@ import {
   WarningRedColor,
 } from '../../../shared/colors';
 import { blueButtonForProjects } from "../../../shared/basic-components/Buttons";
+import { PopUpWindow } from "../../../shared/basic-components/PopUpWindow";
 
 const PopUp = styled('div')`
   position: fixed;
@@ -14,18 +15,9 @@ const PopUp = styled('div')`
   left: 0;
 `;
 
-const PopUpWindow = styled('div')`
-  position: relative;
-  width: 300px;
-  margin: calc(100vh - 85vh - 20px) auto 0;
+const PopUpProjectWindow = styled('div')`
+  ${PopUpWindow};
   height: 320px;
-  max-height: 70vh;
-  background: ${BackgroundWhiteColor};
-  border-radius: 8px;
-  padding: 20px;
-  border: 1px solid ${BorderColor};
-  overflow: auto;
-  font-weight: 600;
 `;
 
 const PopUpHeader = styled('div')`
@@ -88,6 +80,6 @@ const PopUpCreateButton = styled('button')`
 `;
 
 export {
-  PopUp, PopUpWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
+  PopUp, PopUpProjectWindow, PopUpHeader, ClosePopUpButton, PopUpMid, InputPopUp, PopUpCreateButton,
   PopUpWarnings,
 };
