@@ -1,18 +1,24 @@
 import { openBoards, closeBoards } from "./actions";
 
-function openingBoardsReducer(state={isBoardsOpen: false, boardProjectId:''}, action) {
+function openingBoardsReducer(state={
+  isBoardsOpen: false,
+  boardProjectId:'',
+  boardProjectName: '',
+}, action) {
   switch (action.type) {
     case openBoards.type:
       return {
         ...state,
         isBoardsOpen: true,
-        boardProjectId: action.payload,
+        boardProjectId: action.payload.projectId,
+        boardProjectName: action.payload.projectName,
       };
     case closeBoards.type:
       return {
         ...state,
         isBoardsOpen: false,
         boardProjectId: '',
+        boardProjectName: '',
       };
     default:
       return {

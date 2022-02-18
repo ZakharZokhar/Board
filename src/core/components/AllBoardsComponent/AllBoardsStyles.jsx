@@ -9,6 +9,11 @@ const AllBoardsHolder = styled('div')`
   vertical-align: top;
 `;
 
+const BoardProjectName = styled('div')`
+    padding: 20px;
+    font-size: 18px;
+`;
+
 const BackToProjectsButton = styled('button')`
   ${blueButtonForProjects};
   margin-left: 15px;
@@ -20,4 +25,4 @@ const BackToProjectsButton = styled('button')`
 
 `;
 
-export { AllBoardsHolder, BackToProjectsButton, BoardsContainer };
+export { AllBoardsHolder, BackToProjectsButton, BoardsContainer,BoardProjectName };

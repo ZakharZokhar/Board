@@ -19,7 +19,10 @@ function Project({ projectName, projectId, onDeleteProject, colUsersInProject })
   const dispatch = useDispatch();
   const onOpenBoards = () => {
     dispatch(fetchBoardsByProjectId(projectId));
-    dispatch({...openBoards, payload: projectId})
+    dispatch({...openBoards, payload: {
+        projectId: projectId,
+        projectName: projectName,
+    }});
   };
 
   return (

@@ -8,11 +8,13 @@ import { closeBoards } from "../BigContainerForKanban/redux/actions";
 import Board from "../Board";
 import PopUpAddBoard from "../PopUpAddBoard";
 import { togglePopUpBoardOn, deleteBoardFromServer } from "./redux/actions";
+import { BoardProjectName } from "./AllBoardsStyles";
 
 function AllBoardsComponent() {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
   const isPopUpOpen = useSelector((state) => state.popupBoard.isBoardPopUpOpen)
+  const projectName = useSelector((state) => state.openBoards.boardProjectName)
   const onCloseBoards = () => {
     dispatch({...closeBoards});
   };
@@ -25,6 +27,9 @@ function AllBoardsComponent() {
 
   return (
     <AllBoardsHolder>
+      <BoardProjectName>
+        {projectName}
+      </BoardProjectName>
       <BackToProjectsButton onClick={() => onCloseBoards()}>
         Back to projects
       </BackToProjectsButton>
