@@ -38,6 +38,7 @@ function AllBoardsComponent() {
             key={board._id}
             boardId={board._id}
             boardName={board.name}
+            colUsersInBoard={board.colUsers}
             onDeleteBoard={() => onDeleteBoard(board._id)}
           />
         ))}

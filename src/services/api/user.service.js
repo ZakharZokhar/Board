@@ -16,6 +16,10 @@ const updateUserProjectsIds = (userId, newProjectId) => axios.put(
     `${API_URL}users/update/${userId}`,
     {projectIds: [newProjectId]},
     authHeader()).then((response) => response);
+const updateUserBoardIds = (userId, newBoardId) => axios.put(
+    `${API_URL}users/update/${userId}`,
+    {boardIds: [newBoardId]},
+    authHeader()).then((response) => response);
 const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
 const getBoards = () => axios.get(`${API_URL}boards`, authHeader()).then((response) => response);
 const createBoard = (board) => axios.post(
@@ -38,4 +42,5 @@ export {
   getBoards,
   createBoard,
   deleteBoardById,
+  updateUserBoardIds,
 };

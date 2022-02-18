@@ -1,4 +1,4 @@
-import {getProjectById, getUserById} from '../../../../services/api/user.service';
+import {getProjectById, getUserById, getUsers} from '../../../../services/api/user.service';
 
 export const togglePopUpOn = { type: 'TOGGLE_POPUP_ON' };
 
@@ -44,6 +44,11 @@ export const fetchProjectIds = () => async (dispatch) => {
 export const fetchProjectById = (id) => async (dispatch) => {
   try {
     const { data } = await getProjectById(id);
+    const allUsers = await getUsers();
+    data.colUsers = allUsers.data.reduce((colUsersHaveProject, currentUser) => {
+      const userHaveProject = currentUser.projectIds.includes(id);
+      return userHaveProject ? colUsersHaveProject + 1 : colUsersHaveProject;
+    }, 0);
     dispatch({...fetchProjectByIdSuccess, payload: data});
   } catch (error) {
     dispatch({...fetchProjectByIdFailure, payload: error});

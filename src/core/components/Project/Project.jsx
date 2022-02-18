@@ -15,7 +15,7 @@ import { HrStyled } from '../../../shared/basic-components/Hr';
 import { openBoards } from "../BigContainerForKanban/redux/actions";
 import { fetchBoardsByProjectId } from "../AllBoardsComponent/redux/actions";
 
-function Project({ projectName, projectId, onDeleteProject }) {
+function Project({ projectName, projectId, onDeleteProject, colUsersInProject }) {
   const dispatch = useDispatch();
   const onOpenBoards = () => {
     dispatch(fetchBoardsByProjectId(projectId));
@@ -42,10 +42,10 @@ function Project({ projectName, projectId, onDeleteProject }) {
       </MidProject>
       <HrStyled />
       <BotProject>
-          12 users
-       <ProjectOpenButton onClick={() => (onOpenBoards())}>
-           Open
-       </ProjectOpenButton>
+        {colUsersInProject === 1 ? `1 user` : `${colUsersInProject} users`}
+        <ProjectOpenButton onClick={() => (onOpenBoards())}>
+          Open
+        </ProjectOpenButton>
       </BotProject>
     </ProjectContainer>
   );
@@ -55,12 +55,14 @@ Project.propTypes = {
   projectName: PropTypes.string,
   projectId: PropTypes.string,
   onDeleteProject: PropTypes.func,
+  colUsersInProject: PropTypes.number,
 };
 
 Project.defaultProps = {
   projectName: null,
   projectId: null,
   onDeleteProject: null,
+  colUsersInProject: null,
 };
 
 export default Project;

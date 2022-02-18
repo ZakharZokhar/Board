@@ -45,6 +45,7 @@ function AllProjectsContainer() {
           key={project._id}
           projectName={project.name.length < 52 ? project.name : `${project.name.substring(0, 52)}...` }
           projectId={project._id}
+          colUsersInProject = {project.colUsers}
           onDeleteProject={onDeleteProject}
         />
       ))}
