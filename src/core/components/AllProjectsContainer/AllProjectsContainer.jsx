@@ -8,6 +8,8 @@ import {
   hideWarningEmptyName, hideWarningLongDescription, hideWarningLongName,
 } from './redux/actions';
 import AllProjectsHolder from './AllProjectContainerStyles';
+import {fetchBoardsByProjectId} from "../AllBoardsComponent/redux/actions";
+import {openBoards} from "../BigContainerForKanban/redux/actions";
 
 function AllProjectsContainer() {
   const dispatch = useDispatch();
@@ -33,6 +35,13 @@ function AllProjectsContainer() {
     dispatch(togglePopUpOff);
   };
   const onDeleteProject = (id) => (dispatch({ ...deleteProject, payload: id }));
+  const onOpenBoards = (projectName, projectId) => {
+    dispatch(fetchBoardsByProjectId(projectId));
+    dispatch({...openBoards, payload: {
+        projectId: projectId,
+        projectName: projectName,
+      }});
+  };
 
   return (
     <AllProjectsHolder>
@@ -47,6 +56,7 @@ function AllProjectsContainer() {
           projectId={project._id}
           colUsersInProject = {project.colUsers}
           onDeleteProject={onDeleteProject}
+          onOpenProject={onOpenBoards}
         />
       ))}
       {isOpen

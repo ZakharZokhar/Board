@@ -6,6 +6,7 @@ const AddColumnButtonStyles = styled('button')`
   height: 30px;
   width: 250px;
   margin-top: 15px;
+  margin-left: 15px;
   font-family: ${BaseFontFamily};
   color: ${MainBlueColor};
   border: none;

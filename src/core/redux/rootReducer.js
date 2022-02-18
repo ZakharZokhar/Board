@@ -5,10 +5,14 @@ import {
   projectIdsReducer,
   warningPopUpReducer,
 } from '../components/AllProjectsContainer/redux/reducer';
-import openingBoardsReducer from "../components/BigContainerForKanban/redux/reducer";
+import {
+  openingBoardsReducer, openingColumnsReducer,
+} from "../components/BigContainerForKanban/redux/reducer";
 import {
   boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer
 } from "../components/AllBoardsComponent/redux/reducer";
+
+import columnsReducer from "../components/AllColumnsComponent/redux/reducer";
 
 export default {
   dog: dogReducer,
@@ -20,4 +24,6 @@ export default {
   boards: boardsReducer,
   popupBoard: togglePopUpBoardReducer,
   warningsBoardPopUp: warningBoardPopUpReducer,
+  openColumns: openingColumnsReducer,
+  columns: columnsReducer,
 };

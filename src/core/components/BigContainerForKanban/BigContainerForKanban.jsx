@@ -6,11 +6,13 @@ import AllColumnsComponent from "../AllColumnsComponent";
 
 function BigContainerForKanban() {
   const isBoardsOpen = useSelector((state) => state.openBoards.isBoardsOpen);
+  const isColumnsOpen = useSelector((state) => state.openColumns.isColumnsOpen);
 
   return (
     <KanbanContainer>
-      {isBoardsOpen ? <AllBoardsComponent />  : <AllProjectsContainer />}
-      <AllColumnsComponent />
+      {isColumnsOpen ?
+          <AllColumnsComponent/>  :
+          (isBoardsOpen ? <AllBoardsComponent /> : <AllProjectsContainer />)}
     </KanbanContainer>
   )
 }

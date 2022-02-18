@@ -1,14 +1,16 @@
+import PropTypes from "prop-types";
 import {
     ColumnStyle, ColumnName, CloseButton, ColumnHeader, ColumnFooter, AddTaskButton,
 } from "./ColumnStyles";
 import { CloseIcon, PlusIcon } from "../../../shared/icons/icons";
 
-function Column() {
+function Column( {columnId, columnName}) {
   return (
     <ColumnStyle>
       <ColumnHeader>
         <ColumnName>
-          Name of column
+          {columnName}
+          {columnId}
         </ColumnName>
         <CloseButton>
           <CloseIcon />
@@ -23,5 +25,16 @@ function Column() {
     </ColumnStyle>
   )
 }
+
+Column.propTypes = {
+    ColumnName: PropTypes.string,
+    ColumnId: PropTypes.string,
+};
+
+Column.defaultProps = {
+    ColumnName: null,
+    ColumnId: null,
+};
+
 
 export default Column;

@@ -1,4 +1,4 @@
-import { openBoards, closeBoards } from "./actions";
+import {openBoards, closeBoards, openColumns, closeColumns} from "./actions";
 
 function openingBoardsReducer(state={
   isBoardsOpen: false,
@@ -27,4 +27,25 @@ function openingBoardsReducer(state={
   }
 }
 
-export default openingBoardsReducer;
+function openingColumnsReducer(state={
+  isColumnsOpen: false,
+}, action) {
+  switch (action.type) {
+    case openColumns.type:
+      return {
+        ...state,
+        isColumnsOpen: true,
+      };
+    case closeColumns.type:
+      return {
+        ...state,
+        isColumnsOpen: false,
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+}
+
+export { openingBoardsReducer, openingColumnsReducer };
