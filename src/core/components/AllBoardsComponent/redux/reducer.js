@@ -8,7 +8,8 @@ import {
   displayWarningEmptyNameBoard,
   hideWarningEmptyNameBoard,
   displayWarningLongNameBoard,
-  hideWarningLongNameBoard
+  hideWarningLongNameBoard,
+  deleteBoard,
 } from "./actions";
 
 function boardsReducer(state = [], action) {
@@ -30,6 +31,9 @@ function boardsReducer(state = [], action) {
         ...state,
         action.payload,
       ]
+
+    case deleteBoard.type:
+      return state.filter((board) => (board._id !== action.payload));
 
     default:
       return [

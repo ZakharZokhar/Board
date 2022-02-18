@@ -22,6 +22,9 @@ const createBoard = (board) => axios.post(
     `${API_URL}boards/create`,
     board,
     authHeader()).then((response) => response);
+const deleteBoardById = (id) => axios.delete(
+    `${API_URL}boards/delete/${id}`,
+    authHeader()).then((response) => response);
 export {
   getPublicContent,
   getUserBoard,
@@ -34,4 +37,5 @@ export {
   getUserById,
   getBoards,
   createBoard,
+  deleteBoardById,
 };

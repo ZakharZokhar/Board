@@ -1,4 +1,4 @@
-import {createBoard, getBoards} from "../../../../services/api/user.service";
+import {createBoard, deleteBoardById, getBoards} from "../../../../services/api/user.service";
 
 export const togglePopUpBoardOn = { type: 'TOGGLE_POPUP_BOARD_ON' };
 
@@ -20,6 +20,8 @@ export const displayWarningLongNameBoard = { type: 'DISPLAY_WARNING_LONG_NAME_BO
 
 export const hideWarningLongNameBoard = { type: 'HIDE_WARNING_LONG_NAME_BOARD' };
 
+export const deleteBoard = { type: 'DELETE_BOARD' };
+
 export const fetchBoardsByProjectId = (id) => async (dispatch) => {
   try {
     const { data } = await getBoards();
@@ -37,5 +39,14 @@ export const addNewBoardToServer = (name, projectId) => async (dispatch) => {
     dispatch({...addNewBoard, payload: data})
   } catch (error) {
     console.log(error);
+  }
+}
+
+export const deleteBoardFromServer = (id) => async (dispatch) => {
+  try {
+    await deleteBoardById(id)
+    dispatch({...deleteBoard, payload: id})
+  } catch (error) {
+    console.log(error)
   }
 }

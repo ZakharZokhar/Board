@@ -7,7 +7,7 @@ import AddBoardButton from "../AddBoardButton";
 import { closeBoards } from "../BigContainerForKanban/redux/actions";
 import Board from "../Board";
 import PopUpAddBoard from "../PopUpAddBoard";
-import { togglePopUpBoardOn } from "./redux/actions";
+import { togglePopUpBoardOn, deleteBoardFromServer } from "./redux/actions";
 
 function AllBoardsComponent() {
   const dispatch = useDispatch();
@@ -18,6 +18,9 @@ function AllBoardsComponent() {
   };
   const showPopUp = () => {
     dispatch(togglePopUpBoardOn);
+  };
+  const onDeleteBoard = (id) => {
+    dispatch(deleteBoardFromServer(id))
   };
 
   return (
@@ -35,6 +38,7 @@ function AllBoardsComponent() {
             key={board._id}
             boardId={board._id}
             boardName={board.name}
+            onDeleteBoard={() => onDeleteBoard(board._id)}
           />
         ))}
         {isPopUpOpen && (<PopUpAddBoard />)}
