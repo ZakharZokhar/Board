@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
     AllBoardsHolder, BackToProjectsButton,
-    BoardsContainer,
+    BoardsContainer, BoardProjectName
 } from "./AllBoardsStyles";
 import AddBoardButton from "../AddBoardButton";
 import { closeBoards } from "../BigContainerForKanban/redux/actions";
 import Board from "../Board";
 import PopUpAddBoard from "../PopUpAddBoard";
 import { togglePopUpBoardOn, deleteBoardFromServer } from "./redux/actions";
-import { BoardProjectName } from "./AllBoardsStyles";
 
 function AllBoardsComponent() {
   const dispatch = useDispatch();
