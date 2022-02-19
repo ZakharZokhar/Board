@@ -43,7 +43,7 @@ const AddTaskButton = styled('button')`
   font-family: ${BaseFontFamily};
   color: ${MainBlueColor};
   border: none;
-  margin-left: 75px;
+  margin-left: 95px;
   &:hover {
     cursor: pointer;
     text-decoration: underline;

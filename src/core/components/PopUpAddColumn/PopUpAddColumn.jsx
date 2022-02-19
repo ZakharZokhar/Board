@@ -13,20 +13,31 @@ import {HrStyled} from "../../../shared/basic-components/Hr";
 import {PopUpColumnWindow} from "./PopUpAddColumnStyles";
 import {
     addNewColumnToServer,
-    togglePopUpColumnOff
+    togglePopUpColumnOff, displayWarningLongNameColumn,
+    displayWarningEmptyNameColumn, hideWarningLongNameColumn,
+    hideWarningEmptyNameColumn,
 } from "../AllColumnsComponent/redux/actions";
 
 function PopUpAddColumn() {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
-  const handleChangeName = (even) => (setName(even.target.value));
   const boardId = useSelector((state) => state.openColumns.columnBoardId);
+  const warnings = useSelector((state) => state.warningsColumnPopUp);
+  const handleChangeName = (even) => (setName(even.target.value));
   const onCloseClick = () => {
     dispatch(togglePopUpColumnOff);
   };
   const onCreateClick = (name) => {
-    dispatch(addNewColumnToServer(name, boardId))
-    dispatch(togglePopUpColumnOff);
+      if (name === '') {
+          dispatch(displayWarningEmptyNameColumn);
+          dispatch(hideWarningLongNameColumn);
+      } else if (name.length > 128) {
+          dispatch(displayWarningLongNameColumn);
+          dispatch(hideWarningEmptyNameColumn);
+      } else {
+          dispatch(addNewColumnToServer(name, boardId))
+          dispatch(togglePopUpColumnOff);
+      }
   }
 
   return (
@@ -40,6 +51,8 @@ function PopUpAddColumn() {
          </PopUpHeader>
          <HrStyled />
          <PopUpWarnings>
+           {warnings.emptyName && 'Name field must not be empty!!'}
+           {warnings.longName && 'Name too long!! (maximum 128 characters)'}
          </PopUpWarnings>
          <PopUpMid>
            Column title

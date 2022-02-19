@@ -36,7 +36,7 @@ function AllColumnsComponent() {
         {columns.map((column) => (
           <Column
             key = {column._id}
-            columnName = {column.name}
+            columnName = {column.name.length < 20 ? column.name : `${column.name.substring(0, 20)}...`}
             columnId = {column._id}
           />
         ))}

@@ -17,7 +17,6 @@ function Column( {columnId, columnName}) {
       <ColumnHeader>
         <ColumnName>
           {columnName}
-          {columnId}
         </ColumnName>
         <CloseButton onClick={() => onClickDelete(columnId)}>
           <CloseIcon />

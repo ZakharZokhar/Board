@@ -21,6 +21,14 @@ export const displayWarningColumnAlreadyInBoard = { type: 'DISPLAY_WARNING_COLUM
 
 export const hideWarningColumnAlreadyInBoard = { type: 'HIDE_WARNING_COLUMN_ALREADY_IN_BOARD' }
 
+export const displayWarningEmptyNameColumn = { type: 'DISPLAY_WARNING_EMPTY_NAME_FIELD_COLUMN' };
+
+export const hideWarningEmptyNameColumn = { type: 'HIDE_WARNING_EMPTY_NAME_FIELD_BOARD_COLUMN' };
+
+export const displayWarningLongNameColumn = { type: 'DISPLAY_WARNING_LONG_NAME_BOARD_COLUMN' };
+
+export const hideWarningLongNameColumn = { type: 'HIDE_WARNING_LONG_NAME_BOARD_COLUMN' };
+
 export const fetchColumnsByBoardtId = (id) => async (dispatch) => {
     try {
         const { data } = await getColumns();

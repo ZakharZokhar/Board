@@ -2,9 +2,9 @@ import {
   fetchColumnsByBoardIdSuccess, fetchColumnsByBoardIdFailure,
   togglePopUpColumnOn, togglePopUpColumnOff, addNewColumn,
   displayWarningColumnAlreadyInBoard, hideWarningColumnAlreadyInBoard,
-  deleteColumn,
+  deleteColumn, displayWarningEmptyNameColumn, hideWarningEmptyNameColumn,
+  displayWarningLongNameColumn, hideWarningLongNameColumn,
 } from "./actions";
-
 
 function columnsReducer(state = [], action) {
   switch (action.type) {
@@ -54,6 +54,8 @@ function togglePopUpColumnReducer(state = { isColumnPopUpOpen: false }, action) 
 
 function warningColumnPopUpReducer(state = {
   alreadyHere: false,
+  emptyName: false,
+  longName: false,
 }, action) {
   switch (action.type) {
     case displayWarningColumnAlreadyInBoard.type:
@@ -66,6 +68,26 @@ function warningColumnPopUpReducer(state = {
         ...state,
         alreadyHere: false,
       }
+      case displayWarningEmptyNameColumn.type:
+        return {
+          ...state,
+          emptyName: true,
+        };
+      case hideWarningEmptyNameColumn.type:
+        return {
+          ...state,
+          emptyName: false,
+        };
+      case displayWarningLongNameColumn.type:
+        return {
+          ...state,
+          longName: true,
+        };
+      case hideWarningLongNameColumn.type:
+        return {
+          ...state,
+          longName: false,
+        };
     default:
       return {
         ...state,
