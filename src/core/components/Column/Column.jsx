@@ -1,10 +1,17 @@
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import {
     ColumnStyle, ColumnName, CloseButton, ColumnHeader, ColumnFooter, AddTaskButton,
 } from "./ColumnStyles";
 import { CloseIcon, PlusIcon } from "../../../shared/icons/icons";
+import {deleteColumnFromServer} from "../AllColumnsComponent/redux/actions";
 
 function Column( {columnId, columnName}) {
+  const dispatch = useDispatch();
+  const onClickDelete = (columnId) => {
+    dispatch(deleteColumnFromServer(columnId));
+  }
+
   return (
     <ColumnStyle>
       <ColumnHeader>
@@ -12,7 +19,7 @@ function Column( {columnId, columnName}) {
           {columnName}
           {columnId}
         </ColumnName>
-        <CloseButton>
+        <CloseButton onClick={() => onClickDelete(columnId)}>
           <CloseIcon />
         </CloseButton>
       </ColumnHeader>

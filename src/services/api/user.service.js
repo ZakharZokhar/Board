@@ -34,6 +34,9 @@ const createColumn = (column) => axios.post(
     `${API_URL}statuses/create`,
     column,
     authHeader()).then((response) => response);
+const deleteColumnById = (id) => axios.delete(
+    `${API_URL}statuses/delete/${id}`,
+    authHeader()).then((response) => response);
 const deleteBoardById = (id) => axios.delete(
     `${API_URL}boards/delete/${id}`,
     authHeader()).then((response) => response);
@@ -55,4 +58,5 @@ export {
   getColumns,
   createColumn,
   addBoardIdToColumn,
+  deleteColumnById,
 };

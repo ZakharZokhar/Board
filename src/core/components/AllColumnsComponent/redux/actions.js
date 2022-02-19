@@ -1,4 +1,9 @@
-import {addBoardIdToColumn, createColumn, getColumns} from "../../../../services/api/user.service";
+import {
+    addBoardIdToColumn,
+    createColumn,
+    deleteColumnById,
+    getColumns
+} from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
 
@@ -9,6 +14,8 @@ export const togglePopUpColumnOn = { type: 'TOGGLE_POPUP_COLUMN_ON' };
 export const togglePopUpColumnOff = { type: 'TOGGLE_POPUP_COLUMN_OFF' };
 
 export const addNewColumn = { type: 'ADD_NEW_COLUMN' };
+
+export const deleteColumn = { type: 'DELETE_COLUMN' };
 
 export const displayWarningColumnAlreadyInBoard = { type: 'DISPLAY_WARNING_COLUMN_ALREADY_IN_BOARD' }
 
@@ -49,5 +56,14 @@ export const addNewColumnToServer = (name, boardId) => async (dispatch) => {
 
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const deleteColumnFromServer = (id) => async (dispatch) => {
+    try {
+        await deleteColumnById(id)
+        dispatch({...deleteColumn, payload: id})
+    } catch (error) {
+        console.log(error)
     }
 }

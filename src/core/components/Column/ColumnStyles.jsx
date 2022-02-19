@@ -3,6 +3,7 @@ import { RoleColor, MainBlueColor } from "../../../shared/colors";
 import { BaseFontFamily } from "../../../shared/variables";
 
 const ColumnStyle = styled('div')`
+  display: inline-block;
   margin: 15px 15px 15px 15px;
   padding: 5px;
   background-color: ${RoleColor};

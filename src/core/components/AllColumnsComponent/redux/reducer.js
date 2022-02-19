@@ -2,6 +2,7 @@ import {
   fetchColumnsByBoardIdSuccess, fetchColumnsByBoardIdFailure,
   togglePopUpColumnOn, togglePopUpColumnOff, addNewColumn,
   displayWarningColumnAlreadyInBoard, hideWarningColumnAlreadyInBoard,
+  deleteColumn,
 } from "./actions";
 
 
@@ -21,6 +22,9 @@ function columnsReducer(state = [], action) {
         ...state,
         action.payload,
       ]
+
+    case deleteColumn.type:
+      return state.filter((column) => (column._id !== action.payload));
 
     default:
       return [

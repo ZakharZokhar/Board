@@ -15,6 +15,7 @@ function AllColumnsComponent() {
   const columns = useSelector((state) => state.columns);
   const isPopUpOpen = useSelector((state) => state.popupColumn.isColumnPopUpOpen);
   const warnings = useSelector((state) => state.warningsColumnPopUp);
+  const boardName = useSelector((state) => state.openColumns.columnBoardName)
   const onBackToBoards = () => {
     dispatch(closeColumns);
   }
@@ -25,6 +26,7 @@ function AllColumnsComponent() {
   return (
     <AllColumnsContainer>
       <BoardProjectName>
+        {boardName}
       </BoardProjectName>
       <BackToProjectsButton onClick={onBackToBoards}>
         Back to boards
