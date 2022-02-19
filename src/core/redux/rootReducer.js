@@ -12,7 +12,9 @@ import {
   boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer
 } from "../components/AllBoardsComponent/redux/reducer";
 
-import columnsReducer from "../components/AllColumnsComponent/redux/reducer";
+import {
+  columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer
+} from "../components/AllColumnsComponent/redux/reducer";
 
 export default {
   dog: dogReducer,
@@ -26,4 +28,6 @@ export default {
   warningsBoardPopUp: warningBoardPopUpReducer,
   openColumns: openingColumnsReducer,
   columns: columnsReducer,
+  popupColumn: togglePopUpColumnReducer,
+  warningsColumnPopUp: warningColumnPopUpReducer,
 };

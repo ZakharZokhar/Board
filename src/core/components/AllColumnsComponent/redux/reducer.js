@@ -1,6 +1,9 @@
 import {
-  fetchColumnsByBoardIdSuccess, fetchColumnsByBoardIdFailure
+  fetchColumnsByBoardIdSuccess, fetchColumnsByBoardIdFailure,
+  togglePopUpColumnOn, togglePopUpColumnOff, addNewColumn,
+  displayWarningColumnAlreadyInBoard, hideWarningColumnAlreadyInBoard,
 } from "./actions";
+
 
 function columnsReducer(state = [], action) {
   switch (action.type) {
@@ -13,6 +16,12 @@ function columnsReducer(state = [], action) {
         ...state,
       ];
 
+    case addNewColumn.type:
+      return [
+        ...state,
+        action.payload,
+      ]
+
     default:
       return [
         ...state,
@@ -20,4 +29,44 @@ function columnsReducer(state = [], action) {
   }
 }
 
-export default columnsReducer;
+function togglePopUpColumnReducer(state = { isColumnPopUpOpen: false }, action) {
+  switch (action.type) {
+    case togglePopUpColumnOn.type:
+      return {
+        ...state,
+        isColumnPopUpOpen: true,
+      };
+    case togglePopUpColumnOff.type:
+      return {
+        ...state,
+        isColumnPopUpOpen: false,
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+}
+
+function warningColumnPopUpReducer(state = {
+  alreadyHere: false,
+}, action) {
+  switch (action.type) {
+    case displayWarningColumnAlreadyInBoard.type:
+      return {
+        ...state,
+        alreadyHere: true,
+      };
+    case hideWarningColumnAlreadyInBoard.type:
+      return {
+        ...state,
+        alreadyHere: false,
+      }
+    default:
+      return {
+        ...state,
+      };
+  }
+}
+
+export { columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer };

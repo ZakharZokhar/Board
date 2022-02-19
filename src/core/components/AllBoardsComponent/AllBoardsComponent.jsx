@@ -41,7 +41,7 @@ function AllBoardsComponent() {
           <Board
             key={board._id}
             boardId={board._id}
-            boardName={board.name}
+            boardName={board.name.length < 52 ? board.name : `${board.name.substring(0, 52)}...`}
             colUsersInBoard={board.colUsers}
             onDeleteBoard={() => onDeleteBoard(board._id)}
           />

@@ -26,6 +26,14 @@ const createBoard = (board) => axios.post(
     `${API_URL}boards/create`,
     board,
     authHeader()).then((response) => response);
+const addBoardIdToColumn = (id, boardId) => axios.put(
+    `${API_URL}statuses/update/${id}`,
+    boardId,
+    authHeader()).then((response) => response);
+const createColumn = (column) => axios.post(
+    `${API_URL}statuses/create`,
+    column,
+    authHeader()).then((response) => response);
 const deleteBoardById = (id) => axios.delete(
     `${API_URL}boards/delete/${id}`,
     authHeader()).then((response) => response);
@@ -45,4 +53,6 @@ export {
   deleteBoardById,
   updateUserBoardIds,
   getColumns,
+  createColumn,
+  addBoardIdToColumn,
 };

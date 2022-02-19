@@ -6,13 +6,20 @@ import { ColumnsContainer, AllColumnsContainer } from "./AllColumnsComponentStyl
 import AddColumnButton from "../AddColumnButton";
 import {closeColumns} from "../BigContainerForKanban/redux/actions";
 import Column from "../Column";
+import PopUpAddColumn from "../PopUpAddColumn";
+import {togglePopUpColumnOn} from "./redux/actions";
 
 
 function AllColumnsComponent() {
   const dispatch = useDispatch();
-  const columns = useSelector((state) => state.columns)
+  const columns = useSelector((state) => state.columns);
+  const isPopUpOpen = useSelector((state) => state.popupColumn.isColumnPopUpOpen);
+  const warnings = useSelector((state) => state.warningsColumnPopUp);
   const onBackToBoards = () => {
     dispatch(closeColumns);
+  }
+  const showPopUp = () => {
+    dispatch(togglePopUpColumnOn);
   }
 
   return (
@@ -22,6 +29,7 @@ function AllColumnsComponent() {
       <BackToProjectsButton onClick={onBackToBoards}>
         Back to boards
       </BackToProjectsButton>
+      {warnings.alreadyHere && 'Column with that name is already here!!'}
       <ColumnsContainer>
         {columns.map((column) => (
           <Column
@@ -30,8 +38,9 @@ function AllColumnsComponent() {
             columnId = {column._id}
           />
         ))}
-        <AddColumnButton />
+        <AddColumnButton onAddColumnClick = {showPopUp}/>
       </ColumnsContainer>
+      {isPopUpOpen && <PopUpAddColumn />}
     </AllColumnsContainer>
     );
 }

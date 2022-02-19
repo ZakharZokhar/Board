@@ -29,17 +29,23 @@ function openingBoardsReducer(state={
 
 function openingColumnsReducer(state={
   isColumnsOpen: false,
+  columnBoardId:'',
+  columnBoardName: '',
 }, action) {
   switch (action.type) {
     case openColumns.type:
       return {
         ...state,
         isColumnsOpen: true,
+        columnBoardId: action.payload.boardId,
+        columnBoardName: action.payload.boardName,
       };
     case closeColumns.type:
       return {
         ...state,
         isColumnsOpen: false,
+        columnBoardId:'',
+        columnBoardName: '',
       };
     default:
       return {
