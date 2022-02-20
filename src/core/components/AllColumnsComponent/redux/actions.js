@@ -1,6 +1,6 @@
 import {
     addBoardIdToColumn,
-    createColumn,
+    createColumn, createNewTask,
     deleteColumnById,
     getColumns, getTasks, getUsers
 } from "../../../../services/api/user.service";
@@ -12,6 +12,10 @@ export const fetchColumnsByBoardIdFailure = { type: 'FETCH_COLUMN_BY_BOARD_ID_FA
 export const togglePopUpColumnOn = { type: 'TOGGLE_POPUP_COLUMN_ON' };
 
 export const togglePopUpColumnOff = { type: 'TOGGLE_POPUP_COLUMN_OFF' };
+
+export const togglePopUpTaskOn = { type: 'TOGGLE_POPUP_TASK_ON' };
+
+export const togglePopUpTaskOff = { type: 'TOGGLE_POPUP_TASK_OFF' };
 
 export const addNewColumn = { type: 'ADD_NEW_COLUMN' };
 
@@ -29,6 +33,8 @@ export const displayWarningLongNameColumn = { type: 'DISPLAY_WARNING_LONG_NAME_B
 
 export const hideWarningLongNameColumn = { type: 'HIDE_WARNING_LONG_NAME_BOARD_COLUMN' };
 
+export const addTaskToColumn = { type: 'ADD_TASK_TO_COLUMN' };
+
 export const fetchColumnsByBoardtId = (id) => async (dispatch) => {
     try {
         const allUsers = await getUsers();
@@ -44,7 +50,6 @@ export const fetchColumnsByBoardtId = (id) => async (dispatch) => {
             task.userImg = assignToUser.avatarLink
           })
         })
-        console.log(columnsInBoard);
         dispatch({...fetchColumnsByBoardIdSuccess, payload: columnsInBoard});
     } catch (error) {
         dispatch({...fetchColumnsByBoardIdFailure, payload: error});
@@ -70,6 +75,7 @@ export const addNewColumnToServer = (name, boardId) => async (dispatch) => {
           const { data } = await createColumn({name: name, boardId: boardId});
           await addBoardIdToColumn(data._id, {boardId: boardId});
           data.boardIds = [boardId];
+          data.tasks = []
           dispatch({...addNewColumn, payload: data})
           dispatch(hideWarningColumnAlreadyInBoard)
         }
@@ -83,6 +89,34 @@ export const deleteColumnFromServer = (id) => async (dispatch) => {
     try {
         await deleteColumnById(id)
         dispatch({...deleteColumn, payload: id})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const togglePopUpTaskWithUsers = (columnId) => async (dispatch) => {
+    try {
+        const { data } = await getUsers();
+        dispatch({...togglePopUpTaskOn, payload: {users: data, column: columnId}});
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const addNewTaskToServer = (name, description, boardId, columnId, email) => async (dispatch) => {
+    try {
+      const allUsers = await getUsers();
+      const [taskUser] = allUsers.filter((user) => user.email === email)
+      const { data } = await createNewTask({
+        name:name,
+        description: description,
+        boardId: boardId,
+        statusId: columnId,
+        assignedTo: taskUser._id,
+        elapsedTime: 0,
+      });
+      console.log(data)
+      dispatch({...addTaskToColumn, columnId: columnId, task: data})
     } catch (error) {
         console.log(error)
     }

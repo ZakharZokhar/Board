@@ -4,6 +4,7 @@ import {
   displayWarningColumnAlreadyInBoard, hideWarningColumnAlreadyInBoard,
   deleteColumn, displayWarningEmptyNameColumn, hideWarningEmptyNameColumn,
   displayWarningLongNameColumn, hideWarningLongNameColumn,
+  togglePopUpTaskOn, togglePopUpTaskOff, addTaskToColumn,
 } from "./actions";
 
 function columnsReducer(state = [], action) {
@@ -23,6 +24,11 @@ function columnsReducer(state = [], action) {
         action.payload,
       ]
 
+    case addTaskToColumn.type:
+      return state.map((column) => (
+        column._id === action.payload.columnId ? column.tasks = [...column.tasks, action.payload.task] : column
+      ))
+
     case deleteColumn.type:
       return state.filter((column) => (column._id !== action.payload));
 
@@ -30,6 +36,27 @@ function columnsReducer(state = [], action) {
       return [
         ...state,
       ];
+  }
+}
+
+function togglePopUpTaskReducer(state = { isTaskPopUpOpen: false }, action) {
+  switch (action.type) {
+    case togglePopUpTaskOn.type:
+      return {
+        ...state,
+        isTaskPopUpOpen: true,
+        users: action.payload.users,
+        columnId: action.payload.columnId,
+      };
+    case togglePopUpTaskOff.type:
+      return {
+        ...state,
+        isTaskPopUpOpen: false,
+      };
+    default:
+      return {
+        ...state,
+      };
   }
 }
 
@@ -95,4 +122,6 @@ function warningColumnPopUpReducer(state = {
   }
 }
 
-export { columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer };
+export {
+  columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer, togglePopUpTaskReducer
+};

@@ -4,13 +4,16 @@ import {
     ColumnStyle, ColumnName, CloseButton, ColumnHeader, ColumnFooter, AddTaskButton,
 } from "./ColumnStyles";
 import { CloseIcon, PlusIcon } from "../../../shared/icons/icons";
-import {deleteColumnFromServer} from "../AllColumnsComponent/redux/actions";
+import {deleteColumnFromServer, togglePopUpTaskWithUsers} from "../AllColumnsComponent/redux/actions";
 import Task from "../Task";
 
 function Column( {columnId, columnName, tasksInColumn}) {
   const dispatch = useDispatch();
   const onClickDelete = (columnId) => {
     dispatch(deleteColumnFromServer(columnId));
+  }
+  const onAddTask = (columnId) => {
+    dispatch(togglePopUpTaskWithUsers(columnId));
   }
 
   return (
@@ -32,7 +35,7 @@ function Column( {columnId, columnName, tasksInColumn}) {
         />
       ))}
       <ColumnFooter>
-        <AddTaskButton>
+        <AddTaskButton onClick={() => onAddTask(columnId)}>
             <PlusIcon />
             Add a card
         </AddTaskButton>

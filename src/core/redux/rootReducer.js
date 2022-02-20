@@ -13,7 +13,8 @@ import {
 } from "../components/AllBoardsComponent/redux/reducer";
 
 import {
-  columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer
+  columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer,
+  togglePopUpTaskReducer,
 } from "../components/AllColumnsComponent/redux/reducer";
 
 export default {
@@ -30,4 +31,5 @@ export default {
   columns: columnsReducer,
   popupColumn: togglePopUpColumnReducer,
   warningsColumnPopUp: warningColumnPopUpReducer,
+  popupTask: togglePopUpTaskReducer,
 };

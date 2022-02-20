@@ -8,12 +8,14 @@ import {closeColumns} from "../BigContainerForKanban/redux/actions";
 import Column from "../Column";
 import PopUpAddColumn from "../PopUpAddColumn";
 import {togglePopUpColumnOn} from "./redux/actions";
+import PopUpAddTask from "../PopUpAddTask";
 
 
 function AllColumnsComponent() {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns);
-  const isPopUpOpen = useSelector((state) => state.popupColumn.isColumnPopUpOpen);
+  const isPopUpColumnOpen = useSelector((state) => state.popupColumn.isColumnPopUpOpen);
+  const isPopUpTaskOpen = useSelector((state) => state.popupTask.isTaskPopUpOpen);
   const warnings = useSelector((state) => state.warningsColumnPopUp);
   const boardName = useSelector((state) => state.openColumns.columnBoardName)
   const onBackToBoards = () => {
@@ -43,7 +45,8 @@ function AllColumnsComponent() {
         ))}
         <AddColumnButton onAddColumnClick = {showPopUp}/>
       </ColumnsContainer>
-      {isPopUpOpen && <PopUpAddColumn />}
+      {isPopUpColumnOpen && <PopUpAddColumn />}
+      {isPopUpTaskOpen && <PopUpAddTask />}
     </AllColumnsContainer>
     );
 }
