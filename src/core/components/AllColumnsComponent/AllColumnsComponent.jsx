@@ -38,6 +38,7 @@ function AllColumnsComponent() {
             key = {column._id}
             columnName = {column.name.length < 20 ? column.name : `${column.name.substring(0, 20)}...`}
             columnId = {column._id}
+            tasksInColumn = {column.tasks}
           />
         ))}
         <AddColumnButton onAddColumnClick = {showPopUp}/>

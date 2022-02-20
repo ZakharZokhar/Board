@@ -5,8 +5,9 @@ import {
 } from "./ColumnStyles";
 import { CloseIcon, PlusIcon } from "../../../shared/icons/icons";
 import {deleteColumnFromServer} from "../AllColumnsComponent/redux/actions";
+import Task from "../Task";
 
-function Column( {columnId, columnName}) {
+function Column( {columnId, columnName, tasksInColumn}) {
   const dispatch = useDispatch();
   const onClickDelete = (columnId) => {
     dispatch(deleteColumnFromServer(columnId));
@@ -22,6 +23,14 @@ function Column( {columnId, columnName}) {
           <CloseIcon />
         </CloseButton>
       </ColumnHeader>
+      {tasksInColumn.map((task) => (
+        <Task
+          key = {task._id}
+          taskName = {task.name}
+          userNameAssignedToTask = {task.userName}
+          userAvatarAssignedToTask = {task.userImg}
+        />
+      ))}
       <ColumnFooter>
         <AddTaskButton>
             <PlusIcon />
@@ -35,11 +44,13 @@ function Column( {columnId, columnName}) {
 Column.propTypes = {
     ColumnName: PropTypes.string,
     ColumnId: PropTypes.string,
+    tasksInColumn: PropTypes.array,
 };
 
 Column.defaultProps = {
     ColumnName: null,
     ColumnId: null,
+    tasksInColumn: null,
 };
 
 

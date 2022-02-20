@@ -2,7 +2,7 @@ import {
     addBoardIdToColumn,
     createColumn,
     deleteColumnById,
-    getColumns
+    getColumns, getTasks, getUsers
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -31,8 +31,20 @@ export const hideWarningLongNameColumn = { type: 'HIDE_WARNING_LONG_NAME_BOARD_C
 
 export const fetchColumnsByBoardtId = (id) => async (dispatch) => {
     try {
+        const allUsers = await getUsers();
         const { data } = await getColumns();
         const columnsInBoard = data.filter((column) => column.boardIds.includes(id));
+        const allTasks = await getTasks();
+        const tasksInBoard = allTasks.data.filter((task) => task.boardId === id);
+        columnsInBoard.map((column) => {
+          column.tasks = tasksInBoard.filter((task) => task.statusId === column._id);
+          column.tasks.map((task) => {
+            const [assignToUser] = allUsers.data.filter((user) => task.assignedTo === user._id)
+            task.userName = assignToUser.name
+            task.userImg = assignToUser.avatarLink
+          })
+        })
+        console.log(columnsInBoard);
         dispatch({...fetchColumnsByBoardIdSuccess, payload: columnsInBoard});
     } catch (error) {
         dispatch({...fetchColumnsByBoardIdFailure, payload: error});

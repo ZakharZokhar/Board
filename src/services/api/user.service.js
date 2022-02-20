@@ -41,6 +41,7 @@ const deleteBoardById = (id) => axios.delete(
     `${API_URL}boards/delete/${id}`,
     authHeader()).then((response) => response);
 const getColumns = () => axios.get(`${API_URL}statuses`, authHeader()).then((response) => response);
+const getTasks = () => axios.get(`${API_URL}tasks`, authHeader()).then((response) => response);
 export {
   getPublicContent,
   getUserBoard,
@@ -59,4 +60,5 @@ export {
   createColumn,
   addBoardIdToColumn,
   deleteColumnById,
+  getTasks,
 };
