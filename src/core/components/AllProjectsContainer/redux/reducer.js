@@ -15,7 +15,7 @@ import {
   displayWarningLongName,
   hideWarningLongName,
 } from './actions';
-import {createProject, updateUserProjectsIds} from '../../../../services/api/user.service';
+import {createProject, updateUserProjectsIds, getUserById} from '../../../../services/api/user.service';
 
 function warningPopUpReducer(state = {
   emptyName: false,
@@ -112,7 +112,9 @@ async function updateId (project) {
   try {
     const { data } = await createProject(project);
     const { userId } = JSON.parse(localStorage.getItem('tokens'));
-    await updateUserProjectsIds(userId, data._id);
+    const user = await getUserById(userId)
+    const projectIds= user.data.projectIds
+    await updateUserProjectsIds(userId, [...projectIds, data._id]);
   } catch (error) {
     console.log(error);
   }

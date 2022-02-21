@@ -12,13 +12,13 @@ const createProject = (project) => axios.post(
     `${API_URL}projects/create`,
     project,
     authHeader()).then((response) => response);
-const updateUserProjectsIds = (userId, newProjectId) => axios.put(
+const updateUserProjectsIds = (userId, projectIdsWithNew) => axios.put(
     `${API_URL}users/update/${userId}`,
-    {projectIds: [newProjectId]},
+    {projectIds: projectIdsWithNew},
     authHeader()).then((response) => response);
-const updateUserBoardIds = (userId, newBoardId) => axios.put(
+const updateUserBoardIds = (userId, boardIdsWithNew) => axios.put(
     `${API_URL}users/update/${userId}`,
-    {boardIds: [newBoardId]},
+    {boardIds: boardIdsWithNew},
     authHeader()).then((response) => response);
 const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
 const getBoards = () => axios.get(`${API_URL}boards`, authHeader()).then((response) => response);

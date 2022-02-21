@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from "react-redux";
+import { Link} from "react-router-dom";
 import { DiamondIcon, CloseIcon } from '../../../shared/icons/icons';
 import {
     ProjectContainer,
@@ -12,18 +12,8 @@ import {
 
 } from './ProjectStyles';
 import { HrStyled } from '../../../shared/basic-components/Hr';
-import { openBoards } from "../BigContainerForKanban/redux/actions";
-import { fetchBoardsByProjectId } from "../AllBoardsComponent/redux/actions";
 
-function Project({ projectName, projectId, onDeleteProject, colUsersInProject }) {
-  const dispatch = useDispatch();
-  const onOpenBoards = () => {
-    dispatch(fetchBoardsByProjectId(projectId));
-    dispatch({...openBoards, payload: {
-        projectId: projectId,
-        projectName: projectName,
-    }});
-  };
+function Project({ projectName, projectId, onDeleteProject, numUsersInProject }) {
 
   return (
     <ProjectContainer>
@@ -45,10 +35,12 @@ function Project({ projectName, projectId, onDeleteProject, colUsersInProject })
       </MidProject>
       <HrStyled />
       <BotProject>
-        {colUsersInProject === 1 ? `1 user` : `${colUsersInProject} users`}
-        <ProjectOpenButton onClick={() => (onOpenBoards())}>
-          Open
-        </ProjectOpenButton>
+        {numUsersInProject === 1 ? `1 user` : `${numUsersInProject} users`}
+        <Link to={`/projects/${projectId}`}>
+          <ProjectOpenButton>
+            Open
+          </ProjectOpenButton>
+        </Link>
       </BotProject>
     </ProjectContainer>
   );
@@ -58,14 +50,14 @@ Project.propTypes = {
   projectName: PropTypes.string,
   projectId: PropTypes.string,
   onDeleteProject: PropTypes.func,
-  colUsersInProject: PropTypes.number,
+  numUsersInProject: PropTypes.number,
 };
 
 Project.defaultProps = {
   projectName: null,
   projectId: null,
   onDeleteProject: null,
-  colUsersInProject: null,
+  numUsersInProject: null,
 };
 
 export default Project;

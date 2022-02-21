@@ -5,9 +5,9 @@ import {
   projectIdsReducer,
   warningPopUpReducer,
 } from '../components/AllProjectsContainer/redux/reducer';
-import openingBoardsReducer from "../components/BigContainerForKanban/redux/reducer";
 import {
-  boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer
+  boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer,
+  projectNameReducer,
 } from "../components/AllBoardsComponent/redux/reducer";
 
 export default {
@@ -16,8 +16,8 @@ export default {
   project: projectsReducer,
   projectIds: projectIdsReducer,
   warningsPopUp: warningPopUpReducer,
-  openBoards: openingBoardsReducer,
   boards: boardsReducer,
   popupBoard: togglePopUpBoardReducer,
   warningsBoardPopUp: warningBoardPopUpReducer,
+  projectName: projectNameReducer,
 };

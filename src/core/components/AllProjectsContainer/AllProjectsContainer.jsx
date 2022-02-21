@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import AddProjectButton from '../AddProjectButton';
+import AddElementButton from "../AddElementButton";
 import PopUpAddProject from '../PopUpAddProject';
 import Project from '../Project';
 import {
@@ -36,7 +36,7 @@ function AllProjectsContainer() {
 
   return (
     <AllProjectsHolder>
-      <AddProjectButton
+      <AddElementButton
         onAddClick={showPopUp}
         buttonName={'Add new project'}
       />
@@ -45,7 +45,7 @@ function AllProjectsContainer() {
           key={project._id}
           projectName={project.name.length < 52 ? project.name : `${project.name.substring(0, 52)}...` }
           projectId={project._id}
-          colUsersInProject = {project.colUsers}
+          numUsersInProject = {project.numUsers}
           onDeleteProject={onDeleteProject}
         />
       ))}
