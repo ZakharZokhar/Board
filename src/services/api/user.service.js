@@ -17,6 +17,10 @@ const updateUserProjectsIds = (userId, newProjectId) => axios.put(
     {projectIds: [newProjectId]},
     authHeader()).then((response) => response);
 const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
+const getProjects = () => axios.get(`${API_URL}projects`, authHeader()).then((response) => response);
+const deleteProjectById = (id) => axios.delete(
+    `${API_URL}projects/delete/${id}`,
+    authHeader()).then((response) => response);
 export {
   getPublicContent,
   getUserBoard,
@@ -27,4 +31,6 @@ export {
   createProject,
   updateUserProjectsIds,
   getUserById,
+  getProjects,
+  deleteProjectById,
 };
