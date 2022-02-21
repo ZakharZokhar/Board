@@ -12,14 +12,26 @@ const createProject = (project) => axios.post(
     `${API_URL}projects/create`,
     project,
     authHeader()).then((response) => response);
-const updateUserProjectsIds = (userId, newProjectId) => axios.put(
+const updateUserProjectsIds = (userId, projectIdsWithNew) => axios.put(
     `${API_URL}users/update/${userId}`,
-    {projectIds: [newProjectId]},
+    {projectIds: projectIdsWithNew},
+    authHeader()).then((response) => response);
+const updateUserBoardIds = (userId, boardIdsWithNew) => axios.put(
+    `${API_URL}users/update/${userId}`,
+    {boardIds: boardIdsWithNew},
     authHeader()).then((response) => response);
 const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
 const getProjects = () => axios.get(`${API_URL}projects`, authHeader()).then((response) => response);
 const deleteProjectById = (id) => axios.delete(
     `${API_URL}projects/delete/${id}`,
+    authHeader()).then((response) => response);
+const getBoards = () => axios.get(`${API_URL}boards`, authHeader()).then((response) => response);
+const createBoard = (board) => axios.post(
+    `${API_URL}boards/create`,
+    board,
+    authHeader()).then((response) => response);
+const deleteBoardById = (id) => axios.delete(
+    `${API_URL}boards/delete/${id}`,
     authHeader()).then((response) => response);
 export {
   getPublicContent,
@@ -33,4 +45,8 @@ export {
   getUserById,
   getProjects,
   deleteProjectById,
+  getBoards,
+  createBoard,
+  deleteBoardById,
+  updateUserBoardIds,
 };

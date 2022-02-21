@@ -5,6 +5,10 @@ import {
   projectIdsReducer,
   warningPopUpReducer,
 } from '../components/AllProjectsContainer/redux/reducer';
+import {
+  boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer,
+  projectNameReducer,
+} from "../components/AllBoardsComponent/redux/reducer";
 
 export default {
   dog: dogReducer,
@@ -12,4 +16,8 @@ export default {
   project: projectsReducer,
   projectIds: projectIdsReducer,
   warningsPopUp: warningPopUpReducer,
+  boards: boardsReducer,
+  popupBoard: togglePopUpBoardReducer,
+  warningsBoardPopUp: warningBoardPopUpReducer,
+  projectName: projectNameReducer,
 };

@@ -5,6 +5,7 @@ import {
   BackgroundWhiteColor,
   RoleColor,
 } from '../../../shared/colors';
+import { blueButtonForProjects } from "../../../shared/basic-components/Buttons";
 
 const ProjectContainer = styled('div')`
   display: inline-block;
@@ -61,6 +62,18 @@ const BotProject = styled('div')`
   color: ${MainBlueColor};
 `;
 
+const ProjectOpenButton = styled('button')`
+  ${blueButtonForProjects};
+  position: absolute;
+  right: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0 9px;
+  width: 60px;
+  height: 20px;
+`;
+
 export {
   ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, BotProject, ProjectName,
+  ProjectOpenButton,
 };
