@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
     AllBoardsHolder, BackToProjectsButton,
-    BoardsContainer, BoardProjectName
+    BoardsContainer, BoardProjectName,
+    BoardProjectDescription,
 } from "./AllBoardsStyles";
 import Board from "../Board";
 import PopUpAddBoard from "../PopUpAddBoard";
 import {togglePopUpBoardOn, deleteBoardFromServer, fetchBoardsByProjectId} from "./redux/actions";
-import { BoardProjectName } from "./AllBoardsStyles";
 import AddElementButton from "../AddElementButton";
 
 
@@ -16,7 +16,8 @@ function AllBoardsComponent( {projectId} ) {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
   const isPopUpOpen = useSelector((state) => state.popupBoard.isBoardPopUpOpen)
-  const projectName = useSelector((state) => state.projectName.name)
+  const projectName = useSelector((state) => state.projectInfo.name)
+  const projectDescription = useSelector((state) => state.projectInfo.description)
   useEffect(() => {
     dispatch(fetchBoardsByProjectId(projectId));
   }, []);
@@ -32,6 +33,9 @@ function AllBoardsComponent( {projectId} ) {
       <BoardProjectName>
         {projectName}
       </BoardProjectName>
+      <BoardProjectDescription>
+        {projectDescription}
+      </BoardProjectDescription>
       <Link to={'/projects'}>
         <BackToProjectsButton>
           Back to projects
@@ -49,6 +53,7 @@ function AllBoardsComponent( {projectId} ) {
             boardName={board.name.length < 52 ? board.name : `${board.name.substring(0, 52)}...`}
             numUsersInBoard={board.numUsers}
             onDeleteBoard={() => onDeleteBoard(board._id)}
+            projectId={projectId}
           />
         ))}
         {isPopUpOpen && (<PopUpAddBoard projectId={projectId}/>)}

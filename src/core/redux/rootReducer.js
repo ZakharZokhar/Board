@@ -7,12 +7,12 @@ import {
 } from '../components/AllProjectsContainer/redux/reducer';
 import {
   boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer,
-  projectNameReducer,
+  projectInfoReducer,
 } from "../components/AllBoardsComponent/redux/reducer";
 
 import {
   columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer,
-  togglePopUpTaskReducer,
+  togglePopUpTaskReducer, warningTaskPopUpReducer, boardNameReducer,
 } from "../components/AllColumnsComponent/redux/reducer";
 
 import dropDownReducer from "../../shared/basic-components/DropDown/redux/reducer";
@@ -26,11 +26,12 @@ export default {
   boards: boardsReducer,
   popupBoard: togglePopUpBoardReducer,
   warningsBoardPopUp: warningBoardPopUpReducer,
-  openColumns: openingColumnsReducer,
   columns: columnsReducer,
   popupColumn: togglePopUpColumnReducer,
   warningsColumnPopUp: warningColumnPopUpReducer,
   popupTask: togglePopUpTaskReducer,
   dropDown: dropDownReducer,
-  projectName: projectNameReducer,
+  projectInfo: projectInfoReducer,
+  warningsTaskPopUp: warningTaskPopUpReducer,
+  boardName: boardNameReducer,
 };

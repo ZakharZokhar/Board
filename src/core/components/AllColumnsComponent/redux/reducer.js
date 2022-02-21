@@ -5,6 +5,11 @@ import {
   deleteColumn, displayWarningEmptyNameColumn, hideWarningEmptyNameColumn,
   displayWarningLongNameColumn, hideWarningLongNameColumn,
   togglePopUpTaskOn, togglePopUpTaskOff, addTaskToColumn,
+  displayWarningEmptyNameTask, hideWarningEmptyNameTask,
+  displayWarningLongNameTask, hideWarningLongNameTask,
+  displayWarningLongDescriptionTask, hideWarningLongDescriptionTask,
+  displayWarningEmailNotExistTask, hideWarningEmailNotExistTask,
+  getBoardName,
 } from "./actions";
 
 function columnsReducer(state = [], action) {
@@ -125,6 +130,87 @@ function warningColumnPopUpReducer(state = {
   }
 }
 
+function boardNameReducer(state = { name:'' }, action) {
+  switch (action.type) {
+    case getBoardName.type:
+      return {
+        ...state,
+        name: action.payload,
+      }
+    default:
+      return {
+        ...state,
+      }
+  }
+}
+
+function warningTaskPopUpReducer(state = {
+  emptyName: false,
+  longName: false,
+  longDescription: false,
+  emailDoesNotExist: false,
+}, action) {
+  switch (action.type) {
+    case displayWarningEmptyNameTask.type:
+      return {
+        ...state,
+        emptyName: true,
+        longName: false,
+        longDescription: false,
+        emailDoesNotExist: false,
+      };
+    case hideWarningEmptyNameTask.type:
+      return {
+        ...state,
+        emptyName: false,
+      };
+    case displayWarningLongNameTask.type:
+      return {
+        ...state,
+        longName: true,
+        emptyName: false,
+        longDescription: false,
+        emailDoesNotExist: false,
+      };
+    case hideWarningLongNameTask.type:
+      return {
+        ...state,
+        longName: false,
+      };
+    case displayWarningLongDescriptionTask.type:
+      return {
+        ...state,
+        longDescription: true,
+        emptyName: false,
+        longName: false,
+        emailDoesNotExist: false,
+      };
+    case hideWarningLongDescriptionTask.type:
+      return {
+        ...state,
+        longDescription: false,
+      };
+    case displayWarningEmailNotExistTask.type:
+      return {
+        ...state,
+        emailDoesNotExist: true,
+        longDescription: false,
+        emptyName: false,
+        longName: false,
+      };
+    case hideWarningEmailNotExistTask.type:
+      return {
+        ...state,
+        emailDoesNotExist: false,
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+}
+
 export {
-  columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer, togglePopUpTaskReducer
+  columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer, togglePopUpTaskReducer,
+  warningTaskPopUpReducer, boardNameReducer,
 };

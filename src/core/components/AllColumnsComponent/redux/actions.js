@@ -2,7 +2,8 @@ import {
     addBoardIdToColumn,
     createColumn, createNewTask,
     deleteColumnById,
-    getColumns, getTasks, getUsers
+    getColumns, getTasks, getUsers,
+    getBoardById,
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -21,19 +22,38 @@ export const addNewColumn = { type: 'ADD_NEW_COLUMN' };
 
 export const deleteColumn = { type: 'DELETE_COLUMN' };
 
-export const displayWarningColumnAlreadyInBoard = { type: 'DISPLAY_WARNING_COLUMN_ALREADY_IN_BOARD' }
+export const displayWarningColumnAlreadyInBoard = { type: 'DISPLAY_WARNING_COLUMN_ALREADY_IN_BOARD' };
 
-export const hideWarningColumnAlreadyInBoard = { type: 'HIDE_WARNING_COLUMN_ALREADY_IN_BOARD' }
+export const hideWarningColumnAlreadyInBoard = { type: 'HIDE_WARNING_COLUMN_ALREADY_IN_BOARD' };
 
-export const displayWarningEmptyNameColumn = { type: 'DISPLAY_WARNING_EMPTY_NAME_FIELD_COLUMN' };
+export const displayWarningEmptyNameColumn = { type: 'DISPLAY_WARNING_EMPTY_NAME_COLUMN' };
 
-export const hideWarningEmptyNameColumn = { type: 'HIDE_WARNING_EMPTY_NAME_FIELD_BOARD_COLUMN' };
+export const hideWarningEmptyNameColumn = { type: 'HIDE_WARNING_EMPTY_NAME_COLUMN' };
 
-export const displayWarningLongNameColumn = { type: 'DISPLAY_WARNING_LONG_NAME_BOARD_COLUMN' };
+export const displayWarningLongNameColumn = { type: 'DISPLAY_WARNING_LONG_NAME_COLUMN' };
 
-export const hideWarningLongNameColumn = { type: 'HIDE_WARNING_LONG_NAME_BOARD_COLUMN' };
+export const hideWarningLongNameColumn = { type: 'HIDE_WARNING_LONG_NAME_COLUMN' };
 
 export const addTaskToColumn = { type: 'ADD_TASK_TO_COLUMN' };
+
+export const displayWarningEmptyNameTask = { type: 'DISPLAY_WARNING_EMPTY_NAME_TASK' };
+
+export const hideWarningEmptyNameTask = { type: 'HIDE_WARNING_EMPTY_NAME_TASK' };
+
+export const displayWarningLongNameTask = { type: 'DISPLAY_WARNING_LONG_NAME_TASK' };
+
+export const hideWarningLongNameTask = { type: 'HIDE_WARNING_LONG_NAME_TASK' };
+
+export const displayWarningLongDescriptionTask = { type: 'DISPLAY_WARNING_LONG_DESCRIPTION_TASK' };
+
+export const hideWarningLongDescriptionTask = { type: 'HIDE_WARNING_LONG_DESCRIPTION_TASK' };
+
+export const displayWarningEmailNotExistTask = { type: 'DISPLAY_WARNING_EMAIL_NOT_EXIST_TASK' };
+
+export const hideWarningEmailNotExistTask = { type: 'HIDE_WARNING_EMAIL_NOT_EXIST_TASK' };
+
+export const getBoardName = { type: 'GET_BOARD_NAME' };
+
 
 export const fetchColumnsByBoardtId = (id) => async (dispatch) => {
     try {
@@ -51,6 +71,8 @@ export const fetchColumnsByBoardtId = (id) => async (dispatch) => {
           })
         })
         dispatch({...fetchColumnsByBoardIdSuccess, payload: columnsInBoard});
+        const board = await getBoardById(id)
+        dispatch({...getBoardName, payload: board.data.name})
     } catch (error) {
         dispatch({...fetchColumnsByBoardIdFailure, payload: error});
     }
@@ -67,7 +89,6 @@ export const addNewColumnToServer = (name, boardId) => async (dispatch) => {
           if (isColumnAlreadyInBoard) {
               dispatch(displayWarningColumnAlreadyInBoard)
           } else {
-            console.log('hello');
             await addBoardIdToColumn(existingColumn._id, {boardIds: [...existingColumn.boardIds, boardId]});
             existingColumn.tasks = []
             dispatch({...addNewColumn, payload: existingColumn})
@@ -108,7 +129,6 @@ export const addNewTaskToServer = (name, description, boardId, columnId, email) 
     try {
       const allUsers = await getUsers();
       const [taskUser] = allUsers.data.filter((user) => user.email === email)
-      console.log(columnId);
       const { data } = await createNewTask({
         name:name,
         description: description,

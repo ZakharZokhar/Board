@@ -18,10 +18,9 @@ import {
     hideWarningEmptyNameColumn,
 } from "../AllColumnsComponent/redux/actions";
 
-function PopUpAddColumn() {
+function PopUpAddColumn({boardId}) {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
-  const boardId = useSelector((state) => state.openColumns.columnBoardId);
   const warnings = useSelector((state) => state.warningsColumnPopUp);
   const handleChangeName = (even) => (setName(even.target.value));
   const onCloseClick = () => {

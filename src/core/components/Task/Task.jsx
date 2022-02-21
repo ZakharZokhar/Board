@@ -7,12 +7,12 @@ function Task({ taskName, userAvatarAssignedToTask, userNameAssignedToTask }) {
   return (
     <TaskContainer>
       <MidTask>
-        {taskName}
+        {taskName.length < 88 ? taskName : `${taskName.substring(0, 88)}...`}
       </MidTask>
       <HrStyled />
       <BotTask>
         <TaskAvatar src={userAvatarAssignedToTask ? userAvatarAssignedToTask : link} />
-        {userNameAssignedToTask}
+        {userNameAssignedToTask.length < 20 ? userNameAssignedToTask : `${userNameAssignedToTask.substring(0, 20)}...`}
       </BotTask>
     </TaskContainer>
   )

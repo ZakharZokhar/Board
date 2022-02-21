@@ -21,6 +21,7 @@ const updateUserBoardIds = (userId, boardIdsWithNew) => axios.put(
     {boardIds: boardIdsWithNew},
     authHeader()).then((response) => response);
 const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
+const getBoardById = (id) => axios.get(`${API_URL}boards/${id}`, authHeader()).then((response) => response);
 const getProjects = () => axios.get(`${API_URL}projects`, authHeader()).then((response) => response);
 const deleteProjectById = (id) => axios.delete(
     `${API_URL}projects/delete/${id}`,
@@ -72,4 +73,5 @@ export {
   deleteColumnById,
   getTasks,
   createNewTask,
+  getBoardById,
 };

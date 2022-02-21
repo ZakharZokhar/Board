@@ -1,39 +1,42 @@
+import {Link} from "react-router-dom";
+import { useEffect } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {
     BackToProjectsButton, BoardProjectName,
 } from "../AllBoardsComponent/AllBoardsStyles";
 import { ColumnsContainer, AllColumnsContainer } from "./AllColumnsComponentStyles";
 import AddColumnButton from "../AddColumnButton";
-import {closeColumns} from "../BigContainerForKanban/redux/actions";
 import Column from "../Column";
 import PopUpAddColumn from "../PopUpAddColumn";
-import {togglePopUpColumnOn} from "./redux/actions";
+import {togglePopUpColumnOn, fetchColumnsByBoardtId} from "./redux/actions";
 import PopUpAddTask from "../PopUpAddTask";
 
 
-function AllColumnsComponent() {
+
+function AllColumnsComponent({projectId, boardId}) {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns);
-  console.log(columns);
   const isPopUpColumnOpen = useSelector((state) => state.popupColumn.isColumnPopUpOpen);
   const isPopUpTaskOpen = useSelector((state) => state.popupTask.isTaskPopUpOpen);
   const warnings = useSelector((state) => state.warningsColumnPopUp);
-  const boardName = useSelector((state) => state.openColumns.columnBoardName)
-  const onBackToBoards = () => {
-    dispatch(closeColumns);
-  }
+  const boardName = useSelector((state) => state.boardName.name)
   const showPopUp = () => {
     dispatch(togglePopUpColumnOn);
   }
+  useEffect(() => {
+    dispatch(fetchColumnsByBoardtId(boardId));
+  }, []);
 
   return (
     <AllColumnsContainer>
       <BoardProjectName>
         {boardName}
       </BoardProjectName>
-      <BackToProjectsButton onClick={onBackToBoards}>
-        Back to boards
-      </BackToProjectsButton>
+        <Link to={`/projects/${projectId}`}>
+          <BackToProjectsButton>
+            Back to boards
+          </BackToProjectsButton>
+        </Link>
       {warnings.alreadyHere && 'Column with that name is already here!!'}
       <ColumnsContainer>
         {columns.map((column) => (
@@ -46,8 +49,8 @@ function AllColumnsComponent() {
         ))}
         <AddColumnButton onAddColumnClick = {showPopUp}/>
       </ColumnsContainer>
-      {isPopUpColumnOpen && <PopUpAddColumn />}
-      {isPopUpTaskOpen && <PopUpAddTask />}
+      {isPopUpColumnOpen && <PopUpAddColumn boardId={boardId} />}
+      {isPopUpTaskOpen && <PopUpAddTask boardId={boardId} />}
     </AllColumnsContainer>
     );
 }
