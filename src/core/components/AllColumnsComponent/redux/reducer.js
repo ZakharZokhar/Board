@@ -25,8 +25,11 @@ function columnsReducer(state = [], action) {
       ]
 
     case addTaskToColumn.type:
+      console.log(action.payload);
       return state.map((column) => (
-        column._id === action.payload.columnId ? column.tasks = [...column.tasks, action.payload.task] : column
+          {...column, tasks: (column._id === action.payload.columnId ?
+            [...column.tasks, action.payload.task] :
+            [...column.tasks])}
       ))
 
     case deleteColumn.type:

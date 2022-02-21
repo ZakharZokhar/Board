@@ -12,13 +12,13 @@ const createProject = (project) => axios.post(
     `${API_URL}projects/create`,
     project,
     authHeader()).then((response) => response);
-const updateUserProjectsIds = (userId, newProjectId) => axios.put(
+const updateUserProjectsIds = (userId, ProjectIdsWithNew) => axios.put(
     `${API_URL}users/update/${userId}`,
-    {projectIds: [newProjectId]},
+    {projectIds: ProjectIdsWithNew},
     authHeader()).then((response) => response);
-const updateUserBoardIds = (userId, newBoardId) => axios.put(
+const updateUserBoardIds = (userId, BoardIdsWithNew) => axios.put(
     `${API_URL}users/update/${userId}`,
-    {boardIds: [newBoardId]},
+    {boardIds: BoardIdsWithNew},
     authHeader()).then((response) => response);
 const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
 const getBoards = () => axios.get(`${API_URL}boards`, authHeader()).then((response) => response);
@@ -26,9 +26,9 @@ const createBoard = (board) => axios.post(
     `${API_URL}boards/create`,
     board,
     authHeader()).then((response) => response);
-const addBoardIdToColumn = (id, boardId) => axios.put(
+const addBoardIdToColumn = (id, boardIdsWithNew) => axios.put(
     `${API_URL}statuses/update/${id}`,
-    boardId,
+    boardIdsWithNew,
     authHeader()).then((response) => response);
 const createColumn = (column) => axios.post(
     `${API_URL}statuses/create`,

@@ -17,6 +17,8 @@ import {
   togglePopUpTaskReducer,
 } from "../components/AllColumnsComponent/redux/reducer";
 
+import dropDownReducer from "../../shared/basic-components/DropDown/redux/reducer";
+
 export default {
   dog: dogReducer,
   popup: togglePopUpReducer,
@@ -32,4 +34,5 @@ export default {
   popupColumn: togglePopUpColumnReducer,
   warningsColumnPopUp: warningColumnPopUpReducer,
   popupTask: togglePopUpTaskReducer,
+  dropDown: dropDownReducer,
 };

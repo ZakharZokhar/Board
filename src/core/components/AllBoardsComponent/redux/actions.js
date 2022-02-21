@@ -1,7 +1,7 @@
 import {
   createBoard,
   deleteBoardById,
-  getBoards,
+  getBoards, getUserById,
   getUsers,
   updateUserBoardIds
 } from "../../../../services/api/user.service";
@@ -49,7 +49,9 @@ export const addNewBoardToServer = (name, projectId) => async (dispatch) => {
   try {
     const { data } = await createBoard({name: name, projectId: projectId});
     const { userId } = JSON.parse(localStorage.getItem('tokens'));
-    await updateUserBoardIds(userId, data._id)
+    const user = await getUserById(userId);
+    console.log(user);
+    await updateUserBoardIds(userId, [...user.data.boardIds, data._id])
     data.colUsers = 1;
     dispatch({...addNewBoard, payload: data})
   } catch (error) {

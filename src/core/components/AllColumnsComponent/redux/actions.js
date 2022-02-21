@@ -67,13 +67,14 @@ export const addNewColumnToServer = (name, boardId) => async (dispatch) => {
           if (isColumnAlreadyInBoard) {
               dispatch(displayWarningColumnAlreadyInBoard)
           } else {
-            await addBoardIdToColumn(existingColumn._id, {boardId: boardId});
+            console.log('hello');
+            await addBoardIdToColumn(existingColumn._id, {boardIds: [...existingColumn.boardIds, boardId]});
+            existingColumn.tasks = []
             dispatch({...addNewColumn, payload: existingColumn})
             dispatch(hideWarningColumnAlreadyInBoard)
           }
         } else {
-          const { data } = await createColumn({name: name, boardId: boardId});
-          await addBoardIdToColumn(data._id, {boardId: boardId});
+          const { data } = await createColumn({name: name, boardIds: [boardId]});
           data.boardIds = [boardId];
           data.tasks = []
           dispatch({...addNewColumn, payload: data})
@@ -97,7 +98,7 @@ export const deleteColumnFromServer = (id) => async (dispatch) => {
 export const togglePopUpTaskWithUsers = (columnId) => async (dispatch) => {
     try {
         const { data } = await getUsers();
-        dispatch({...togglePopUpTaskOn, payload: {users: data, column: columnId}});
+        dispatch({...togglePopUpTaskOn, payload: {users: data, columnId: columnId}});
     } catch (error) {
         console.log(error)
     }
@@ -106,7 +107,8 @@ export const togglePopUpTaskWithUsers = (columnId) => async (dispatch) => {
 export const addNewTaskToServer = (name, description, boardId, columnId, email) => async (dispatch) => {
     try {
       const allUsers = await getUsers();
-      const [taskUser] = allUsers.filter((user) => user.email === email)
+      const [taskUser] = allUsers.data.filter((user) => user.email === email)
+      console.log(columnId);
       const { data } = await createNewTask({
         name:name,
         description: description,
@@ -115,8 +117,9 @@ export const addNewTaskToServer = (name, description, boardId, columnId, email) 
         assignedTo: taskUser._id,
         elapsedTime: 0,
       });
-      console.log(data)
-      dispatch({...addTaskToColumn, columnId: columnId, task: data})
+      data.userName = taskUser.name;
+      data.userImg = taskUser.avatarLink;
+      dispatch({...addTaskToColumn, payload: {columnId: columnId, task: data}})
     } catch (error) {
         console.log(error)
     }

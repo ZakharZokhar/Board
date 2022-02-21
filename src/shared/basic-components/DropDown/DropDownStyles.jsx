@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {RoleColor} from "../colors";
+import {RoleColor} from "../../colors";
 
 const DropInput = styled('input')`
   box-sizing: border-box;
