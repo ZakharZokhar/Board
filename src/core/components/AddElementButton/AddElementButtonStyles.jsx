@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import {
-  BorderColor, BorderHoverColor, MainBlueColor, BackgroundWhiteColor,
+    BorderColor, BorderHoverColor, MainBlueColor, BackgroundWhiteColor,
 } from '../../../shared/colors';
 import {
-  BaseFontFamily,
+    BaseFontFamily,
 } from '../../../shared/variables';
 
-const AddProjectButtonContainer = styled('button')`
+const AddElementButtonContainer = styled('button')`
   display: inline-block;
   position: relative;
   width: 250px;
@@ -28,4 +28,4 @@ const AddProjectButtonContainer = styled('button')`
   }
 `;
 
-export default AddProjectButtonContainer;
+export default AddElementButtonContainer;

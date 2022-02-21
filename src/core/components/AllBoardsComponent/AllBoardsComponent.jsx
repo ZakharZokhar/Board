@@ -1,22 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
     AllBoardsHolder, BackToProjectsButton,
     BoardsContainer, BoardProjectName
 } from "./AllBoardsStyles";
-import AddBoardButton from "../AddBoardButton";
-import { closeBoards } from "../BigContainerForKanban/redux/actions";
 import Board from "../Board";
 import PopUpAddBoard from "../PopUpAddBoard";
-import { togglePopUpBoardOn, deleteBoardFromServer } from "./redux/actions";
+import {togglePopUpBoardOn, deleteBoardFromServer, fetchBoardsByProjectId} from "./redux/actions";
+import { BoardProjectName } from "./AllBoardsStyles";
+import AddElementButton from "../AddElementButton";
 
-function AllBoardsComponent() {
+
+function AllBoardsComponent( {projectId} ) {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
   const isPopUpOpen = useSelector((state) => state.popupBoard.isBoardPopUpOpen)
-  const projectName = useSelector((state) => state.openBoards.boardProjectName)
-  const onCloseBoards = () => {
-    dispatch({...closeBoards});
-  };
+  const projectName = useSelector((state) => state.projectName.name)
+  useEffect(() => {
+    dispatch(fetchBoardsByProjectId(projectId));
+  }, []);
   const showPopUp = () => {
     dispatch(togglePopUpBoardOn);
   };
@@ -29,12 +32,14 @@ function AllBoardsComponent() {
       <BoardProjectName>
         {projectName}
       </BoardProjectName>
-      <BackToProjectsButton onClick={() => onCloseBoards()}>
-        Back to projects
-      </BackToProjectsButton>
+      <Link to={'/projects'}>
+        <BackToProjectsButton>
+          Back to projects
+        </BackToProjectsButton>
+      </Link>
       <BoardsContainer>
-        <AddBoardButton
-          onAddBoardClick = {showPopUp}
+        <AddElementButton
+          onAddClick = {showPopUp}
           buttonName={'Add new board'}
         />
         {boards.map((board) => (
@@ -42,11 +47,11 @@ function AllBoardsComponent() {
             key={board._id}
             boardId={board._id}
             boardName={board.name.length < 52 ? board.name : `${board.name.substring(0, 52)}...`}
-            colUsersInBoard={board.colUsers}
+            numUsersInBoard={board.numUsers}
             onDeleteBoard={() => onDeleteBoard(board._id)}
           />
         ))}
-        {isPopUpOpen && (<PopUpAddBoard />)}
+        {isPopUpOpen && (<PopUpAddBoard projectId={projectId}/>)}
       </BoardsContainer>
     </AllBoardsHolder>
   );

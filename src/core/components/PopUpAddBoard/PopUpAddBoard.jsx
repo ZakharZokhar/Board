@@ -13,9 +13,8 @@ import {
 } from "../AllBoardsComponent/redux/actions";
 import { PopUpBoardWindow } from "./PopUpAddBoardStyles";
 
-function PopUpAddBoard() {
+function PopUpAddBoard({ projectId }) {
   const dispatch = useDispatch();
-  const projectId = useSelector((state) => state.openBoards.boardProjectId);
   const warnings = useSelector((state) => state.warningsBoardPopUp);
   const [name, setName] = useState('');
   const onCloseClick = () => {

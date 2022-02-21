@@ -5,6 +5,7 @@ import { BoardContainer } from "./BoardStyles";
 import {openColumns} from "../BigContainerForKanban/redux/actions";
 import {fetchColumnsByBoardtId} from "../AllColumnsComponent/redux/actions";
 
+function Board({ boardName, boardId, onDeleteBoard, numUsersInBoard }) {
 function Board({ boardName, boardId, onDeleteBoard, colUsersInBoard }) {
     const dispatch = useDispatch()
     const onOpenColumns = (boardName, boardId) => {
@@ -16,7 +17,7 @@ function Board({ boardName, boardId, onDeleteBoard, colUsersInBoard }) {
             <Project
             projectName={boardName}
             projectId={boardId}
-            colUsersInProject={colUsersInBoard}
+            numUsersInProject={numUsersInBoard}
             onDeleteProject={onDeleteBoard}
             onOpenProject = {onOpenColumns}
             />
@@ -28,14 +29,14 @@ Board.propTypes = {
     boardName: PropTypes.string,
     boardId: PropTypes.string,
     onDeleteBoard: PropTypes.func,
-    colUsersInBoard: PropTypes.number,
+    numUsersInBoard: PropTypes.number,
 };
 
 Board.defaultProps = {
     boardName: null,
     boardId: null,
     onDeleteBoard: null,
-    colUsersInBoard: null,
+    numUsersInBoard: null,
 };
 
 

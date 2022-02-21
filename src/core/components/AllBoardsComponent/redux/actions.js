@@ -1,9 +1,10 @@
 import {
   createBoard,
   deleteBoardById,
-  getBoards, getUserById,
+  getBoards,
   getUsers,
-  updateUserBoardIds
+  updateUserBoardIds,
+  getUserById, getProjectById,
 } from "../../../../services/api/user.service";
 
 export const togglePopUpBoardOn = { type: 'TOGGLE_POPUP_BOARD_ON' };
@@ -28,18 +29,22 @@ export const hideWarningLongNameBoard = { type: 'HIDE_WARNING_LONG_NAME_BOARD' }
 
 export const deleteBoard = { type: 'DELETE_BOARD' };
 
+export const getProjectName = { type: 'GET_PROJECT_NAME' };
+
 export const fetchBoardsByProjectId = (id) => async (dispatch) => {
   try {
     const { data } = await getBoards();
     const boardsInProject = data.filter((board) => id === board.projectId);
     const allUsers = await getUsers()
     boardsInProject.map((board) => {
-      board.colUsers = allUsers.data.reduce((colUsersHaveBoard, currentUser) => {
+      board.numUsers = allUsers.data.reduce((colUsersHaveBoard, currentUser) => {
         const userHaveBoard = currentUser.boardIds.includes(board._id);
         return userHaveBoard ? colUsersHaveBoard + 1 : colUsersHaveBoard;
       }, 0);
     })
     dispatch({...fetchBoardsByProjectIdSuccess, payload: boardsInProject});
+    const project = await getProjectById(id)
+    dispatch({...getProjectName, payload: project.data.name})
   } catch (error) {
     dispatch({...fetchBoardsByProjectIdFailure, payload: error});
   }
@@ -50,9 +55,8 @@ export const addNewBoardToServer = (name, projectId) => async (dispatch) => {
     const { data } = await createBoard({name: name, projectId: projectId});
     const { userId } = JSON.parse(localStorage.getItem('tokens'));
     const user = await getUserById(userId);
-    console.log(user);
     await updateUserBoardIds(userId, [...user.data.boardIds, data._id])
-    data.colUsers = 1;
+    data.numUsers = 1;
     dispatch({...addNewBoard, payload: data})
   } catch (error) {
     console.log(error);

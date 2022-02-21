@@ -9,7 +9,7 @@ import {
   hideWarningEmptyNameBoard,
   displayWarningLongNameBoard,
   hideWarningLongNameBoard,
-  deleteBoard,
+  deleteBoard, getProjectName,
 } from "./actions";
 
 function boardsReducer(state = [], action) {
@@ -61,6 +61,20 @@ function togglePopUpBoardReducer(state = { isBoardPopUpOpen: false }, action) {
   }
 }
 
+function projectNameReducer(state = {name:''}, action) {
+  switch (action.type) {
+    case getProjectName.type:
+      return {
+        ...state,
+        name: action.payload,
+      }
+    default:
+      return {
+        ...state,
+      }
+  }
+}
+
 function warningBoardPopUpReducer(state = {
   emptyName: false,
   longName: false,
@@ -95,4 +109,5 @@ function warningBoardPopUpReducer(state = {
 
 export {
   boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer,
+  projectNameReducer,
 };
