@@ -1,4 +1,4 @@
-import {getProjectById, getUserById, getUsers} from '../../../../services/api/user.service';
+import {getProjectById, getProjects, getUserById, getUsers} from '../../../../services/api/user.service';
 
 export const togglePopUpOn = { type: 'TOGGLE_POPUP_ON' };
 
@@ -34,8 +34,11 @@ export const fetchProjectIds = () => async (dispatch) => {
   try {
     const { userId } = JSON.parse(localStorage.getItem('tokens'));
     const { data } = await getUserById(userId);
-    const projectIds = data.projectIds;
-    dispatch({...fetchProjectIdsSuccess, payload: projectIds});
+    const userProjectIds = data.projectIds;
+    const allProjects = await getProjects();
+    const allProjectsIds = allProjects.data.map((project) => project._id);
+    const correctIds = userProjectIds.filter((id) => allProjectsIds.includes(id));
+    dispatch({...fetchProjectIdsSuccess, payload: correctIds});
   } catch (error) {
     dispatch({...fetchProjectIdsFailure, payload: error});
   }

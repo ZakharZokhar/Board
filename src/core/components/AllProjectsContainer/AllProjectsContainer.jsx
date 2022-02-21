@@ -32,7 +32,9 @@ function AllProjectsContainer() {
     dispatch(hideWarningLongName);
     dispatch(togglePopUpOff);
   };
-  const onDeleteProject = (id) => (dispatch({ ...deleteProject, payload: id }));
+  const onDeleteProject = (id) => {
+    dispatch({ ...deleteProject, payload: id });
+  };
 
   return (
     <AllProjectsHolder>
