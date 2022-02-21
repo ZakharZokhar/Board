@@ -15,7 +15,9 @@ import {
   displayWarningLongName,
   hideWarningLongName,
 } from './actions';
-import {createProject, updateUserProjectsIds, getUserById, deleteProjectById} from '../../../../services/api/user.service';
+import {
+  createProject, updateUserProjectsIds, getUserById, deleteProjectById
+} from '../../../../services/api/user.service';
 
 function warningPopUpReducer(state = {
   emptyName: false,
