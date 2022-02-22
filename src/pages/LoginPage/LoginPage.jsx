@@ -1,0 +1,55 @@
+import React from 'react';
+import { Link, useHistory  } from 'react-router-dom';
+import BlueButton from '../../UI/Buttons/blueButton';
+import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
+import './LoginPage.css';
+import getUsers from '../../services/api/getUsers';
+import AuthService from '../../services/api/auth.service';
+
+const LoginPage = () => {
+  const history = useHistory();
+  const login = React.createRef();
+  const password = React.createRef();
+  const handleSubmit = () => {
+    AuthService.login(login.current.value, password.current.value).then(
+      () => {
+        history.push("/projects");},
+    ).catch((error) => {
+      console.log({ error });
+    });
+  };
+  const getUs = () => {
+    console.log(getUsers());
+  };
+  return (
+    <div
+      className="auth"
+    >
+      <div
+        className="authForm"
+      >
+        <Link to="/"><Logo className="logotype" /></Link>
+        <div className="inputWrapper">
+          <div className="inputName">E-mail:</div>
+          <input type="text" required ref={login} />
+          <div className="inputName">Password:</div>
+          <input type="text" ref={password} />
+
+          <div className="signIn">
+            <button type="button" aria-label="Sign In" className="whiteButton" onClick={handleSubmit}>
+              Sign In
+            </button>
+
+            <button type="button" aria-label="Sign In" className="whiteButton" onClick={getUs}>
+              Get Users
+            </button>
+          </div>
+          <hr />
+          <div className="signUp"><Link to="/reg"><BlueButton title="Sign Up" /></Link></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;
