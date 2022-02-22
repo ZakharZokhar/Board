@@ -215,7 +215,6 @@ export default function FilterBar() {
           styles={SelectStyles}
         />
       </SelectButtonContainer>
-
     </FilterBarContainer>
   );
 

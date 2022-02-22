@@ -17,8 +17,8 @@ export const NewReactSelect = styled('ReactSelect')`
 `
 
 export const TextAboveInput = styled('div')`
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 0;
+  margin-top: 5px;
 `
 
 export const Input = styled('input')`
