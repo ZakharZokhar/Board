@@ -1,4 +1,4 @@
-import {PlusIconStyle, CloseIconStyle, DiamondIconStyle, IconStyle} from './iconsStyles';
+import {PlusIconStyle, CloseIconStyle, DiamondIconStyle, IconStyle, IconWrap} from './iconsStyles';
 
 /*  eslint-disable */
 export const PlusIcon = () => (
@@ -71,4 +71,13 @@ export const ViewBoardsIcon = (props) => (
         <rect x="1" y="14" width="7" height="5" rx="1" stroke="#BFBFBF" stroke-width="2"/>
     </IconStyle>
 )
+
+export const ExpandIcon = () => (
+    <IconWrap viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9L10 13L14 9" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 9L10 13L14 9" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </IconWrap>
+
+)
+
 

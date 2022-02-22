@@ -1,11 +1,19 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+import {useEffect, useState} from "react";
 
-const getUsers = () => {
+const GetUsers = () => {
+  const [data, setData] = useState('');
   const apiUrl = 'http://173.212.214.70:3004/users';
-  axios.get(apiUrl, authHeader()).then((resp) => {
-    console.log(resp);
-  });
+  useEffect( () => {
+    axios.get(apiUrl, authHeader()).then((resp) => {
+      const arr = Object.values(resp.data);
+      setData(arr)
+    });
+  }, []);
+  return (
+data
+  )
 };
 
-export default getUsers;
+export default GetUsers;

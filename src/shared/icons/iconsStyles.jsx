@@ -17,5 +17,9 @@ const DiamondIconStyle = styled('svg')`
   padding-right: 5px;
   font-size: 20px;
 `;
+const IconWrap = styled('svg')`
+  width: 20px;
+  height: 20px;
+`;
 
-export { PlusIconStyle, CloseIconStyle, DiamondIconStyle, IconStyle };
+export { PlusIconStyle, CloseIconStyle, DiamondIconStyle, IconStyle, IconWrap };

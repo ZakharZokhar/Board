@@ -5,6 +5,7 @@ import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './RegistrationPage.css';
 import AuthService from '../../services/api/auth.service';
+// import emailHandler from '../../core/components/validation'
 
 const LoginPage = () => {
   const history = useHistory();
@@ -44,9 +45,8 @@ const LoginPage = () => {
 
 
   const latinValid = (e, err) => {
-    // /* eslint-disable-next-line */
-    // const reg = /^[A-z\0-9\u00C0-\u00ff\s'\.,-\/#@!$%\^&\*;:{}=\-_`~()]+$/;
-    const reg = 't'
+    /* eslint-disable-next-line */
+    const reg = /^[A-z\0-9\u00C0-\u00ff\s'\.,-\/#@!$%\^&\*;:{}=\-_`~()]+$/;
     if (e.target.value && !reg.test(String(e.target.value).toLowerCase())) {
       err('Только латиница!')
       return false
@@ -70,7 +70,6 @@ const LoginPage = () => {
         return true
       }
     }
-
   }
 
   const passwordHandler = (e) => {
@@ -108,13 +107,13 @@ const LoginPage = () => {
       >
         <Link to="/"><Logo className="logotype" /></Link>
         <div className="inputWrapper">
-          <div className="inputName">E-mail*:</div>
+          <label htmlFor='inputWrapper' className="inputName">E-mail*:</label>
           <input onChange={e => emailHandler(e)} defaultValue={email}
                  onBlur={e => blurHandler(e)} name='email' type="text" required ref={login} />
           {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
-          <div className="inputName">Password*:</div>
+          <label htmlFor='inputWrapper' className="inputName">Password*:</label>
           <input onChange={e => passwordHandler(e)} defaultValue={password}
-                 onBlur={e => blurHandler(e)} name='password' type="text" ref={pass} />
+                 onBlur={e => blurHandler(e)} name='password' type="text" required ref={pass} />
           {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{passwordError}</div>}
           <div className="inputName">Name:</div>
           <input type="text" ref={name} />
