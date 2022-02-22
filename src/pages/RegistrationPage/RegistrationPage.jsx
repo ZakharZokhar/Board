@@ -1,11 +1,9 @@
-import React from 'react';
-import { Link, useHistory  } from 'react-router-dom';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './RegistrationPage.css';
 import AuthService from '../../services/api/auth.service';
-// import emailHandler from '../../core/components/validation'
 
 const LoginPage = () => {
   const history = useHistory();
@@ -22,7 +20,7 @@ const LoginPage = () => {
   }
   const handleSubmit = () => {
     AuthService.register(email, nameCheck(name.current.value, email), password)
-        .then((res)=> {history.push("/boards")});
+        .then((res)=> {history.push("/projects")});
   };
 
 

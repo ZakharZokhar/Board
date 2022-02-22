@@ -20,18 +20,27 @@ const SidebarWrapper = styled('div')`
 const SidebarList = styled('ul')`
   list-style: none;
   padding-inline-start: 0px;
+  
   li {
     display: flex;
     align-items: center;
     font-size: 14px;
     padding: 3px;
   
+    &:hover{
+      background-color: #F2F2F2;   
+    }
+  
     span {
       flex:5;
       margin: 3px;
       color: black;
+      
+      &:hover {
+        cursor: pointer;
+      }
     }
-  }
+  }  
 `;
 const SidebarCurrent=styled('a')`
   color: #737373 ;
@@ -40,4 +49,4 @@ const SidebarCurrent=styled('a')`
   margin-bottom: 10px;
 `;
 
-export { SidebarWrapper, SidebarList, SidebarCurrent };
+export { SidebarWrapper, SidebarList, SidebarCurrent};

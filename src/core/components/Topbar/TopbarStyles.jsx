@@ -5,12 +5,12 @@ export const TopbarContainer = styled('div')`
   width: 100%;
   background-color: #F2F2F2;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   top:0;
 `;
 export const TopbarLeft = styled('div')`
   display:flex;
-  flex:10;
   align-items: center;
   
   img{
@@ -29,7 +29,6 @@ export const TopbarLeft = styled('div')`
   }
 `;
 export const TopbarRight = styled('div')`
-  flex:3;
   align-items: center;
   display:flex;
   justify-content: space-between;
@@ -38,14 +37,15 @@ export const TopbarRight = styled('div')`
     height:32px;
     width:32px;
     border-radius: 50%;
-    margin-right: 10px;
-    margin-left: 40%;
+    margin-right: 15px;
+    margin-left: 0px;
     object-fit: cover;
     aspect-ratio: 1/1;
   }
   
   div{
-    margin-right: 40px;
+    margin-right: 20px;
+
   }
 `;
 

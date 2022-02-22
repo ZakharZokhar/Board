@@ -1,10 +1,20 @@
 import PropTypes from 'prop-types';
+import { Link} from "react-router-dom";
 import { DiamondIcon, CloseIcon } from '../../../shared/icons/icons';
 import {
-  ProjectContainer, HeadProject, RoleContainer, TrashButton, MidProject, BotProject, ProjectName,
-} from './ProjectStyles';
+    ProjectContainer,
+    HeadProject,
+    RoleContainer,
+    TrashButton,
+    MidProject,
+    BotProject,
+    ProjectName, ProjectOpenButton,
 
-function Project({ projectName, projectId, onDeleteProject }) {
+} from './ProjectStyles';
+import { HrStyled } from '../../../shared/basic-components/Hr';
+
+function Project({ projectName, projectId, onDeleteProject, numUsersInProject, link }) {
+
   return (
     <ProjectContainer>
       <HeadProject>
@@ -16,29 +26,38 @@ function Project({ projectName, projectId, onDeleteProject }) {
           <CloseIcon />
         </TrashButton>
       </HeadProject>
-      <hr />
+      <HrStyled />
       <MidProject>
         <DiamondIcon />
         <ProjectName>
           {projectName}
         </ProjectName>
       </MidProject>
-      <hr />
-      <BotProject>12 users</BotProject>
+      <HrStyled />
+      <BotProject>
+        {numUsersInProject === 1 ? `1 user` : `${numUsersInProject} users`}
+        <Link to={link}>
+          <ProjectOpenButton>
+            Open
+          </ProjectOpenButton>
+        </Link>
+      </BotProject>
     </ProjectContainer>
   );
 }
 
 Project.propTypes = {
   projectName: PropTypes.string,
-  projectId: PropTypes.number,
+  projectId: PropTypes.string,
   onDeleteProject: PropTypes.func,
+  numUsersInProject: PropTypes.number,
 };
 
 Project.defaultProps = {
   projectName: null,
   projectId: null,
   onDeleteProject: null,
+  numUsersInProject: null,
 };
 
 export default Project;

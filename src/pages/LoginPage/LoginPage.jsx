@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import {useState, useEffect} from 'react';
 import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './LoginPage.css';
@@ -12,7 +11,7 @@ const LoginPage = () => {
   const [loginError, setLoginError] = useState(false);
   const handleSubmit = () => {
     AuthService.login(email, password).then(
-      () => {history.push("/boards");
+      () => {history.push("/projects");
         localStorage.setItem('userName', JSON.stringify(email))
       },
     ).catch((error) => {
