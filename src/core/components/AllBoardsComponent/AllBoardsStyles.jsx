@@ -10,8 +10,13 @@ const AllBoardsHolder = styled('div')`
 `;
 
 const BoardProjectName = styled('div')`
-    padding: 20px;
+    padding: 15px;
     font-size: 18px;
+`;
+
+const BoardProjectDescription = styled('div')`
+    padding:  0 15px 15px 15px;
+    font-size: 14px;
 `;
 
 const BackToProjectsButton = styled('button')`
@@ -25,4 +30,6 @@ const BackToProjectsButton = styled('button')`
 
 `;
 
-export { AllBoardsHolder, BackToProjectsButton, BoardsContainer,BoardProjectName };
+export {
+  AllBoardsHolder, BackToProjectsButton, BoardsContainer, BoardProjectName, BoardProjectDescription,
+};

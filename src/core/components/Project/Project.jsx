@@ -13,7 +13,7 @@ import {
 } from './ProjectStyles';
 import { HrStyled } from '../../../shared/basic-components/Hr';
 
-function Project({ projectName, projectId, onDeleteProject, numUsersInProject }) {
+function Project({ projectName, projectId, onDeleteProject, numUsersInProject, link }) {
 
   return (
     <ProjectContainer>
@@ -36,7 +36,7 @@ function Project({ projectName, projectId, onDeleteProject, numUsersInProject })
       <HrStyled />
       <BotProject>
         {numUsersInProject === 1 ? `1 user` : `${numUsersInProject} users`}
-        <Link to={`/projects/${projectId}`}>
+        <Link to={link}>
           <ProjectOpenButton>
             Open
           </ProjectOpenButton>

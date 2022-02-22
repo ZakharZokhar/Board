@@ -29,7 +29,7 @@ export const hideWarningLongNameBoard = { type: 'HIDE_WARNING_LONG_NAME_BOARD' }
 
 export const deleteBoard = { type: 'DELETE_BOARD' };
 
-export const getProjectName = { type: 'GET_PROJECT_NAME' };
+export const getProjectInfo = { type: 'GET_PROJECT_INFO' };
 
 export const fetchBoardsByProjectId = (id) => async (dispatch) => {
   try {
@@ -44,7 +44,7 @@ export const fetchBoardsByProjectId = (id) => async (dispatch) => {
     })
     dispatch({...fetchBoardsByProjectIdSuccess, payload: boardsInProject});
     const project = await getProjectById(id)
-    dispatch({...getProjectName, payload: project.data.name})
+    dispatch({...getProjectInfo, payload: {name: project.data.name, description: project.data.description}});
   } catch (error) {
     dispatch({...fetchBoardsByProjectIdFailure, payload: error});
   }

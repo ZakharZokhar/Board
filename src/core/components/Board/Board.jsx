@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Project from "../Project";
 import { BoardContainer } from "./BoardStyles";
 
-function Board({ boardName, boardId, onDeleteBoard, numUsersInBoard }) {
+function Board({ boardName, boardId, onDeleteBoard, numUsersInBoard, projectId }) {
     return (
         <BoardContainer>
             <Project
@@ -10,6 +10,7 @@ function Board({ boardName, boardId, onDeleteBoard, numUsersInBoard }) {
             projectId={boardId}
             numUsersInProject={numUsersInBoard}
             onDeleteProject={onDeleteBoard}
+            link={`/projects/${projectId}/${boardId}`}
             />
         </BoardContainer>
     )

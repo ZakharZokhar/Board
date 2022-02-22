@@ -21,6 +21,7 @@ const updateUserBoardIds = (userId, boardIdsWithNew) => axios.put(
     {boardIds: boardIdsWithNew},
     authHeader()).then((response) => response);
 const getUserById = (id) => axios.get(`${API_URL}users/${id}`, authHeader()).then((response) => response);
+const getBoardById = (id) => axios.get(`${API_URL}boards/${id}`, authHeader()).then((response) => response);
 const getProjects = () => axios.get(`${API_URL}projects`, authHeader()).then((response) => response);
 const deleteProjectById = (id) => axios.delete(
     `${API_URL}projects/delete/${id}`,
@@ -30,8 +31,25 @@ const createBoard = (board) => axios.post(
     `${API_URL}boards/create`,
     board,
     authHeader()).then((response) => response);
+const addBoardIdToColumn = (id, boardIdsWithNew) => axios.put(
+    `${API_URL}statuses/update/${id}`,
+    boardIdsWithNew,
+    authHeader()).then((response) => response);
+const createColumn = (column) => axios.post(
+    `${API_URL}statuses/create`,
+    column,
+    authHeader()).then((response) => response);
+const deleteColumnById = (id) => axios.delete(
+    `${API_URL}statuses/delete/${id}`,
+    authHeader()).then((response) => response);
 const deleteBoardById = (id) => axios.delete(
     `${API_URL}boards/delete/${id}`,
+    authHeader()).then((response) => response);
+const getColumns = () => axios.get(`${API_URL}statuses`, authHeader()).then((response) => response);
+const getTasks = () => axios.get(`${API_URL}tasks`, authHeader()).then((response) => response);
+const createNewTask = (task) => axios.post(
+    `${API_URL}tasks/create`,
+    task,
     authHeader()).then((response) => response);
 export {
   getPublicContent,
@@ -49,4 +67,11 @@ export {
   createBoard,
   deleteBoardById,
   updateUserBoardIds,
+  getColumns,
+  createColumn,
+  addBoardIdToColumn,
+  deleteColumnById,
+  getTasks,
+  createNewTask,
+  getBoardById,
 };
