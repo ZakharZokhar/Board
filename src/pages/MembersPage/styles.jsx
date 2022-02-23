@@ -39,4 +39,3 @@ export const TitlesEl = styled('div')`
 width: 25%;
 color: #737373;
 `;
-

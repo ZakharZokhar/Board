@@ -7,17 +7,8 @@ import {ExpandIcon} from "../../shared/icons/icons";
 
 
 const MembersContainer = () => {
-
-    const members = GetUsers();
+    let members = GetUsers();
     const memberCopy = [...members];
-    for (let arrStr in memberCopy) {
-        if (arrStr.length > 40) {
-            // arrStr = arrStr.substr(40)
-            console.log(arrStr)
-        }
-    }
-    console.log(memberCopy)
-
     const nameLength = (e) => {
         if (e.length > 35) {
             return e.substring(35, -35) + '...'
@@ -25,7 +16,6 @@ const MembersContainer = () => {
             return e;
         }
     };
-
     return (
         <ExternalWrap>
         <Wrapper>
@@ -33,7 +23,7 @@ const MembersContainer = () => {
                 <Title><h1>Members <span style={{fontWeight: '400'}}>of Big board </span></h1><ExpandIcon/>
                 </Title>
                 <div className="filter">
-                    <button className='whiteButton'>Show filter</button>
+                    <button className='whiteButton' style={{margin: '10px'}}>Show filter</button>
                 </div>
             </Header>
         </Wrapper>

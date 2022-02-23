@@ -9,6 +9,9 @@ const GetUsers = () => {
     axios.get(apiUrl, authHeader()).then((resp) => {
       const arr = Object.values(resp.data);
       setData(arr)
+    }).catch((error) => {
+      alert('Авторизуйтесь, пожалуйста.')
+
     });
   }, []);
   return (

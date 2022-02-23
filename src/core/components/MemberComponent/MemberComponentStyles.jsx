@@ -35,3 +35,4 @@ export const Avatar = styled('img')`
     margin-bottom: 5px;
     margin-top: -15px;
 `;
+

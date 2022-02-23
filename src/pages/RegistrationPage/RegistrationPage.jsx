@@ -4,11 +4,10 @@ import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './RegistrationPage.css';
 import AuthService from '../../services/api/auth.service';
+import {StyledInput} from "../../core/components/StyledInput";
 
 const LoginPage = () => {
   const history = useHistory();
-  const login = React.createRef();
-  const pass = React.createRef();
   const name = React.createRef();
 
   const nameCheck = (e, email) => {
@@ -26,8 +25,6 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [emailDirty, setEmailDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
   const [emailError, setEmailError] = useState('Email не может быть пустым');
   const [passwordError, setPasswordError] = useState('Пароль не может быть пустым');
   const [formValid, setFormValid] = useState(false)
@@ -84,18 +81,6 @@ const LoginPage = () => {
     }
   }
 
-
-  const blurHandler = (e) => {
-    switch (e.target.name) {
-      case 'email':
-        setEmailDirty(true)
-        break;
-      case 'password':
-        setPasswordDirty(true)
-        break;
-
-    }
-  }
   return (
     <div
       className="auth"
@@ -105,14 +90,24 @@ const LoginPage = () => {
       >
         <Link to="/"><Logo className="logotype" /></Link>
         <div className="inputWrapper">
-          <label htmlFor='inputWrapper' className="inputName">E-mail*:</label>
-          <input onChange={e => emailHandler(e)} defaultValue={email}
-                 onBlur={e => blurHandler(e)} name='email' type="text" required ref={login} />
-          {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
-          <label htmlFor='inputWrapper' className="inputName">Password*:</label>
-          <input onChange={e => passwordHandler(e)} defaultValue={password}
-                 onBlur={e => blurHandler(e)} name='password' type="text" required ref={pass} />
-          {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{passwordError}</div>}
+          <StyledInput
+              onChange={emailHandler}
+              error={emailError}
+              id={'email'}
+              name={'email'}
+              value={email}
+              textLabel={'Email'}
+              required
+          />
+          <StyledInput
+              onChange={passwordHandler}
+              error={passwordError}
+              id={'password'}
+              name={'password'}
+              value={password}
+              textLabel={'Password'}
+              required
+          />
           <div className="inputName">Name:</div>
           <input type="text" ref={name} />
 
