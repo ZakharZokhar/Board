@@ -4,7 +4,7 @@ import {
   projectsReducer,
   projectIdsReducer,
   warningPopUpReducer,
-} from '../components/AllProjectsContainer/redux/reducer';
+} from '../components/Projects/redux/reducer';
 import {
   boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer,
   projectInfoReducer,
@@ -13,7 +13,7 @@ import {
 import {
   columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer,
   togglePopUpTaskReducer, warningTaskPopUpReducer, boardNameReducer,
-} from "../components/AllColumnsComponent/redux/reducer";
+} from "../components/Columns/redux/reducer";
 
 import dropDownReducer from "../../shared/basic-components/DropDown/redux/reducer";
 

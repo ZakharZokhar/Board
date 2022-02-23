@@ -8,7 +8,7 @@ import {
     PlusIcon1
 } from '../../../shared/icons/icons';
 import {SidebarWrapper, SidebarList, SidebarCurrent} from './SidebarStyles'
-import { togglePopUpOn } from '../AllProjectsContainer/redux/actions';
+import { togglePopUpOn } from '../Projects/redux/actions';
 import { useDispatch } from 'react-redux';
 
 export default function Sidebar() {
