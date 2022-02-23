@@ -3,14 +3,14 @@ import {
     ViewGridIcon,
     UserCircleIcon,
     PlusIcon1
-} from '../../../shared/icons/icons';
-import {SidebarWrapper, SidebarList} from './SidebarStyles'
-import { togglePopUpOn } from '../AllProjectsContainer/redux/actions';
+} from '../../shared/icons/icons';
+import {SidebarWrapper, SidebarList} from '../../core/components/Sidebar/SidebarStyles'
 import { useDispatch } from 'react-redux';
+import {togglePopUpBoardOn} from "../../core/components/AllBoardsComponent/redux/actions";
 
-export default function Sidebar(params) {
+export default function Sidebar() {
     const showPopUp = () => {
-        dispatch(togglePopUpOn);
+        dispatch(togglePopUpBoardOn);
     };
     const dispatch = useDispatch();
 
@@ -20,12 +20,12 @@ export default function Sidebar(params) {
                 <li>
                     <ViewGridIcon />
                     <Link to='/projects'>
-                        <span>All projects</span>
+                        <span>Back to projects</span>
                     </Link>
                 </li>
                 <li>
                     <PlusIcon1 ml={13.5} mr={13.5} />
-                    <span onClick={showPopUp}>New project</span>
+                    <span onClick={showPopUp}>New board</span>
                 </li>
                 <li>
                     <UserCircleIcon/>
