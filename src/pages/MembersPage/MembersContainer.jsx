@@ -1,19 +1,22 @@
 import React from 'react';
-import './MembersPage.css'
-import MemberComponent from "./MemberComponent";
+
+import MemberComponent from "../../core/components/MemberComponent/MemberComponent";
 import GetUsers from "../../services/api/getUsers";
+import {Legend, Wrapper, Header, Title, Titles, ExternalWrap, TitlesEl} from "./styles";
+import {ExpandIcon} from "../../shared/icons/icons";
 
 
 const MembersContainer = () => {
-const members = GetUsers();
-const memberCopy = [...members];
+
+    const members = GetUsers();
+    const memberCopy = [...members];
     for (let arrStr in memberCopy) {
         if (arrStr.length > 40) {
             // arrStr = arrStr.substr(40)
             console.log(arrStr)
         }
     }
-console.log(memberCopy)
+    console.log(memberCopy)
 
     const nameLength = (e) => {
         if (e.length > 35) {
@@ -24,26 +27,33 @@ console.log(memberCopy)
     };
 
     return (
-        <div className='wrapper'>
- <div className="header">
-     <div className="title"><h1>Members of Big board </h1><img src="" alt=""/>
-     </div>
-     <div className="filter"><button className='whiteButton'>Show filter</button></div>
- </div>
-            <div className="legend">
-                <hr/>
-                <div className="titles">
-                    <span>Name</span>
-                    <span>Email</span>
-                    <span>Tasks</span>
-                    <span></span>
+        <ExternalWrap>
+        <Wrapper>
+            <Header>
+                <Title><h1>Members <span style={{fontWeight: '400'}}>of Big board </span></h1><ExpandIcon/>
+                </Title>
+                <div className="filter">
+                    <button className='whiteButton'>Show filter</button>
                 </div>
+            </Header>
+        </Wrapper>
+            <Legend>
                 <hr/>
-            </div>
-{memberCopy.map((i)=> <MemberComponent key={i + Math.random()} name={nameLength(i.name)}
-          email={nameLength(i.email)} tasks={Math.floor(Math.random() * (4 - 1)) + 1} id={i._id} />)}
-        </div>
+                <Titles>
+                    <TitlesEl>Name</TitlesEl>
+                    <TitlesEl>Email</TitlesEl>
+                    <TitlesEl>Tasks</TitlesEl>
+                    <TitlesEl></TitlesEl>
+                </Titles>
+                <hr/>
+
+            </Legend>
+            {memberCopy.map((i) => <MemberComponent key={i + Math.random()} name={nameLength(i.name)}
+                                                    email={nameLength(i.email)}
+                                                    tasks={Math.floor(Math.random() * (4 - 1)) + 1} id={i._id}/>)}
+
+        </ExternalWrap>
     )
-    };
+};
 
 export default MembersContainer;
