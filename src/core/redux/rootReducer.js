@@ -8,7 +8,7 @@ import {
 import {
   boardsReducer, togglePopUpBoardReducer, warningBoardPopUpReducer,
   projectInfoReducer,
-} from "../components/AllBoardsComponent/redux/reducer";
+} from "../components/Boards/redux/reducer";
 
 import {
   columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer,

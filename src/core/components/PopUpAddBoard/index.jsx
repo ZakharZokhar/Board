@@ -10,7 +10,7 @@ import {
     addNewBoardToServer, togglePopUpBoardOff,
     displayWarningEmptyNameBoard, hideWarningEmptyNameBoard,
     displayWarningLongNameBoard, hideWarningLongNameBoard,
-} from "../AllBoardsComponent/redux/actions";
+} from "../Boards/redux/actions";
 import { PopUpBoardWindow } from "./PopUpAddBoardStyles";
 
 export const PopUpAddBoard = ({ projectId }) => {
