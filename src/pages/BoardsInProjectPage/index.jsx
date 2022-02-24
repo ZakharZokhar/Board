@@ -1,6 +1,6 @@
 import React from 'react';
 import Topbar from "../../core/components/Topbar/Topbar";
-import Sidebar from "../../core/components/Sidebar/Sidebar";
+import Sidebar from "./Sidebar";
 import {BoardsWrap} from "./styles";
 import {Boards} from "../../core/components/Boards";
 

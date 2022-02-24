@@ -5,6 +5,7 @@ import AllProjectPage from '../pages/AllProjectPage';
 import WelcomePage from "../pages/WelcomePage";
 import BoardsInProjectPage from "../pages/BoardsInProjectPage";
 import ColumnsInBoardPage from "../pages/ColumnsInBoardPage";
+import MembersPage from "../pages/MembersPage/";
 
 const Router = () => (
   <Switch>
@@ -14,6 +15,7 @@ const Router = () => (
     <Route exact path="/projects" component={AllProjectPage} />
     <Route exact path='/projects/:projectId' component={BoardsInProjectPage} />
     <Route exact path='/projects/:projectId/:boardId' component={ColumnsInBoardPage} />
+    <Route path="/members" component={MembersPage} />
   </Switch>
 );
 
