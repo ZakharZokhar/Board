@@ -7,6 +7,7 @@ const register = (email, name, password) => axios.post(`${API_URL}auth/signup`, 
   password,
 }).then((response) => {
   console.log(response);
+  login(email, password);
   return response.data;
 });
 const login = (email, password) => axios
