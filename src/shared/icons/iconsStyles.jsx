@@ -22,5 +22,15 @@ const DiamondIconStyle = styled('svg')`
   padding-right: 5px;
   font-size: 20px;
 `;
+export const ExpandIc = styled('svg')`
+  width: 30px;
+  height: 30px;
+  margin-top: 22px;
+`;
+export const TrashIc = styled('svg')`
+  width: 50px;
+  height: 50px;
+   margin-top: 5px;
+`;
 
-export { PlusIconStyle, CloseIconStyle, DiamondIconStyle, IconStyle };
+export { PlusIconStyle, CloseIconStyle, DiamondIconStyle, IconStyle};

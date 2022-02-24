@@ -1,4 +1,4 @@
-import {PlusIconStyle, CloseIconStyle, DiamondIconStyle, IconStyle} from './iconsStyles';
+import {PlusIconStyle, CloseIconStyle, DiamondIconStyle, IconStyle, ExpandIc, TrashIc} from './iconsStyles';
 
 /*  eslint-disable */
 export const PlusIcon = () => (
@@ -121,3 +121,21 @@ export const PencilIcon = (props) => (
     <path d="M4 13L2 15V18H5L7 16M4 13L7 16M4 13L12 5M7 16L15 8M12 5L15 2L18 5L15 8M12 5L15 8" stroke="#BFBFBF" stroke-width="2" stroke-linejoin="round"/>
     </IconStyle>
 )
+export const ExpandIcon = () => (
+    <ExpandIc viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9L10 13L14 9" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </ExpandIc>
+
+)
+export const TrashIcon = () => (
+    <TrashIc viewBox="0 0 30 30" width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M15 26V16H16H24H25V26C25 27.1046 24.1046 28 23 28H17C15.8954 28 15 27.1046 15 26ZM13 26V16H12C11.4477 16 11 15.5523 11 15C11 14.4477 11.4477 14 12 14H13H14H15C15 11.7909 16.7909 10 19 10H21C23.2091 10 25 11.7909 25 14H26H27H28C28.5523 14 29 14.4477 29 15C29 15.5523 28.5523 16 28 16H27V26C27 28.2091 25.2091 30 23 30H17C14.7909 30 13 28.2091 13 26ZM23 14H17C17 12.8954 17.8954 12 19 12H21C22.1046 12 23 12.8954 23 14ZM18 18C17.4477 18 17 18.4477 17 19V25C17 25.5523 17.4477 26 18 26C18.5523 26 19 25.5523 19 25V19C19 18.4477 18.5523 18 18 18ZM22 18C21.4477 18 21 18.4477 21 19V25C21 25.5523 21.4477 26 22 26C22.5523 26 23 25.5523 23 25V19C23 18.4477 22.5523 18 22 18Z" fill="#BFBFBF"/>
+            <rect x="0.5" y="0.5" width="39" height="39" rx="7.5" stroke="#E5E5E5"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M15 26V16H16H24H25V26C25 27.1046 24.1046 28 23 28H17C15.8954 28 15 27.1046 15 26ZM13 26V16H12C11.4477 16 11 15.5523 11 15C11 14.4477 11.4477 14 12 14H13H14H15C15 11.7909 16.7909 10 19 10H21C23.2091 10 25 11.7909 25 14H26H27H28C28.5523 14 29 14.4477 29 15C29 15.5523 28.5523 16 28 16H27V26C27 28.2091 25.2091 30 23 30H17C14.7909 30 13 28.2091 13 26ZM23 14H17C17 12.8954 17.8954 12 19 12H21C22.1046 12 23 12.8954 23 14ZM18 18C17.4477 18 17 18.4477 17 19V25C17 25.5523 17.4477 26 18 26C18.5523 26 19 25.5523 19 25V19C19 18.4477 18.5523 18 18 18ZM22 18C21.4477 18 21 18.4477 21 19V25C21 25.5523 21.4477 26 22 26C22.5523 26 23 25.5523 23 25V19C23 18.4477 22.5523 18 22 18Z" fill="#BFBFBF"/>
+            <rect x="0.5" y="0.5" width="39" height="39" rx="7.5" stroke="#E5E5E5"/>
+
+    </TrashIc>
+)
+
+
