@@ -97,6 +97,7 @@ const LoginPage = () => {
               name={'email'}
               value={email}
               textLabel={'Email'}
+              type={'text'}
               required
           />
           <StyledInput
@@ -106,6 +107,7 @@ const LoginPage = () => {
               name={'password'}
               value={password}
               textLabel={'Password'}
+              type={'password'}
               required
           />
           <div className="inputName">Name:</div>

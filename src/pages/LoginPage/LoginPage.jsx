@@ -69,6 +69,7 @@ if (emailError || passwordError) {
               id={'email'}
               name={'email'}
               value={email}
+              type={'text'}
               textLabel={'Email'}
               required
           />
@@ -78,6 +79,7 @@ if (emailError || passwordError) {
               id={'password'}
               name={'password'}
               value={password}
+              type={'password'}
               textLabel={'Password'}
               required
           />

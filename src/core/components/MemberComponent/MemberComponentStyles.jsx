@@ -35,4 +35,11 @@ export const Avatar = styled('img')`
     margin-bottom: 5px;
     margin-top: -15px;
 `;
-
+export const UserName = styled('div')`
+paddingLeft: 10px;
+`;
+export const TrashContainer = styled('div')`
+cursor: pointer;
+ width: 50px;
+ height: 50px;
+`;

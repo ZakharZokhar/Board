@@ -39,3 +39,15 @@ export const TitlesEl = styled('div')`
 width: 25%;
 color: #737373;
 `;
+export const FilterButton = styled('div')`
+    background: white;
+    padding: 5px 16px;
+    margin-right: 20px;
+    margin-top: 10px;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: .9em;
+    text-align: center;
+`;
+

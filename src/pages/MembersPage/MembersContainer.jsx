@@ -2,7 +2,7 @@ import React from 'react';
 
 import MemberComponent from "../../core/components/MemberComponent/MemberComponent";
 import GetUsers from "../../services/api/getUsers";
-import {Legend, Wrapper, Header, Title, Titles, ExternalWrap, TitlesEl} from "./styles";
+import {Legend, Wrapper, Header, Title, Titles, ExternalWrap, TitlesEl, FilterButton} from "./styles";
 import {ExpandIcon} from "../../shared/icons/icons";
 
 
@@ -23,7 +23,7 @@ const MembersContainer = () => {
                 <Title><h1>Members <span style={{fontWeight: '400'}}>of Big board </span></h1><ExpandIcon/>
                 </Title>
                 <div className="filter">
-                    <button className='whiteButton' style={{margin: '10px'}}>Show filter</button>
+                    <FilterButton>Show filter</FilterButton>
                 </div>
             </Header>
         </Wrapper>
