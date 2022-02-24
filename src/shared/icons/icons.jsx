@@ -10,7 +10,7 @@ export const PlusIcon = () => (
     </PlusIconStyle>
 )
 export const PlusIcon1 = (props) => (
-    <IconStyle mr={props.mr} ml={props.ml} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <IconStyle mr={props.mr} ml={props.ml} mt={props.mt} mb={props.mb} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* eslint-disable-next-line max-len */}
         <path fillRule="evenodd" clipRule="evenodd"
               d="M6 0C6.55228 0 7 0.447715 7 1V5H11C11.5523 5 12 5.44772 12 6C12 6.55228 11.5523 7 11 7H7V11C7 11.5523 6.55228 12 6 12C5.44772 12 5 11.5523 5 11V7H1C0.447715 7 0 6.55228 0 6C0 5.44772 0.447715 5 1 5H5V1C5 0.447715 5.44772 0 6 0Z"
@@ -23,6 +23,24 @@ export const CloseIcon = () => (
         <path d="M1 1L5.0002 5.0004M5.0002 5.0004L9 1M5.0002 5.0004L1 9M5.0002 5.0004L9 9" stroke="#BFBFBF"
               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </CloseIconStyle>
+)
+
+export const CloseIcon1 = (props) => (
+    <IconStyle width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="39" height="39" rx="7.5" stroke="#E5E5E5"/>
+        <path d="M16 16L20.0002 20.0004M20.0002 20.0004L24 16M20.0002 20.0004L16 24M20.0002 20.0004L24 24" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="0.5" y="0.5" width="39" height="39" rx="7.5" stroke="#E5E5E5"/>
+        <path d="M16 16L20.0002 20.0004M20.0002 20.0004L24 16M20.0002 20.0004L16 24M20.0002 20.0004L24 24" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </IconStyle>
+)
+
+export const PlusInTheCircleIcon = (props) => (
+    <IconStyle mr={props.mr} ml={props.ml} mt={props.mt} mb={props.mb} width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#E5E5E5"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 14C20.5523 14 21 14.4477 21 15V19H25C25.5523 19 26 19.4477 26 20C26 20.5523 25.5523 21 25 21H21V25C21 25.5523 20.5523 26 20 26C19.4477 26 19 25.5523 19 25V21H15C14.4477 21 14 20.5523 14 20C14 19.4477 14.4477 19 15 19H19V15C19 14.4477 19.4477 14 20 14Z" fill="#BFBFBF"/>
+    <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#E5E5E5"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 14C20.5523 14 21 14.4477 21 15V19H25C25.5523 19 26 19.4477 26 20C26 20.5523 25.5523 21 25 21H21V25C21 25.5523 20.5523 26 20 26C19.4477 26 19 25.5523 19 25V21H15C14.4477 21 14 20.5523 14 20C14 19.4477 14.4477 19 15 19H19V15C19 14.4477 19.4477 14 20 14Z" fill="#BFBFBF"/>
+    </IconStyle>
 )
 
 export const DiamondIcon = () => (
@@ -72,6 +90,37 @@ export const ViewBoardsIcon = (props) => (
     </IconStyle>
 )
 
+export const DatesIcon = (props) => (
+    <IconStyle width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 7V16C2 17.6569 3.34315 19 5 19H15C16.6569 19 18 17.6569 18 16V7M2 7V6C2 4.34315 3.34315 3 5 3V3M2 7H18M18 7V6C18 4.34315 16.6569 3 15 3V3M5 11H7M9 11H11M13 11H15M15 15H13M11 15H9M7 15H5M5 3V0M5 3H15M15 3V0" stroke="#BFBFBF" stroke-width="2"/>
+    </IconStyle>
+)
+
+export const MoveIcon = (props) => (
+    <IconStyle width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 5H17M17 5L14 2M17 5L14 8" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 15L3 15M3 15L6 18M3 15L6 12" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </IconStyle>
+)
+
+export const DeleteIcon = (props) => (
+    <IconStyle width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 16V6H5H13H14V16C14 17.1046 13.1046 18 12 18H6C4.89543 18 4 17.1046 4 16ZM2 16V6H1C0.447716 6 0 5.55228 0 5C0 4.44772 0.447716 4 1 4H2H3H4C4 1.79086 5.79086 0 8 0H10C12.2091 0 14 1.79086 14 4H15H16H17C17.5523 4 18 4.44772 18 5C18 5.55228 17.5523 6 17 6H16V16C16 18.2091 14.2091 20 12 20H6C3.79086 20 2 18.2091 2 16ZM12 4H6C6 2.89543 6.89543 2 8 2H10C11.1046 2 12 2.89543 12 4ZM7 8C6.44772 8 6 8.44772 6 9V15C6 15.5523 6.44772 16 7 16C7.55228 16 8 15.5523 8 15V9C8 8.44772 7.55228 8 7 8ZM11 8C10.4477 8 10 8.44772 10 9V15C10 15.5523 10.4477 16 11 16C11.5523 16 12 15.5523 12 15V9C12 8.44772 11.5523 8 11 8Z" fill="#BFBFBF"/>
+    </IconStyle>
+)
+
+export const StartTimerIcon = (props) => (
+    <IconStyle width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="9" stroke="#BFBFBF" stroke-width="2"/>
+        <path d="M7 6V14L14 10L7 6Z" stroke="#BFBFBF" stroke-width="2" stroke-linejoin="round"/>
+    </IconStyle>
+)
+
+export const PencilIcon = (props) => (
+    <IconStyle mr={props.mr} ml={props.ml} mt={props.mt} mb={props.mb} width={props.wd} height={props.hg} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 13L2 15V18H5L7 16M4 13L7 16M4 13L12 5M7 16L15 8M12 5L15 2L18 5L15 8M12 5L15 8" stroke="#BFBFBF" stroke-width="2" stroke-linejoin="round"/>
+    </IconStyle>
+)
 export const ExpandIcon = () => (
     <ExpandIc viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 9L10 13L14 9" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
