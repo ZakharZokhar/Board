@@ -18,7 +18,6 @@ import {PopUpAddTask} from "../PopUpAddTask";
 export const Columns = ({projectId, boardId}) => {
     const dispatch = useDispatch();
     const columns = useSelector((state) => state.columns);
-    console.log(columns)
     const isPopUpColumnOpen = useSelector((state) => state.popupColumn.isColumnPopUpOpen);
     const isPopUpTaskOpen = useSelector((state) => state.popupTask.isTaskPopUpOpen);
     const warnings = useSelector((state) => state.warningsColumnPopUp);
