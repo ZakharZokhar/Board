@@ -13,17 +13,18 @@ import {
     BlueButton,
     DivJustifyContentRight,
     InputPopUp,
-    PopUp
+    PopUp,
+    ClosePopUpButton
 } from './SetTaskStyles'
 import {SidebarList} from '../Sidebar/SidebarStyles'
 import {
     UserCircleIcon,
-    CloseIcon1,
     DatesIcon,
     MoveIcon,
     DeleteIcon,
     StartTimerIcon,
-    PencilIcon
+    PencilIcon,
+    CloseIcon
 } from '../../../shared/icons/icons';
 
 export default function SetTask() {
@@ -36,7 +37,9 @@ export default function SetTask() {
                     <span>Quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa is</span>
                     <div>
                         <PencilIcon/>
-                        <CloseIcon1/>
+                        <ClosePopUpButton>
+                            <CloseIcon />
+                        </ClosePopUpButton>
                     </div>
                 </Header>
                 <FeedRightbarWrapper>

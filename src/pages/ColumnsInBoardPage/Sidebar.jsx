@@ -28,7 +28,7 @@ export default function Sidebar({projectId, boardId}) {
                     </Link>
                 </li>
                 <li>
-                    <PlusIcon1 ml={13.5} mr={13.5} />
+                    <PlusIcon1 />
                     <span onClick={showPopUp}>Add new column</span>
                 </li>
                 <li>

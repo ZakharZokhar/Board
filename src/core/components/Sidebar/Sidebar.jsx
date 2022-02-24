@@ -8,7 +8,7 @@ import {SidebarWrapper, SidebarList} from './SidebarStyles'
 import { togglePopUpOn } from '../AllProjectsContainer/redux/actions';
 import { useDispatch } from 'react-redux';
 
-export default function Sidebar(params) {
+export default function Sidebar() {
     const showPopUp = () => {
         dispatch(togglePopUpOn);
     };
@@ -24,7 +24,7 @@ export default function Sidebar(params) {
                     </Link>
                 </li>
                 <li>
-                    <PlusIcon1 ml={13.5} mr={13.5} />
+                    <PlusIcon1/>
                     <span onClick={showPopUp}>New project</span>
                 </li>
                 <li>
