@@ -25,7 +25,7 @@ const SidebarList = styled('ul')`
     display: flex;
     align-items: center;
     font-size: 14px;
-    padding: 3px;
+    padding: 8px;
   
     &:hover{
       background-color: #F2F2F2;   
@@ -41,12 +41,17 @@ const SidebarList = styled('ul')`
       }
     }
   }  
+  
+  div{
+      padding: 8px;
+    }
 `;
 const SidebarCurrent=styled('a')`
   color: #737373 ;
   font-size: 12px;
   margin-left: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  
 `;
 
 export { SidebarWrapper, SidebarList, SidebarCurrent};
