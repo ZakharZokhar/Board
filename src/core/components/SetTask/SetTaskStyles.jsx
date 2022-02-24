@@ -6,9 +6,10 @@ import {
 } from '../../../shared/colors';
 
 export const PopUp = styled('div')`
+  position: fixed;
   background: ${TransparentBlack};
   width: 100%;
-  height: 830px;
+  height: 100vh;
   top: 0;
   left: 0;
 `;
@@ -20,7 +21,7 @@ export const SetTaskWrapper = styled('div')`
   height: 820px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0;
+  margin-top: 2%;
   margin-bottom: 0;
   border: 1px solid ${BorderColor};
   box-sizing: border-box;
@@ -45,6 +46,33 @@ export const Header = styled('div')`
   display:flex;
   align-items: center;
   }
+`;
+
+export const CloseButton = styled('button')`
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: ${BackgroundWhiteColor};
+    
+  &:hover {
+  cursor: pointer;
+`;
+
+export const EditButton = styled('button')`
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: ${BackgroundWhiteColor};
+    
+  &:hover {
+  cursor: pointer;
+`;
+
+export const InputName = styled('input')`
+  border: 1px solid ${BorderColor};
+  border-radius: 8px;
+  margin: 10px;
+  resize:none;
 `;
 
 export const Feed = styled('div')`

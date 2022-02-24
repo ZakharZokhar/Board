@@ -14,12 +14,14 @@ import {
     updateTaskAfterDrop,
 } from "./redux/actions";
 import {PopUpAddTask} from "../PopUpAddTask";
+import SetTask from "../SetTask/SetTask";
 
 export const Columns = ({projectId, boardId}) => {
     const dispatch = useDispatch();
     const columns = useSelector((state) => state.columns);
     const isPopUpColumnOpen = useSelector((state) => state.popupColumn.isColumnPopUpOpen);
     const isPopUpTaskOpen = useSelector((state) => state.popupTask.isTaskPopUpOpen);
+    const isSetTaskPopUpOpen = useSelector((state) => state.popupSetTask.isSetTaskOpen);
     const warnings = useSelector((state) => state.warningsColumnPopUp);
     const boardName = useSelector((state) => state.boardName.name)
     const showPopUp = () => {
@@ -78,6 +80,7 @@ export const Columns = ({projectId, boardId}) => {
             <AddColumnButton onAddColumnClick = {showPopUp}/>
             {isPopUpColumnOpen && <PopUpAddColumn boardId={boardId} />}
             {isPopUpTaskOpen && <PopUpAddTask boardId={boardId} />}
+            {isSetTaskPopUpOpen && <SetTask />}
         </AllColumnsContainer>
     );
 }

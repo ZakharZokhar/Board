@@ -4,6 +4,7 @@ import {
     deleteColumnById,
     getColumns, getTasks, getUsers,
     getBoardById, updateTaskColumnId,
+    updateTaskDescription,
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -57,6 +58,16 @@ export const getBoardName = { type: 'GET_BOARD_NAME' };
 export const updateTaskDrop = { type: 'UPDATE_TASK_DROP' };
 
 export const updateColumnsAfterDrop = { type: 'UPDATE_COLUMNS_AFTER_DROP' };
+
+export const toggleSetTaskOn = { type: 'TOGGLE_SET_TASK_ON' };
+
+export const toggleSetTaskOff = { type: 'TOGGLE_SET_TASK_OFF' };
+
+export const changeDescriptionOnSetTask = { type: 'CHANGE_DESCRIPTION_ON_SET_TASK' };
+
+export const changeTaskDescriptionInColumns = { type: 'CHANGE_TASK_DESCRIPTION_IN_COLUMNS' };
+
+export const changeTaskNameInColumns = { type: 'CHANGE_TASK_NAME_IN_COLUMNS' };
 
 export const fetchColumnsByBoardId = (id) => async (dispatch) => {
     try {
@@ -155,4 +166,13 @@ export const updateTaskAfterDrop = (columnId, taskId) => async (dispatch) => {
       console.log(error)
     }
 
+}
+
+export const updateTaskDescriptionOnSetTask = (taskId, newDescription) => async (dispatch) => {
+    try {
+     const {data} = await updateTaskDescription(taskId, newDescription);
+     console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
 }

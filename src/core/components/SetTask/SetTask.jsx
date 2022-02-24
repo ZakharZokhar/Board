@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import {
     SetTaskWrapper,
     Header,
@@ -13,7 +15,10 @@ import {
     BlueButton,
     DivJustifyContentRight,
     InputPopUp,
-    PopUp
+    PopUp,
+    CloseButton,
+    EditButton,
+    InputName,
 } from './SetTaskStyles'
 import {SidebarList} from '../Sidebar/SidebarStyles'
 import {
@@ -25,18 +30,54 @@ import {
     StartTimerIcon,
     PencilIcon
 } from '../../../shared/icons/icons';
+import {
+  toggleSetTaskOff, changeDescriptionOnSetTask,
+  updateTaskDescriptionOnSetTask, changeTaskDescriptionInColumns,
+} from "../Columns/redux/actions";
 
 export default function SetTask() {
-    let Member;
-    Member = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhEbl4Y6lv79GxTlgsqGs5C0iI27aZFhs75w&usqp=CAU`;
+    const dispatch = useDispatch();
+    const taskInfo = useSelector((state) => state.popupSetTask.params);
+    const [description, setDescription] = useState(taskInfo.taskDescription);
+    const [isNameEditing, setIsNameEditing] = useState(false);
+    const [taskName, setTaskName] = useState(taskInfo.taskName);
+    const toggleSetTask = () => {
+      dispatch(toggleSetTaskOff);
+    };
+    const handleChangeDesc = (even) => (setDescription(even.target.value));
+    const openEditName = () => {
+      setIsNameEditing(!isNameEditing)
+      if (!isNameEditing) {
+
+      }
+    };
+    const handleUndo = () => (setDescription(taskInfo.taskDescription));
+    const handleTaskNameChange = (even) => (setTaskName(even.target.value))
+    const handleSaveDescription = () => {
+      dispatch({...changeDescriptionOnSetTask, payload: description});
+      dispatch({...changeTaskDescriptionInColumns, payload: {
+          columnId: taskInfo.columnId,
+          taskId: taskInfo.taskId,
+          newDescription: description,
+          }
+      })
+      dispatch(updateTaskDescriptionOnSetTask(taskInfo.taskId, description));
+    }
     return (
         <PopUp>
             <SetTaskWrapper>
                 <Header>
-                    <span>Quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa is</span>
+                    {isNameEditing ?
+                     <InputName value={taskName} onChange={handleTaskNameChange} /> :
+                     <span>{taskName}</span>
+                    }
                     <div>
-                        <PencilIcon/>
-                        <CloseIcon1/>
+                        <EditButton onClick={openEditName}>
+                          <PencilIcon/>
+                        </EditButton>
+                        <CloseButton onClick={toggleSetTask}>
+                          <CloseIcon1/>
+                        </CloseButton>
                     </div>
                 </Header>
                 <FeedRightbarWrapper>
@@ -55,18 +96,18 @@ export default function SetTask() {
                         </DivTimer>
                         <DivAssigned><ABold fs={16}>Assigned to</ABold>
                             <div>
-                                <div><img src={Member} alt=""/>
-                                    <span>Daniel Radcliffe</span></div>
+                                <div><img src={taskInfo.userAvatar} alt=""/>
+                                    <span>{taskInfo.userName}</span></div>
                                 <PencilIcon/>
                             </div>
                         </DivAssigned>
                         <DivDescription>
                             <ABold fs={16}>Description</ABold>
-                            <InputPopUp rows="8" maxlength="2300"
-                                        placeholder={'Enter the description of task'}></InputPopUp>
+                            <InputPopUp rows="8" maxlength="1024"
+                                       value={description} onChange={handleChangeDesc}/>
                             <DivJustifyContentRight>
-                                <WhiteButton>Undo</WhiteButton>
-                                <BlueButton>Save</BlueButton>
+                                <WhiteButton onClick={handleUndo}>Undo</WhiteButton>
+                                <BlueButton onClick={handleSaveDescription}>Save</BlueButton>
                             </DivJustifyContentRight>
                         </DivDescription>
                     </Feed>
