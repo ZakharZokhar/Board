@@ -12,10 +12,11 @@ const Router = () => (
     <Route exact path="/" component={WelcomePage} />
     <Route path="/auth" component={LoginPage} />
     <Route path="/reg" component={RegistrationPage} />
+    <Route path="/members" component={MembersPage} />
     <Route exact path="/projects" component={AllProjectPage} />
     <Route exact path='/projects/:projectId' component={BoardsInProjectPage} />
     <Route exact path='/projects/:projectId/:boardId' component={ColumnsInBoardPage} />
-    <Route path="/members" component={MembersPage} />
+
   </Switch>
 );
 

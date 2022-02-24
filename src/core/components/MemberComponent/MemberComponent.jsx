@@ -1,8 +1,7 @@
 import React from 'react';
-import {TaskText, TaskItem, Wrapper, Item, Avatar} from './MemberComponentStyles'
+import {TaskText, TaskItem, Wrapper, Item, Avatar, UserName, TrashContainer} from './MemberComponentStyles'
 import {deleteUsers} from "../../../services/api/deleteUser";
 import {TrashIcon} from "../../../shared/icons/icons";
-
 
 const MemberComponent = (props) => {
     const avatars =
@@ -13,7 +12,6 @@ const MemberComponent = (props) => {
 
     const delUser = (id) => {
         deleteUsers(id);
-
     }
     const rand = () => {
         let num = Math.floor(Math.random() * 8);
@@ -23,15 +21,14 @@ const MemberComponent = (props) => {
         <div>
             <Wrapper>
                 <Item>
-                    <div className="avatar"><Avatar
+                    <Avatar
                         src={avatars[rand()]}
-                        alt=""/></div>
-                    <div className="name" style={{paddingLeft: '10px'}}>{props.name}</div>
+                        alt=""/>
+                    <UserName>{props.name}</UserName>
                 </Item>
                 <Item>{props.email}</Item>
                 <TaskItem><TaskText>{props.tasks}</TaskText></TaskItem>
-                <div onClick={() => delUser(props.id)}
-                     style={{cursor: 'pointer', width: '50px', height: '50px'}} className="delete"><TrashIcon/></div>
+                <TrashContainer onClick={() => delUser(props.id)}><TrashIcon/></TrashContainer>
             </Wrapper>
         </div>
     );
