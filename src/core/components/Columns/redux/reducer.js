@@ -24,14 +24,17 @@ function columnsReducer(state = [], action) {
       ];
 
     case addNewColumn.type:
-      return action.payload;
+      return [
+        ...state,
+        action.payload,
+      ];
 
 
     case updateTaskDrop.type:
       return [
         ...state,
         action.payload,
-      ]
+      ];
 
     case addTaskToColumn.type:
       console.log(action.payload);
