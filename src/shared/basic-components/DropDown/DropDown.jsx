@@ -12,13 +12,11 @@ function DropDown( {drops} ) {
   const [name, setName] = useState('');
   const onHandleChange = (even) => {
     setName(even.target.value);
-    console.log(name)
     dispatch({...addToDropDown, payload: name});
     even.target.value === '' ? setShowingDrops(false) : setShowingDrops(true);
   }
   const onHandleClick = (even) => {
     setName(even.target.outerText);
-    console.log(name)
     dispatch({...addToDropDown, payload: even.target.outerText});
     setShowingDrops(false);
   }

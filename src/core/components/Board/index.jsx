@@ -1,3 +1,29 @@
-import Board from './Board';
+import PropTypes from "prop-types";
+import {Project} from "../Project";
+import { BoardContainer } from "./BoardStyles";
 
-export default Board;
+export const Board = ({ boardName, boardId, onDeleteBoard, numUsersInBoard, projectId }) => (
+    <BoardContainer>
+        <Project
+            projectName={boardName}
+            projectId={boardId}
+            numUsersInProject={numUsersInBoard}
+            onDeleteProject={onDeleteBoard}
+            link={`/projects/${projectId}/${boardId}`}
+        />
+    </BoardContainer>
+)
+
+Board.propTypes = {
+    boardName: PropTypes.string,
+    boardId: PropTypes.string,
+    onDeleteBoard: PropTypes.func,
+    numUsersInBoard: PropTypes.number,
+};
+
+Board.defaultProps = {
+    boardName: null,
+    boardId: null,
+    onDeleteBoard: null,
+    numUsersInBoard: null,
+};

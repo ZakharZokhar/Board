@@ -9,7 +9,7 @@ import {
   displayWarningLongNameTask, hideWarningLongNameTask,
   displayWarningLongDescriptionTask, hideWarningLongDescriptionTask,
   displayWarningEmailNotExistTask, hideWarningEmailNotExistTask,
-  getBoardName,
+  getBoardName, updateTaskDrop,
 } from "./actions";
 
 function columnsReducer(state = [], action) {
@@ -24,6 +24,10 @@ function columnsReducer(state = [], action) {
       ];
 
     case addNewColumn.type:
+      return action.payload;
+
+
+    case updateTaskDrop.type:
       return [
         ...state,
         action.payload,
