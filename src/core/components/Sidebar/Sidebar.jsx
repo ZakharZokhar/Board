@@ -4,8 +4,8 @@ import {
     UserCircleIcon,
     PlusIcon1
 } from '../../../shared/icons/icons';
-import {SidebarWrapper, SidebarList} from './SidebarStyles'
-import { togglePopUpOn } from '../AllProjectsContainer/redux/actions';
+import { SidebarWrapper, SidebarList } from './SidebarStyles'
+import { togglePopUpOn } from '../Projects/redux/actions';
 import { useDispatch } from 'react-redux';
 
 export default function Sidebar() {
@@ -29,7 +29,7 @@ export default function Sidebar() {
                 </li>
                 <li>
                     <UserCircleIcon/>
-                    <span>Members</span>
+                    <Link to='/members'><span>Members</span></Link>
                 </li>
             </SidebarList>
         </SidebarWrapper>

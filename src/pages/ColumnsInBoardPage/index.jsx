@@ -2,7 +2,7 @@ import React from 'react';
 import Topbar from "../../core/components/Topbar/Topbar";
 import Sidebar from "./Sidebar";
 import {ColumnsWrap} from "./styles";
-import AllColumnsComponent from "../../core/components/AllColumnsComponent";
+import {Columns} from "../../core/components/Columns";
 
 const ColumnsInBoardPage = ({ match }) => (
     <div className="homeContainer">
@@ -11,7 +11,7 @@ const ColumnsInBoardPage = ({ match }) => (
             <Sidebar
                 projectId = {match.params.projectId}
                 boardId = {match.params.boardId}/>
-            <AllColumnsComponent
+            <Columns
                 projectId = {match.params.projectId}
                 boardId = {match.params.boardId}
             />

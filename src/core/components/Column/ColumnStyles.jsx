@@ -33,6 +33,10 @@ const ColumnName = styled('div')`
   margin-left: 5px;
 `;
 
+const ColumnMid = styled('div')`
+  margin: 15px 0;
+`;
+
 const ColumnFooter = styled('div')`
   margin-top: 15px;
   height: 30px;
@@ -52,5 +56,5 @@ const AddTaskButton = styled('button')`
 
 export {
   ColumnStyle, ColumnName, CloseButton, ColumnHeader, ColumnFooter,
-  AddTaskButton,
+  AddTaskButton, ColumnMid
 };

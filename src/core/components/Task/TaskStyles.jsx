@@ -31,5 +31,19 @@ const TaskAvatar = styled('img')`
   bottom: 5px;
 `;
 
+const EditButton = styled('div')`
+  position: absolute;
+  bottom: 30px;
+  height: 5px;
+  width: 5px;
+  right: 30px;
+  background: ${BackgroundWhiteColor};
+  border: none;
+    
+  &:hover {
+  cursor: pointer;
+  }
+`;
 
-export { TaskContainer, BotTask, MidTask, TaskAvatar };
+
+export { TaskContainer, BotTask, MidTask, TaskAvatar, EditButton };

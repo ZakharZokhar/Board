@@ -17,6 +17,7 @@ const BoardProjectName = styled('div')`
 const BoardProjectDescription = styled('div')`
     padding:  0 15px 15px 15px;
     font-size: 14px;
+    word-break: break-word;
 `;
 
 const BackToProjectsButton = styled('button')`

@@ -1,17 +1,17 @@
 import React from 'react';
 import Topbar from "../../core/components/Topbar/Topbar";
 import Sidebar from "../../core/components/Sidebar/Sidebar";
-import {ProjectWrap} from "./styles";
-import {Projects} from "../../core/components/Projects";
+import {BoardWrap} from "./styles";
+import MembersContainer from "./MembersContainer";
 
-const AllProjectPage = () => (
+const MembersPage = () => (
     <div className="homeContainer">
         <Topbar/>
-        <ProjectWrap>
+        <BoardWrap>
             <Sidebar/>
-            <Projects/>
-        </ProjectWrap>
+            <MembersContainer/>
+        </BoardWrap>
     </div>
 );
 
-export default AllProjectPage;
+export default MembersPage;

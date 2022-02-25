@@ -1,26 +1,59 @@
-import React from 'react';
-import { Link, useHistory  } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './LoginPage.css';
-import getUsers from '../../services/api/getUsers';
 import AuthService from '../../services/api/auth.service';
+import {StyledInput} from "../../core/components/StyledInput";
 
 const LoginPage = () => {
   const history = useHistory();
-  const login = React.createRef();
-  const password = React.createRef();
+  const [loginError, setLoginError] = useState(false);
   const handleSubmit = () => {
-    AuthService.login(login.current.value, password.current.value).then(
-      () => {
-        history.push("/projects");},
+    AuthService.login(email, password).then(
+      () => {history.push("/projects");
+        localStorage.setItem('userName', JSON.stringify(email))
+      },
     ).catch((error) => {
-      console.log({ error });
+      setLoginError(true)
+
     });
   };
-  const getUs = () => {
-    console.log(getUsers());
-  };
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [formValid, setFormValid] = useState(false)
+
+  useEffect(() => {
+if (emailError || passwordError) {
+  setFormValid(false)
+} else {
+  setFormValid(true)
+}
+  }, [emailError, passwordError])
+
+  const emailHandler = (e) => {
+    setEmail(e.target.value)
+    const re = /\S+@\S+\.\S+/;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setEmailError('Некорректный E-mail')
+    } else {
+      setEmailError('')
+    }
+  }
+  const passwordHandler = (e) => {
+    setPassword(e.target.value)
+    if(e.target.value.length < 8) {
+      setPasswordError('Пароль должен быть не менее 8 символов')
+      if(!e.target.value) {
+        setPasswordError('Пароль не может быть пустым')
+      }
+    } else {
+      setPasswordError()
+    }
+  }
+
   return (
     <div
       className="auth"
@@ -30,22 +63,37 @@ const LoginPage = () => {
       >
         <Link to="/"><Logo className="logotype" /></Link>
         <div className="inputWrapper">
-          <div className="inputName">E-mail:</div>
-          <input type="text" required ref={login} />
-          <div className="inputName">Password:</div>
-          <input type="text" ref={password} />
+          <StyledInput
+              onChange={emailHandler}
+              error={emailError}
+              id={'email'}
+              name={'email'}
+              value={email}
+              type={'text'}
+              textLabel={'Email'}
+              required
+          />
+          <StyledInput
+              onChange={passwordHandler}
+              error={passwordError}
+              id={'password'}
+              name={'password'}
+              value={password}
+              type={'password'}
+              textLabel={'Password'}
+              required
+          />
 
           <div className="signIn">
-            <button type="button" aria-label="Sign In" className="whiteButton" onClick={handleSubmit}>
+            <button disabled={!formValid} type="button"
+                    aria-label="Sign In" className="whiteButton" onClick={handleSubmit}>
               Sign In
             </button>
-
-            <button type="button" aria-label="Sign In" className="whiteButton" onClick={getUs}>
-              Get Users
-            </button>
+            {loginError ? <div style={{color: 'red'}}>Такой пользователь не найден</div> : ''}
           </div>
           <hr />
-          <div className="signUp"><Link to="/reg"><BlueButton title="Sign Up" /></Link></div>
+          <div className="signUp"><Link to="/reg"><BlueButton title="Sign Up" /></Link>
+          </div>
         </div>
       </div>
     </div>

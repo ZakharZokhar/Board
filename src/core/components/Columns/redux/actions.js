@@ -3,7 +3,7 @@ import {
     createColumn, createNewTask,
     deleteColumnById,
     getColumns, getTasks, getUsers,
-    getBoardById,
+    getBoardById, updateTaskColumnId,
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -54,8 +54,11 @@ export const hideWarningEmailNotExistTask = { type: 'HIDE_WARNING_EMAIL_NOT_EXIS
 
 export const getBoardName = { type: 'GET_BOARD_NAME' };
 
+export const updateTaskDrop = { type: 'UPDATE_TASK_DROP' };
 
-export const fetchColumnsByBoardtId = (id) => async (dispatch) => {
+export const updateColumnsAfterDrop = { type: 'UPDATE_COLUMNS_AFTER_DROP' };
+
+export const fetchColumnsByBoardId = (id) => async (dispatch) => {
     try {
         const allUsers = await getUsers();
         const { data } = await getColumns();
@@ -143,4 +146,13 @@ export const addNewTaskToServer = (name, description, boardId, columnId, email) 
     } catch (error) {
         console.log(error)
     }
+}
+
+export const updateTaskAfterDrop = (columnId, taskId) => async (dispatch) => {
+    try {
+      await updateTaskColumnId(taskId, columnId);
+    } catch(error) {
+      console.log(error)
+    }
+
 }

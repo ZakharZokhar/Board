@@ -7,7 +7,7 @@ import {
 import { useEffect } from 'react';
 import {SidebarWrapper, SidebarList} from '../../core/components/Sidebar/SidebarStyles'
 import { useDispatch } from 'react-redux';
-import {fetchColumnsByBoardtId, togglePopUpColumnOn} from "../../core/components/AllColumnsComponent/redux/actions";
+import {fetchColumnsByBoardId, togglePopUpColumnOn} from "../../core/components/Columns/redux/actions";
 
 export default function Sidebar({projectId, boardId}) {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function Sidebar({projectId, boardId}) {
         dispatch(togglePopUpColumnOn);
     };
     useEffect(() => {
-        dispatch(fetchColumnsByBoardtId(boardId));
+        dispatch(fetchColumnsByBoardId(boardId));
     }, []);
     return (
         <SidebarWrapper>

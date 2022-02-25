@@ -6,7 +6,7 @@ import {
 } from '../../shared/icons/icons';
 import {SidebarWrapper, SidebarList} from '../../core/components/Sidebar/SidebarStyles'
 import { useDispatch } from 'react-redux';
-import {togglePopUpBoardOn} from "../../core/components/AllBoardsComponent/redux/actions";
+import {togglePopUpBoardOn} from "../../core/components/Boards/redux/actions";
 
 export default function Sidebar() {
     const showPopUp = () => {

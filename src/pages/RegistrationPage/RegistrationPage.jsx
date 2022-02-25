@@ -1,20 +1,86 @@
-import React from 'react';
-import { Link, useHistory  } from 'react-router-dom';
-// import WhiteButton from '../../UI/Buttons/whiteButton';
+import React, {useEffect, useState} from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import BlueButton from '../../UI/Buttons/blueButton';
 import { ReactComponent as Logo } from '../../UI/Images/Logo.svg';
 import './RegistrationPage.css';
 import AuthService from '../../services/api/auth.service';
+import {StyledInput} from "../../core/components/StyledInput";
 
 const LoginPage = () => {
-  const history = useHistory ();
-  const login = React.createRef();
-  const password = React.createRef();
+  const history = useHistory();
   const name = React.createRef();
+
+  const nameCheck = (e, email) => {
+    if (e) {
+     return e
+    } else {
+      return email.split('@')[0]
+    }
+  }
   const handleSubmit = () => {
-    AuthService.register(login.current.value, name.current.value, password.current.value)
+    AuthService.register(email, nameCheck(name.current.value, email), password)
         .then((res)=> {history.push("/projects")});
   };
+
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [emailError, setEmailError] = useState('Email не может быть пустым');
+  const [passwordError, setPasswordError] = useState('Пароль не может быть пустым');
+  const [formValid, setFormValid] = useState(false)
+
+  useEffect(() => {
+    if (emailError || passwordError) {
+      setFormValid(false)
+    } else {
+      setFormValid(true)
+    }
+  }, [emailError, passwordError])
+
+
+
+  const latinValid = (e, err) => {
+    /* eslint-disable-next-line */
+    const reg = /^[A-z\0-9\u00C0-\u00ff\s'\.,-\/#@!$%\^&\*;:{}=\-_`~()]+$/;
+    if (e.target.value && !reg.test(String(e.target.value).toLowerCase())) {
+      err('Только латиница!')
+      return false
+    } else {
+      setEmailError('')
+      return true
+    }
+  }
+
+  const emailHandler = (e) => {
+    setEmail(e.target.value);
+    const reg = /\S+@\S+\.\S+/;
+    if (latinValid(e, setEmailError)) {
+      if (e.target.value && !reg.test(String(e.target.value).toLowerCase())) {
+        setEmailError('Некорректный E-mail')
+      } else if(!e.target.value) {
+          setEmailError('E-mail не может быть пустым')
+          setFormValid(true)
+        } else {
+        setEmailError('')
+        return true
+      }
+    }
+  }
+
+  const passwordHandler = (e) => {
+    setPassword(e.target.value)
+    if (latinValid(e, setEmailError)) {
+      if (e.target.value.length < 8) {
+        setPasswordError('Пароль должен быть не менее 8 символов')
+        if (!e.target.value) {
+          setPasswordError('Пароль не может быть пустым')
+        }
+      } else {
+        setPasswordError()
+      }
+    }
+  }
+
   return (
     <div
       className="auth"
@@ -24,15 +90,32 @@ const LoginPage = () => {
       >
         <Link to="/"><Logo className="logotype" /></Link>
         <div className="inputWrapper">
-          <div className="inputName">E-mail:</div>
-          <input type="text" required ref={login} />
-          <div className="inputName">Password:</div>
-          <input type="text" required ref={password} />
+          <StyledInput
+              onChange={emailHandler}
+              error={emailError}
+              id={'email'}
+              name={'email'}
+              value={email}
+              textLabel={'Email'}
+              type={'text'}
+              required
+          />
+          <StyledInput
+              onChange={passwordHandler}
+              error={passwordError}
+              id={'password'}
+              name={'password'}
+              value={password}
+              textLabel={'Password'}
+              type={'password'}
+              required
+          />
           <div className="inputName">Name:</div>
           <input type="text" ref={name} />
 
           <div className="signUp">
-            <button type="button" aria-label="Sign In" className="whiteButton" onClick={handleSubmit}>
+            <button disabled={!formValid} type="button"
+                    aria-label="Sign In" className="whiteButton" onClick={handleSubmit}>
               Sign Up
             </button>
           </div>
