@@ -16,7 +16,6 @@ const IconStyle =styled('svg')`
   margin-bottom: ${props=>(props.mb || '0')}px;
   width: ${props=>(props.wd || '20')}px;
   height: ${props=>(props.hg || '20')}px;
-  
 `;
 const DiamondIconStyle = styled('svg')`
   padding-right: 5px;

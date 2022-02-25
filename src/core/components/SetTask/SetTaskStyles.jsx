@@ -1,10 +1,24 @@
 import styled from '@emotion/styled';
 import {
     BackgroundWhiteColor,
-    BorderColor, MainBlueColor,
+    BorderColor, BorderHoverColor, MainBlueColor,
     RoleColor, TransparentBlack,
 } from '../../../shared/colors';
 
+export const ClosePopUpButton = styled('button')`
+  height: 40px;
+  width: 40px;
+  background: ${BackgroundWhiteColor};
+  border: 1px solid ${BorderColor};
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin-left: 5px;  
+  margin-right: 5px;  
+  &:hover {
+  border: 1px solid ${BorderHoverColor};
+  cursor: pointer;
+  }
+`;
 export const PopUp = styled('div')`
   background: ${TransparentBlack};
   width: 100%;

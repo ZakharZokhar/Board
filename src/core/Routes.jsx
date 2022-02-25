@@ -16,7 +16,6 @@ const Router = () => (
     <Route exact path="/projects" component={AllProjectPage} />
     <Route exact path='/projects/:projectId' component={BoardsInProjectPage} />
     <Route exact path='/projects/:projectId/:boardId' component={ColumnsInBoardPage} />
-
   </Switch>
 );
 

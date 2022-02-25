@@ -24,7 +24,7 @@ export default function Sidebar() {
                     </Link>
                 </li>
                 <li>
-                    <PlusIcon1 ml={13.5} mr={13.5} />
+                    <PlusIcon1 />
                     <span onClick={showPopUp}>New board</span>
                 </li>
                 <li>
