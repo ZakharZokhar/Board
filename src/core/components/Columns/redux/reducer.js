@@ -56,6 +56,17 @@ function columnsReducer(state = [], action) {
           )
       )
 
+    case changeTaskNameInColumns.type:
+      return state.map((column) => (
+              {...column,
+              tasks: ((column._id === action.payload.columnId) ?
+                  (column.tasks.map((task) => (
+                  task._id === action.payload.taskId ?
+                  {...task, name: action.payload.newName} :
+                  task))) : (column.tasks)),}
+          )
+      )
+
     case deleteColumn.type:
       return state.filter((column) => (column._id !== action.payload));
 
@@ -243,7 +254,9 @@ function toggleSetTasksReducer(state = {isSetTaskOpen: false, params: {}}, actio
           taskId: action.payload.taskId,
           columnId: action.payload.columnId,
         },
+       users: action.payload.users,
       };
+
     case changeDescriptionOnSetTask.type:
       return {
         ...state,

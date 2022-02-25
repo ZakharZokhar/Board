@@ -4,7 +4,7 @@ import {
     deleteColumnById,
     getColumns, getTasks, getUsers,
     getBoardById, updateTaskColumnId,
-    updateTaskDescription,
+    updateTaskDescription, updateTaskName
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -80,8 +80,8 @@ export const fetchColumnsByBoardId = (id) => async (dispatch) => {
           column.tasks = tasksInBoard.filter((task) => task.statusId === column._id);
           column.tasks.map((task) => {
             const [assignToUser] = allUsers.data.filter((user) => task.assignedTo === user._id)
-            task.userName = assignToUser.name
-            task.userImg = assignToUser.avatarLink
+            task.userName = assignToUser ? assignToUser.name : 'User is not assigned';
+            task.userImg = assignToUser ? assignToUser.avatarLink : '';
           })
         })
         dispatch({...fetchColumnsByBoardIdSuccess, payload: columnsInBoard});
@@ -170,9 +170,34 @@ export const updateTaskAfterDrop = (columnId, taskId) => async (dispatch) => {
 
 export const updateTaskDescriptionOnSetTask = (taskId, newDescription) => async (dispatch) => {
     try {
-     const {data} = await updateTaskDescription(taskId, newDescription);
-     console.log(data);
+     await updateTaskDescription(taskId, newDescription);
     } catch (error) {
       console.log(error);
+    }
+}
+
+export const updateTaskNameOnSetTask = (taskId, newName) => async (dispatch) => {
+    try {
+      await updateTaskName(taskId, newName);
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export const toggleSetTaskOnWithUsers = (taskParams) => async (dispatch) => {
+    try {
+        const { data } = await getUsers();
+        dispatch({...toggleSetTaskOn, payload: {
+                taskName: taskParams.taskName,
+                userAvatar: taskParams.userAvatar,
+                userName: taskParams.userName,
+                taskDescription: taskParams.taskDescription,
+                taskId: taskParams.taskId,
+                columnId: taskParams.columnId,
+                users: data,
+                }
+          });
+    } catch (error) {
+        console.log(error)
     }
 }

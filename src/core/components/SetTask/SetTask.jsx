@@ -33,24 +33,40 @@ import {
 import {
   toggleSetTaskOff, changeDescriptionOnSetTask,
   updateTaskDescriptionOnSetTask, changeTaskDescriptionInColumns,
+  changeTaskNameInColumns, updateTaskNameOnSetTask,
 } from "../Columns/redux/actions";
+import DropDown from "../../../shared/basic-components/DropDown/DropDown";
 
 export default function SetTask() {
     const dispatch = useDispatch();
     const taskInfo = useSelector((state) => state.popupSetTask.params);
+    const users = useSelector((state) => state.popupSetTask.users);
     const [description, setDescription] = useState(taskInfo.taskDescription);
     const [isNameEditing, setIsNameEditing] = useState(false);
+    const [isAssignedEditing, setIsAssignedEditing] = useState(false);
     const [taskName, setTaskName] = useState(taskInfo.taskName);
+    //const email = useSelector((state) => state.dropDown.inDropDown);
     const toggleSetTask = () => {
       dispatch(toggleSetTaskOff);
+      setIsNameEditing(false);
+      setIsAssignedEditing(false);
     };
     const handleChangeDesc = (even) => (setDescription(even.target.value));
     const openEditName = () => {
-      setIsNameEditing(!isNameEditing)
-      if (!isNameEditing) {
-
+      setIsNameEditing(!isNameEditing);
+      if (isNameEditing) {
+        dispatch({...changeTaskNameInColumns, payload: {
+            columnId: taskInfo.columnId,
+            taskId: taskInfo.taskId,
+            newName: taskName,
+            }
+        })
+        dispatch(updateTaskNameOnSetTask(taskInfo.taskId, taskName));
       }
     };
+    const openEditAssigned = () => {
+      setIsAssignedEditing(!isAssignedEditing);
+    }
     const handleUndo = () => (setDescription(taskInfo.taskDescription));
     const handleTaskNameChange = (even) => (setTaskName(even.target.value))
     const handleSaveDescription = () => {
@@ -68,7 +84,7 @@ export default function SetTask() {
             <SetTaskWrapper>
                 <Header>
                     {isNameEditing ?
-                     <InputName value={taskName} onChange={handleTaskNameChange} /> :
+                     <InputName maxlength="128" value={taskName} onChange={handleTaskNameChange} /> :
                      <span>{taskName}</span>
                     }
                     <div>
@@ -96,9 +112,16 @@ export default function SetTask() {
                         </DivTimer>
                         <DivAssigned><ABold fs={16}>Assigned to</ABold>
                             <div>
-                                <div><img src={taskInfo.userAvatar} alt=""/>
-                                    <span>{taskInfo.userName}</span></div>
-                                <PencilIcon/>
+                                {isAssignedEditing ?
+                                <DropDown drops = {users.map((user) => user.email)} /> :
+                                <div>
+                                  <img src={taskInfo.userAvatar} alt=""/>
+                                  <span>{taskInfo.userName}</span>
+                                </div>
+                                }
+                                <EditButton onClick={openEditAssigned}>
+                                  <PencilIcon/>
+                                </EditButton>
                             </div>
                         </DivAssigned>
                         <DivDescription>

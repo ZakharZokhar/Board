@@ -4,7 +4,7 @@ import { Draggable } from "react-beautiful-dnd"
 import {TaskContainer, BotTask, MidTask, TaskAvatar, EditButton} from "./TaskStyles";
 import { HrStyled } from "../../../shared/basic-components/Hr";
 import { GearIcon } from "../../../shared/icons/icons";
-import { toggleSetTaskOn } from "../Columns/redux/actions"
+import { toggleSetTaskOnWithUsers } from "../Columns/redux/actions"
 
 export const Task = ({
       taskName,
@@ -18,15 +18,15 @@ export const Task = ({
     const link='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'
     const dispatch = useDispatch();
     const toggleSetTask = () => {
-      dispatch({...toggleSetTaskOn, payload: {
-        taskName: taskName,
-        userAvatar: userAvatarAssignedToTask ? userAvatarAssignedToTask : link,
-        userName: userNameAssignedToTask,
-        taskDescription: taskDescription,
-        taskId: taskId,
-        columnId: columnId,
+      dispatch(toggleSetTaskOnWithUsers({
+          taskName: taskName,
+          userAvatar: userAvatarAssignedToTask ? userAvatarAssignedToTask : link,
+          userName: userNameAssignedToTask,
+          taskDescription: taskDescription,
+          taskId: taskId,
+          columnId: columnId,
       }
-      });
+      ));
     }
     return (
         <Draggable draggableId={taskId} index={taskIndex}>

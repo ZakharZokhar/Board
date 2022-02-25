@@ -61,6 +61,11 @@ const updateTaskDescription = (id, newDescription) => axios.put(
     {description: newDescription},
     authHeader()).then((response) => response
 );
+const updateTaskName = (id, newName) => axios.put(
+    `${API_URL}tasks/update/${id}`,
+    {name: newName},
+    authHeader()).then((response) => response
+);
 export {
   getPublicContent,
   getUserBoard,
@@ -86,4 +91,5 @@ export {
   getBoardById,
   updateTaskColumnId,
   updateTaskDescription,
+  updateTaskName,
 };
