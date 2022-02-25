@@ -156,9 +156,17 @@ export const DivAssigned = styled('div')`
   padding-right: 20px;
   div{
     margin-top: 12px;
-    display:flex;
     align-items: center;
-    justify-content: space-between;
+    svg{
+      position: relative;
+      object-fit: cover;
+      left: 450px;
+      bottom:40px;
+    }
+    span {
+      position: relative;
+      top: 15px;
+    }
   }
   img{
     height:40px;

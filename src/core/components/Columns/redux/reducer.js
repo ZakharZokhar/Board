@@ -11,7 +11,8 @@ import {
   displayWarningEmailNotExistTask, hideWarningEmailNotExistTask,
   getBoardName, updateTaskDrop, toggleSetTaskOn, toggleSetTaskOff,
   changeDescriptionOnSetTask, changeTaskDescriptionInColumns,
-  changeTaskNameInColumns,
+  changeTaskNameInColumns, displayWarningNoSuchEmailInSetTask,
+  hideWarningNoSuchEmailInSetTask, changeTaskAssignedInColumns,
 } from "./actions";
 
 function columnsReducer(state = [], action) {
@@ -63,6 +64,17 @@ function columnsReducer(state = [], action) {
                   (column.tasks.map((task) => (
                   task._id === action.payload.taskId ?
                   {...task, name: action.payload.newName} :
+                  task))) : (column.tasks)),}
+          )
+      )
+
+    case changeTaskAssignedInColumns.type:
+      return state.map((column) => (
+              {...column,
+              tasks: ((column._id === action.payload.columnId) ?
+                  (column.tasks.map((task) => (
+                  task._id === action.payload.taskId ?
+                  {...task, userName: action.payload.newUserName, userImg:action.payload.newUserAvatar } :
                   task))) : (column.tasks)),}
           )
       )
@@ -278,7 +290,26 @@ function toggleSetTasksReducer(state = {isSetTaskOpen: false, params: {}}, actio
   }
 }
 
+function setTaskWarningReducer(state={ noSuchEmail:false }, action) {
+  switch(action.type) {
+    case displayWarningNoSuchEmailInSetTask.type:
+      return {
+        ...state,
+        noSuchEmail: true,
+      };
+    case hideWarningNoSuchEmailInSetTask.type:
+      return {
+        ...state,
+        noSuchEmail: false
+      };
+    default:
+      return {
+        ...state
+      };
+  }
+}
+
 export {
   columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer, togglePopUpTaskReducer,
-  warningTaskPopUpReducer, boardNameReducer, toggleSetTasksReducer,
+  warningTaskPopUpReducer, boardNameReducer, toggleSetTasksReducer, setTaskWarningReducer,
 };

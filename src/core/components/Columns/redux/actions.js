@@ -4,7 +4,8 @@ import {
     deleteColumnById,
     getColumns, getTasks, getUsers,
     getBoardById, updateTaskColumnId,
-    updateTaskDescription, updateTaskName
+    updateTaskDescription, updateTaskName,
+    updateTaskAssigned,
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -68,6 +69,12 @@ export const changeDescriptionOnSetTask = { type: 'CHANGE_DESCRIPTION_ON_SET_TAS
 export const changeTaskDescriptionInColumns = { type: 'CHANGE_TASK_DESCRIPTION_IN_COLUMNS' };
 
 export const changeTaskNameInColumns = { type: 'CHANGE_TASK_NAME_IN_COLUMNS' };
+
+export const changeTaskAssignedInColumns = { type: 'CHANGE_TASK_ASSIGNED_IN_COLUMNS' };
+
+export const displayWarningNoSuchEmailInSetTask = { type: 'DISPLAY_WARNING_NO_SUCH_EMAIL_IN_SET_TASK' };
+
+export const hideWarningNoSuchEmailInSetTask = { type: 'HIDE_WARNING_NO_SUCH_EMAIL_IN_SET_TASK' };
 
 export const fetchColumnsByBoardId = (id) => async (dispatch) => {
     try {
@@ -181,6 +188,14 @@ export const updateTaskNameOnSetTask = (taskId, newName) => async (dispatch) => 
       await updateTaskName(taskId, newName);
     } catch (error) {
       console.log(error);
+    }
+}
+
+export const updateTaskAssignedOnSetTask = (taskId, newAssignedId) => async (dispatch) => {
+    try {
+        await updateTaskAssigned(taskId, newAssignedId)
+    } catch(error) {
+        console.log(error);
     }
 }
 
