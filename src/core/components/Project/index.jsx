@@ -13,7 +13,7 @@ import {
 } from './ProjectStyles';
 import { HrStyled } from '../../../shared/basic-components/Hr';
 
-export const Project = ({ projectName, projectId, onDeleteProject, numUsersInProject, link }) => (
+export const Project = ({ projectName, projectId, onDeleteProject, additionalInfo, link }) => (
         <ProjectContainer>
             <HeadProject>
                 <RoleContainer>Admin</RoleContainer>
@@ -33,7 +33,7 @@ export const Project = ({ projectName, projectId, onDeleteProject, numUsersInPro
             </MidProject>
             <HrStyled />
             <BotProject>
-                {numUsersInProject === 1 ? `1 user` : `${numUsersInProject} users`}
+                {additionalInfo}
                 <Link to={link}>
                     <ProjectOpenButton>
                         Open
@@ -47,12 +47,12 @@ Project.propTypes = {
     projectName: PropTypes.string,
     projectId: PropTypes.string,
     onDeleteProject: PropTypes.func,
-    numUsersInProject: PropTypes.number,
+    additionalInfo: PropTypes.string,
 };
 
 Project.defaultProps = {
     projectName: null,
     projectId: null,
     onDeleteProject: null,
-    numUsersInProject: null,
+    additionalInfo: null,
 };

@@ -7,7 +7,7 @@ export const Board = ({ boardName, boardId, onDeleteBoard, numUsersInBoard, proj
         <Project
             projectName={boardName}
             projectId={boardId}
-            numUsersInProject={numUsersInBoard}
+            additionalInfo={numUsersInBoard}
             onDeleteProject={onDeleteBoard}
             link={`/projects/${projectId}/${boardId}`}
         />
@@ -18,7 +18,7 @@ Board.propTypes = {
     boardName: PropTypes.string,
     boardId: PropTypes.string,
     onDeleteBoard: PropTypes.func,
-    numUsersInBoard: PropTypes.number,
+    numUsersInBoard: PropTypes.string,
 };
 
 Board.defaultProps = {
