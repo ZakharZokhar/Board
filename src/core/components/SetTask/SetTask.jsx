@@ -18,6 +18,7 @@ import {
     PopUp,
     ButtonStyle,
     InputName,
+    LabelWrap,
 } from './SetTaskStyles'
 import {SidebarList} from '../Sidebar/SidebarStyles'
 import {
@@ -44,6 +45,7 @@ export default function SetTask() {
     const [description, setDescription] = useState(taskInfo.taskDescription);
     const [isNameEditing, setIsNameEditing] = useState(false);
     const [isAssignedEditing, setIsAssignedEditing] = useState(false);
+    const [isDescEditing, setIsDescEditing] = useState(false);
     const [taskName, setTaskName] = useState(taskInfo.taskName);
     const [userName, setUserName] = useState(taskInfo.userName);
     const [userAvatar, setUserAvatar] = useState(taskInfo.userAvatar)
@@ -53,9 +55,11 @@ export default function SetTask() {
       dispatch(toggleSetTaskOff);
       setIsNameEditing(false);
       setIsAssignedEditing(false);
+      setIsDescEditing(false);
       dispatch(hideWarningNoSuchEmailInSetTask);
     };
     const handleChangeDesc = (even) => (setDescription(even.target.value));
+    const handleEditDescription = () => (setIsDescEditing(true))
     const openEditName = () => {
       setIsNameEditing(!isNameEditing);
       if (isNameEditing) {
@@ -99,6 +103,7 @@ export default function SetTask() {
           newDescription: description,
           }
       })
+      setIsDescEditing(false)
       dispatch(updateTaskDescriptionOnSetTask(taskInfo.taskId, description));
     }
     const handleDelete = () => {
@@ -135,15 +140,10 @@ export default function SetTask() {
                 <FeedRightbarWrapper>
                     <Feed>
                         <DivTimer>
-                            <ABold fs={16}>Timer</ABold>
-                            <hr/>
-                            <div><SpanStyled>Total</SpanStyled><SpanStyled>10d 5h 50m 20s</SpanStyled></div>
-                            <hr/>
-                            <div><SpanStyled>Today</SpanStyled><SpanStyled fw={600}>3h 25m 34s</SpanStyled></div>
-                            <hr/>
+                            <ABold fs={16}>Duration</ABold>
+                            <LabelWrap><SpanStyled>10d 5h 50m 20s</SpanStyled></LabelWrap>
                             <DivJustifyContentRight>
-                                <WhiteButton>Details</WhiteButton>
-                                <BlueButton Width={'100'}>Start timer</BlueButton>
+                                <BlueButton>Edit</BlueButton>
                             </DivJustifyContentRight>
                         </DivTimer>
                         <DivAssigned><ABold fs={16}>Assigned to</ABold>
@@ -161,15 +161,29 @@ export default function SetTask() {
                                 </ButtonStyle>
                             </div>
                         </DivAssigned>
-                        <DivDescription>
-                            <ABold fs={16}>Description</ABold>
-                            <InputPopUp rows="8" maxlength="1024"
+                            {isDescEditing ? (
+                              <DivDescription>
+                                <ABold fs={16}>Description</ABold>
+                                 <InputPopUp rows="8" maxlength="1024"
                                        value={description} onChange={handleChangeDesc}/>
-                            <DivJustifyContentRight>
-                                <WhiteButton onClick={handleUndo}>Undo</WhiteButton>
-                                <BlueButton onClick={handleSaveDescription}>Save</BlueButton>
-                            </DivJustifyContentRight>
-                        </DivDescription>
+                                 <DivJustifyContentRight>
+                                   <WhiteButton onClick={handleUndo}>Undo</WhiteButton>
+                                   <BlueButton onClick={handleSaveDescription}>Save</BlueButton>
+                                 </DivJustifyContentRight>
+                              </DivDescription>
+                                ) : (
+                                <DivDescription>
+                                  <ABold fs={16}>Description</ABold>
+                                  <LabelWrap>
+                                    {description}
+                                  </LabelWrap>
+                                  <DivJustifyContentRight>
+                                    <BlueButton onClick={handleEditDescription}>Edit</BlueButton>
+                                  </DivJustifyContentRight>
+                                </DivDescription>
+
+                              )
+                            }
                     </Feed>
                     <Rightbar>
                         <SidebarList>

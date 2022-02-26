@@ -48,6 +48,11 @@ export const Header = styled('div')`
   }
 `;
 
+export const LabelWrap = styled('div')`
+  display: block;
+  padding: 10px 0;
+`;
+
 export const ButtonStyle = styled('button')`
   border: 0;
   box-sizing: border-box;
