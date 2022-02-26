@@ -13,6 +13,7 @@ import {
   changeDescriptionOnSetTask, changeTaskDescriptionInColumns,
   changeTaskNameInColumns, displayWarningNoSuchEmailInSetTask,
   hideWarningNoSuchEmailInSetTask, changeTaskAssignedInColumns,
+  deleteTaskFromColumns,
 } from "./actions";
 
 function columnsReducer(state = [], action) {
@@ -76,6 +77,15 @@ function columnsReducer(state = [], action) {
                   task._id === action.payload.taskId ?
                   {...task, userName: action.payload.newUserName, userImg:action.payload.newUserAvatar } :
                   task))) : (column.tasks)),}
+          )
+      )
+
+    case deleteTaskFromColumns.type:
+      return state.map((column) => (
+              {...column,
+              tasks: ((column._id === action.payload.columnId) ?
+                  (column.tasks.filter((task) => (task._id !== action.payload.taskId))) :
+                  column.tasks),}
           )
       )
 

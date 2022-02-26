@@ -16,8 +16,7 @@ import {
     DivJustifyContentRight,
     InputPopUp,
     PopUp,
-    CloseButton,
-    EditButton,
+    ButtonStyle,
     InputName,
 } from './SetTaskStyles'
 import {SidebarList} from '../Sidebar/SidebarStyles'
@@ -32,6 +31,7 @@ import {
   changeTaskNameInColumns, updateTaskNameOnSetTask,
   displayWarningNoSuchEmailInSetTask, hideWarningNoSuchEmailInSetTask,
   updateTaskAssignedOnSetTask, changeTaskAssignedInColumns,
+  deleteTaskFromColumns, deleteTaskFromServer,
 } from "../Columns/redux/actions";
 import DropDown from "../../../shared/basic-components/DropDown/DropDown";
 
@@ -101,6 +101,20 @@ export default function SetTask() {
       })
       dispatch(updateTaskDescriptionOnSetTask(taskInfo.taskId, description));
     }
+    const handleDelete = () => {
+        dispatch(toggleSetTaskOff);
+        setIsNameEditing(false);
+        setIsAssignedEditing(false);
+        dispatch(hideWarningNoSuchEmailInSetTask);
+        dispatch({
+            ...deleteTaskFromColumns, payload: {
+                columnId: taskInfo.columnId,
+                taskId: taskInfo.taskId,
+            }
+        });
+        dispatch(deleteTaskFromServer(taskInfo.taskId));
+    }
+
     return (
         <PopUp>
             <SetTaskWrapper>
@@ -110,12 +124,12 @@ export default function SetTask() {
                      <span>{taskName}</span>
                     }
                     <div>
-                        <EditButton onClick={openEditName}>
+                        <ButtonStyle onClick={openEditName}>
                           <PencilIcon/>
-                        </EditButton>
-                        <CloseButton onClick={toggleSetTask}>
+                        </ButtonStyle>
+                        <ButtonStyle onClick={toggleSetTask}>
                           <CloseIcon1/>
-                        </CloseButton>
+                        </ButtonStyle>
                     </div>
                 </Header>
                 <FeedRightbarWrapper>
@@ -142,9 +156,9 @@ export default function SetTask() {
                                   <span>{userName}</span>
                                 </div>
                                 }
-                                <EditButton onClick={openEditAssigned}>
+                                <ButtonStyle onClick={openEditAssigned}>
                                   <PencilIcon/>
-                                </EditButton>
+                                </ButtonStyle>
                             </div>
                         </DivAssigned>
                         <DivDescription>
@@ -159,7 +173,7 @@ export default function SetTask() {
                     </Feed>
                     <Rightbar>
                         <SidebarList>
-                            <li><DeleteIcon/><span>Delete</span></li>
+                            <li><DeleteIcon/><span onClick={handleDelete}>Delete</span></li>
                         </SidebarList>
 
                     </Rightbar>

@@ -5,7 +5,7 @@ import {
     getColumns, getTasks, getUsers,
     getBoardById, updateTaskColumnId,
     updateTaskDescription, updateTaskName,
-    updateTaskAssigned,
+    updateTaskAssigned, deleteTask,
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -76,6 +76,8 @@ export const displayWarningNoSuchEmailInSetTask = { type: 'DISPLAY_WARNING_NO_SU
 
 export const hideWarningNoSuchEmailInSetTask = { type: 'HIDE_WARNING_NO_SUCH_EMAIL_IN_SET_TASK' };
 
+export const deleteTaskFromColumns = { type: 'DELETE_TASK_FROM_COLUMNS' };
+
 export const fetchColumnsByBoardId = (id) => async (dispatch) => {
     try {
         const allUsers = await getUsers();
@@ -132,6 +134,12 @@ export const deleteColumnFromServer = (id) => async (dispatch) => {
     try {
         await deleteColumnById(id)
         dispatch({...deleteColumn, payload: id})
+        const { data } = await getTasks();
+        const tasksInColumn = data.filter((task) => task.statusId === id);
+        for (let i = 0; i < tasksInColumn.length; i++) {
+            await deleteTask(tasksInColumn[i]._id);
+        }
+
     } catch (error) {
         console.log(error)
     }
@@ -214,5 +222,13 @@ export const toggleSetTaskOnWithUsers = (taskParams) => async (dispatch) => {
           });
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const deleteTaskFromServer = (id) => async (dispatch) => {
+    try {
+        await deleteTask(id);
+    } catch (error) {
+        console.log(error);
     }
 }

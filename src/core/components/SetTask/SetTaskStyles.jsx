@@ -48,17 +48,7 @@ export const Header = styled('div')`
   }
 `;
 
-export const CloseButton = styled('button')`
-  border: 0;
-  box-sizing: border-box;
-  border-radius: 8px;
-  background-color: ${BackgroundWhiteColor};
-    
-  &:hover {
-  cursor: pointer;
-`;
-
-export const EditButton = styled('button')`
+export const ButtonStyle = styled('button')`
   border: 0;
   box-sizing: border-box;
   border-radius: 8px;

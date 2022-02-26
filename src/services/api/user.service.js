@@ -71,6 +71,10 @@ const updateTaskAssigned = (id, newAssignedId) => axios.put(
     {assignedTo: newAssignedId},
     authHeader()).then((response) => response
 );
+const deleteTask = (id) => axios.delete(
+    `${API_URL}tasks/delete/${id}`,
+    authHeader()).then((response) => response);
+
 export {
   getPublicContent,
   getUserBoard,
@@ -98,4 +102,5 @@ export {
   updateTaskDescription,
   updateTaskName,
   updateTaskAssigned,
+  deleteTask,
 };
