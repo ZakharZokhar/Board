@@ -1,22 +1,25 @@
-import { Route, Switch } from 'react-router-dom';
+import {Route, Switch, useHistory} from 'react-router-dom';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
 import WelcomePage from "../pages/WelcomePage";
-import BoardsInProjectPage from "../pages/BoardsInProjectPage";
-import ColumnsInBoardPage from "../pages/ColumnsInBoardPage";
-import MembersPage from "../pages/MembersPage/";
-import AllProjectPage from "../pages/AllProjectPage";
 
-const Router = () => (
-  <Switch>
-    <Route exact path="/" component={WelcomePage} />
-    <Route path="/auth" component={LoginPage} />
-    <Route path="/reg" component={RegistrationPage} />
-    <Route path="/members" component={MembersPage} />
-    <Route exact path="/projects" component={AllProjectPage} />
-    <Route exact path='/projects/:projectId' component={BoardsInProjectPage} />
-    <Route exact path='/projects/:projectId/:boardId' component={ColumnsInBoardPage} />
-  </Switch>
-);
+import ProhibitedRoutes from "./ProhibitedRoutes";
+import {useEffect, useState} from "react";
+
+const Router = () => {
+    const history = useHistory();
+    const [isToken, setIsToken] = useState(false)
+    useEffect(() => {
+        setIsToken(true)
+    }, [localStorage.getItem('tokens')]);
+    return (
+        <Switch>
+            <Route exact path="/" component={WelcomePage}/>
+            <Route path="/auth" component={LoginPage}/>
+            <Route path="/reg" component={RegistrationPage}/>
+            {(isToken) ? <ProhibitedRoutes/> : history.push("/")}
+        </Switch>
+    )
+};
 
 export default Router;

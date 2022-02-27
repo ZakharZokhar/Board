@@ -19,7 +19,10 @@ const LoginPage = () => {
   }
   const handleSubmit = () => {
     AuthService.register(email, nameCheck(name.current.value, email), password)
-        .then((res)=> {history.push("/projects")});
+        .then((res)=> {
+          AuthService.login(email, password).then (()=> {history.push("/projects")})
+          });
+
   };
 
 
