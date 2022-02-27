@@ -25,8 +25,8 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [emailError, setEmailError] = useState('Email не может быть пустым');
-  const [passwordError, setPasswordError] = useState('Пароль не может быть пустым');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [formValid, setFormValid] = useState(false)
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+
 export const TopbarContainer = styled('div')`
   height: 56px;
   width: 100%;
@@ -32,6 +33,8 @@ export const TopbarRight = styled('div')`
   align-items: center;
   display:flex;
   justify-content: space-between;
+  position: relative;
+  margin-right: 40px;
   
   img{
     height:32px;
@@ -44,9 +47,15 @@ export const TopbarRight = styled('div')`
   }
   
   div{
-    margin-right: 20px;
+    
 
   }
 `;
+export const LogoutWrapper = styled('div')`
+cursor: pointer;
+margin-top: -24px;
+`;
+export const UserNameStyled = styled('div')`
 
+`;
 
