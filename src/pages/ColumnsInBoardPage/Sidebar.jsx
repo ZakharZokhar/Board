@@ -33,7 +33,7 @@ export default function Sidebar({projectId, boardId}) {
                 </li>
                 <li>
                     <UserCircleIcon/>
-                    <span>Members</span>
+                    <Link to='/members'><span>Members</span></Link>
                 </li>
             </SidebarList>
         </SidebarWrapper>
