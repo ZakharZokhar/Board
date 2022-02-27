@@ -39,6 +39,9 @@ export const Column = ( {columnId, columnName, tasksInColumn}) => {
                                 userAvatarAssignedToTask = {task.userImg}
                                 taskId = {task._id}
                                 taskIndex = {index}
+                                taskDescription = {task.description}
+                                columnId = {columnId}
+                                taskDuration = {task.elapsedTime}
                             />
                         ))}
                         {provided.placeholder}

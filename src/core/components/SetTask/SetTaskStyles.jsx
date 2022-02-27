@@ -20,9 +20,10 @@ export const ClosePopUpButton = styled('button')`
   }
 `;
 export const PopUp = styled('div')`
+  position: fixed;
   background: ${TransparentBlack};
   width: 100%;
-  height: 830px;
+  height: 100vh;
   top: 0;
   left: 0;
 `;
@@ -34,7 +35,7 @@ export const SetTaskWrapper = styled('div')`
   height: 820px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0;
+  margin-top: 2%;
   margin-bottom: 0;
   border: 1px solid ${BorderColor};
   box-sizing: border-box;
@@ -59,6 +60,36 @@ export const Header = styled('div')`
   display:flex;
   align-items: center;
   }
+`;
+
+export const LabelWrap = styled('div')`
+  display: block;
+  padding: 10px 0;
+  word-break: break-word;
+`;
+
+export const InputForTime = styled('input')`
+  height: 20px;
+  width: 40px;
+  display: inline-block;
+  margin: 0 10px;
+`;
+
+export const ButtonStyle = styled('button')`
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: ${BackgroundWhiteColor};
+    
+  &:hover {
+  cursor: pointer;
+`;
+
+export const InputName = styled('input')`
+  border: 1px solid ${BorderColor};
+  border-radius: 8px;
+  margin: 10px;
+  resize:none;
 `;
 
 export const Feed = styled('div')`
@@ -142,9 +173,17 @@ export const DivAssigned = styled('div')`
   padding-right: 20px;
   div{
     margin-top: 12px;
-    display:flex;
     align-items: center;
-    justify-content: space-between;
+    svg{
+      position: relative;
+      object-fit: cover;
+      left: 450px;
+      bottom:40px;
+    }
+    span {
+      position: relative;
+      top: 15px;
+    }
   }
   img{
     height:40px;

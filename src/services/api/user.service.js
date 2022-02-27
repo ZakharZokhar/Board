@@ -56,6 +56,30 @@ const updateTaskColumnId = (id, columnId) => axios.put(
     {statusId: columnId},
     authHeader()).then((response) => response
 );
+const updateTaskDescription = (id, newDescription) => axios.put(
+    `${API_URL}tasks/update/${id}`,
+    {description: newDescription},
+    authHeader()).then((response) => response
+);
+const updateTaskName = (id, newName) => axios.put(
+    `${API_URL}tasks/update/${id}`,
+    {name: newName},
+    authHeader()).then((response) => response
+);
+const updateTaskAssigned = (id, newAssignedId) => axios.put(
+    `${API_URL}tasks/update/${id}`,
+    {assignedTo: newAssignedId},
+    authHeader()).then((response) => response
+);
+const updateTaskTime = (id, newTime) => axios.put(
+    `${API_URL}tasks/update/${id}`,
+    {elapsedTime: newTime},
+    authHeader()).then((response) => response
+);
+const deleteTask = (id) => axios.delete(
+    `${API_URL}tasks/delete/${id}`,
+    authHeader()).then((response) => response);
+
 export {
   getPublicContent,
   getUserBoard,
@@ -80,4 +104,9 @@ export {
   createNewTask,
   getBoardById,
   updateTaskColumnId,
+  updateTaskDescription,
+  updateTaskName,
+  updateTaskAssigned,
+  deleteTask,
+  updateTaskTime,
 };

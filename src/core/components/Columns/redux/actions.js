@@ -4,6 +4,8 @@ import {
     deleteColumnById,
     getColumns, getTasks, getUsers,
     getBoardById, updateTaskColumnId,
+    updateTaskDescription, updateTaskName,
+    updateTaskAssigned, deleteTask, updateTaskTime,
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -58,6 +60,26 @@ export const updateTaskDrop = { type: 'UPDATE_TASK_DROP' };
 
 export const updateColumnsAfterDrop = { type: 'UPDATE_COLUMNS_AFTER_DROP' };
 
+export const toggleSetTaskOn = { type: 'TOGGLE_SET_TASK_ON' };
+
+export const toggleSetTaskOff = { type: 'TOGGLE_SET_TASK_OFF' };
+
+export const changeDescriptionOnSetTask = { type: 'CHANGE_DESCRIPTION_ON_SET_TASK' };
+
+export const changeTaskDescriptionInColumns = { type: 'CHANGE_TASK_DESCRIPTION_IN_COLUMNS' };
+
+export const changeTaskNameInColumns = { type: 'CHANGE_TASK_NAME_IN_COLUMNS' };
+
+export const changeTaskAssignedInColumns = { type: 'CHANGE_TASK_ASSIGNED_IN_COLUMNS' };
+
+export const changeTaskTimeInColumns = { type: 'CHANGE_TASK_TIME_IN_COLUMNS' };
+
+export const displayWarningNoSuchEmailInSetTask = { type: 'DISPLAY_WARNING_NO_SUCH_EMAIL_IN_SET_TASK' };
+
+export const hideWarningNoSuchEmailInSetTask = { type: 'HIDE_WARNING_NO_SUCH_EMAIL_IN_SET_TASK' };
+
+export const deleteTaskFromColumns = { type: 'DELETE_TASK_FROM_COLUMNS' };
+
 export const fetchColumnsByBoardId = (id) => async (dispatch) => {
     try {
         const allUsers = await getUsers();
@@ -69,8 +91,8 @@ export const fetchColumnsByBoardId = (id) => async (dispatch) => {
           column.tasks = tasksInBoard.filter((task) => task.statusId === column._id);
           column.tasks.map((task) => {
             const [assignToUser] = allUsers.data.filter((user) => task.assignedTo === user._id)
-            task.userName = assignToUser.name
-            task.userImg = assignToUser.avatarLink
+            task.userName = assignToUser ? assignToUser.name : 'User is not assigned';
+            task.userImg = assignToUser ? assignToUser.avatarLink : '';
           })
         })
         dispatch({...fetchColumnsByBoardIdSuccess, payload: columnsInBoard});
@@ -114,6 +136,10 @@ export const deleteColumnFromServer = (id) => async (dispatch) => {
     try {
         await deleteColumnById(id)
         dispatch({...deleteColumn, payload: id})
+        const { data } = await getTasks();
+        const tasksInColumn = data.filter((task) => task.statusId === id);
+        Promise.all(tasksInColumn.map((task) => deleteTask(task._id)));
+
     } catch (error) {
         console.log(error)
     }
@@ -133,13 +159,14 @@ export const addNewTaskToServer = (name, description, boardId, columnId, email) 
       const allUsers = await getUsers();
       const [taskUser] = allUsers.data.filter((user) => user.email === email)
       const { data } = await createNewTask({
-        name:name,
+        name: name,
         description: description,
         boardId: boardId,
         statusId: columnId,
         assignedTo: taskUser._id,
         elapsedTime: 0,
       });
+      console.log(data);
       data.userName = taskUser.name;
       data.userImg = taskUser.avatarLink;
       dispatch({...addTaskToColumn, payload: {columnId: columnId, task: data}})
@@ -156,3 +183,65 @@ export const updateTaskAfterDrop = (columnId, taskId) => async (dispatch) => {
     }
 
 }
+
+export const updateTaskDescriptionOnSetTask = (taskId, newDescription) => async (dispatch) => {
+    try {
+     await updateTaskDescription(taskId, newDescription);
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export const updateTaskNameOnSetTask = (taskId, newName) => async (dispatch) => {
+    try {
+      await updateTaskName(taskId, newName);
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export const updateTaskAssignedOnSetTask = (taskId, newAssignedId) => async (dispatch) => {
+    try {
+        await updateTaskAssigned(taskId, newAssignedId)
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+export const updateTaskTimeOnSetTask = (taskId, newTime) => async (dispatch) => {
+    try {
+        const {data} = await updateTaskTime(taskId, newTime);
+        console.log(data)
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+export const toggleSetTaskOnWithUsers = (taskParams) => async (dispatch) => {
+    try {
+        const { data } = await getUsers();
+        dispatch({...toggleSetTaskOn, payload: {
+                taskName: taskParams.taskName,
+                userAvatar: taskParams.userAvatar,
+                userName: taskParams.userName,
+                taskDescription: taskParams.taskDescription,
+                taskId: taskParams.taskId,
+                columnId: taskParams.columnId,
+                taskDuration: taskParams.taskDuration,
+                users: data,
+                }
+          });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteTaskFromServer = (id) => async (dispatch) => {
+    try {
+        await deleteTask(id);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+

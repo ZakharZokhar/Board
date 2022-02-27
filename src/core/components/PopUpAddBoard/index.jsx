@@ -12,6 +12,7 @@ import {
     displayWarningLongNameBoard, hideWarningLongNameBoard,
 } from "../Boards/redux/actions";
 import { PopUpBoardWindow } from "./PopUpAddBoardStyles";
+import { addNumBoardsInProject } from "../Projects/redux/actions"
 
 export const PopUpAddBoard = ({ projectId }) => {
     const dispatch = useDispatch();
@@ -30,6 +31,7 @@ export const PopUpAddBoard = ({ projectId }) => {
             dispatch(hideWarningEmptyNameBoard);
         } else {
             dispatch(addNewBoardToServer(name, projectId))
+            dispatch({...addNumBoardsInProject, payload: projectId})
             dispatch(togglePopUpBoardOff);
         }
     };

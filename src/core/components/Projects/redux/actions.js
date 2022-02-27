@@ -1,4 +1,4 @@
-import {getProjectById, getProjects, getUserById, getUsers} from '../../../../services/api/user.service';
+import {getProjectById, getProjects, getUserById, getBoards} from '../../../../services/api/user.service';
 
 export const togglePopUpOn = { type: 'TOGGLE_POPUP_ON' };
 
@@ -30,6 +30,10 @@ export const displayWarningLongName = { type: 'DISPLAY_WARNING_LONG_NAME' };
 
 export const hideWarningLongName = { type: 'HIDE_WARNING_LONG_NAME' };
 
+export const addNumBoardsInProject = { type: 'ADD_NUM_BOARDS_IN_PROJECT' };
+
+export const removeNumBoardsInProject = { type: 'REMOVE_NUM_BOARDS_IN_PROJECT' };
+
 export const fetchProjectIds = () => async (dispatch) => {
   try {
     const { userId } = JSON.parse(localStorage.getItem('tokens'));
@@ -47,10 +51,10 @@ export const fetchProjectIds = () => async (dispatch) => {
 export const fetchProjectById = (id) => async (dispatch) => {
   try {
     const { data } = await getProjectById(id);
-    const allUsers = await getUsers();
-    data.numUsers = allUsers.data.reduce((colUsersHaveProject, currentUser) => {
-      const userHaveProject = currentUser.projectIds.includes(id);
-      return userHaveProject ? colUsersHaveProject + 1 : colUsersHaveProject;
+    const allBoards = await getBoards();
+    data.numBoards = allBoards.data.reduce((numBoardsInProject, currentBoard) => {
+      const boardInProject = currentBoard.projectId === id;
+      return boardInProject ? numBoardsInProject + 1 : numBoardsInProject;
     }, 0);
     dispatch({...fetchProjectByIdSuccess, payload: data});
   } catch (error) {

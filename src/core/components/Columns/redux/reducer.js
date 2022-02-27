@@ -9,7 +9,11 @@ import {
   displayWarningLongNameTask, hideWarningLongNameTask,
   displayWarningLongDescriptionTask, hideWarningLongDescriptionTask,
   displayWarningEmailNotExistTask, hideWarningEmailNotExistTask,
-  getBoardName, updateTaskDrop,
+  getBoardName, updateTaskDrop, toggleSetTaskOn, toggleSetTaskOff,
+  changeDescriptionOnSetTask, changeTaskDescriptionInColumns,
+  changeTaskNameInColumns, displayWarningNoSuchEmailInSetTask,
+  hideWarningNoSuchEmailInSetTask, changeTaskAssignedInColumns,
+  deleteTaskFromColumns, changeTaskTimeInColumns,
 } from "./actions";
 
 function columnsReducer(state = [], action) {
@@ -37,12 +41,63 @@ function columnsReducer(state = [], action) {
       ];
 
     case addTaskToColumn.type:
-      console.log(action.payload);
       return state.map((column) => (
           {...column, tasks: (column._id === action.payload.columnId ?
             [...column.tasks, action.payload.task] :
             [...column.tasks])}
       ))
+
+    case changeTaskDescriptionInColumns.type:
+      return state.map((column) => (
+          {...column,
+          tasks: ((column._id === action.payload.columnId) ?
+                (column.tasks.map((task) => (
+                task._id === action.payload.taskId ?
+                {...task, description: action.payload.newDescription} :
+                task))) : (column.tasks)),}
+          )
+      )
+
+    case changeTaskNameInColumns.type:
+      return state.map((column) => (
+              {...column,
+              tasks: ((column._id === action.payload.columnId) ?
+                  (column.tasks.map((task) => (
+                  task._id === action.payload.taskId ?
+                  {...task, name: action.payload.newName} :
+                  task))) : (column.tasks)),}
+          )
+      )
+
+    case changeTaskTimeInColumns.type:
+      return state.map((column) => (
+              {...column,
+              tasks: ((column._id === action.payload.columnId) ?
+                (column.tasks.map((task) => (
+                task._id === action.payload.taskId ?
+                {...task, elapsedTime: action.payload.newTime} :
+                task))) : (column.tasks)),}
+          )
+      )
+    case changeTaskAssignedInColumns.type:
+      return state.map((column) => (
+              {...column,
+              tasks: ((column._id === action.payload.columnId) ?
+                  (column.tasks.map((task) => (
+                  task._id === action.payload.taskId ?
+                  {...task, userName: action.payload.newUserName, userImg:action.payload.newUserAvatar } :
+                  task))) : (column.tasks)),}
+          )
+      )
+
+    case deleteTaskFromColumns.type:
+      return state.map((column) => (
+              {...column,
+              tasks: ((column._id === action.payload.columnId) ?
+                  (column.tasks.filter((task) => (task._id !== action.payload.taskId))) :
+                  column.tasks),}
+          )
+      )
 
     case deleteColumn.type:
       return state.filter((column) => (column._id !== action.payload));
@@ -217,7 +272,65 @@ function warningTaskPopUpReducer(state = {
   }
 }
 
+function toggleSetTasksReducer(state = {isSetTaskOpen: false, params: {}}, action) {
+  switch(action.type) {
+    case toggleSetTaskOn.type:
+      return {
+        ...state,
+        isSetTaskOpen: true,
+        params: {
+          taskName: action.payload.taskName,
+          taskDescription: action.payload.taskDescription,
+          userName: action.payload.userName,
+          userAvatar: action.payload.userAvatar,
+          taskId: action.payload.taskId,
+          columnId: action.payload.columnId,
+          taskDuration: action.payload.taskDuration,
+        },
+       users: action.payload.users,
+      };
+
+    case changeDescriptionOnSetTask.type:
+      return {
+        ...state,
+        params: {
+          ...state.params,
+          taskDescription: action.payload,
+        },
+      };
+    case toggleSetTaskOff.type:
+      return {
+        ...state,
+        isSetTaskOpen: false,
+        params: {},
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+}
+
+function setTaskWarningReducer(state={ noSuchEmail:false }, action) {
+  switch(action.type) {
+    case displayWarningNoSuchEmailInSetTask.type:
+      return {
+        ...state,
+        noSuchEmail: true,
+      };
+    case hideWarningNoSuchEmailInSetTask.type:
+      return {
+        ...state,
+        noSuchEmail: false
+      };
+    default:
+      return {
+        ...state
+      };
+  }
+}
+
 export {
   columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer, togglePopUpTaskReducer,
-  warningTaskPopUpReducer, boardNameReducer,
+  warningTaskPopUpReducer, boardNameReducer, toggleSetTasksReducer, setTaskWarningReducer,
 };

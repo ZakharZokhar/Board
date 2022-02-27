@@ -13,6 +13,7 @@ import {
 import {
   columnsReducer, togglePopUpColumnReducer, warningColumnPopUpReducer,
   togglePopUpTaskReducer, warningTaskPopUpReducer, boardNameReducer,
+  toggleSetTasksReducer, setTaskWarningReducer,
 } from "../components/Columns/redux/reducer";
 
 import dropDownReducer from "../../shared/basic-components/DropDown/redux/reducer";
@@ -34,4 +35,6 @@ export default {
   projectInfo: projectInfoReducer,
   warningsTaskPopUp: warningTaskPopUpReducer,
   boardName: boardNameReducer,
+  popupSetTask: toggleSetTasksReducer,
+  warningsSetTask: setTaskWarningReducer,
 };

@@ -1,15 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import {
-    AllBoardsHolder, BackToProjectsButton,
-    BoardsContainer, BoardProjectName,
+    AllBoardsHolder, BoardsContainer, BoardProjectName,
     BoardProjectDescription,
 } from "./BoardsStyles";
 import {Board} from "../Board";
 import {PopUpAddBoard} from "../PopUpAddBoard";
 import {togglePopUpBoardOn, deleteBoardFromServer, fetchBoardsByProjectId} from "./redux/actions";
 import { AddElementButton } from "../AddElementButton";
+import { removeNumBoardsInProject } from "../Projects/redux/actions";
 
 
 export const Boards = ( {projectId} ) => {
@@ -26,6 +25,7 @@ export const Boards = ( {projectId} ) => {
     };
     const onDeleteBoard = (id) => {
         dispatch(deleteBoardFromServer(id))
+        dispatch({...removeNumBoardsInProject, payload: projectId})
     };
 
     return (
@@ -36,11 +36,6 @@ export const Boards = ( {projectId} ) => {
             <BoardProjectDescription>
                 {projectDescription}
             </BoardProjectDescription>
-            <Link to={'/projects'}>
-                <BackToProjectsButton>
-                    Back to projects
-                </BackToProjectsButton>
-            </Link>
             <BoardsContainer>
                 <AddElementButton
                     onAddClick = {showPopUp}
@@ -51,7 +46,7 @@ export const Boards = ( {projectId} ) => {
                         key={board._id}
                         boardId={board._id}
                         boardName={board.name.length < 52 ? board.name : `${board.name.substring(0, 52)}...`}
-                        numUsersInBoard={board.numUsers}
+                        numUsersInBoard = {board.numUsers === 1 ? '1 user' : `${board.numUsers} users`}
                         onDeleteBoard={() => onDeleteBoard(board._id)}
                         projectId={projectId}
                     />

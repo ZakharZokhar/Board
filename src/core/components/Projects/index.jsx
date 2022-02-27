@@ -45,7 +45,7 @@ export const Projects = () => {
                     key={project._id}
                     projectName={project.name.length < 52 ? project.name : `${project.name.substring(0, 52)}...` }
                     projectId={project._id}
-                    numUsersInProject = {project.numUsers}
+                    additionalInfo = {project.numBoards === 1 ? `1 board` : `${project.numBoards} boards`}
                     onDeleteProject={onDeleteProject}
                     link={`/projects/${project._id}`}
                 />

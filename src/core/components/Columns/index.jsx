@@ -1,9 +1,8 @@
-import {Link} from "react-router-dom";
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 import {
-    BackToProjectsButton, BoardProjectName,
+  BoardProjectName,
 } from "../Boards/BoardsStyles";
 import { ColumnsContainer, AllColumnsContainer } from "./ColumnsStyles";
 import { AddColumnButton } from "../AddColumnButton";
@@ -14,6 +13,7 @@ import {
     updateTaskAfterDrop,
 } from "./redux/actions";
 import {PopUpAddTask} from "../PopUpAddTask";
+import SetTask from "../SetTask/SetTask";
 import {FilterButton} from "../../../pages/MembersPage/styles";
 import {FilterBar} from "../FilterBar";
 
@@ -22,6 +22,7 @@ export const Columns = ({projectId, boardId}) => {
     const columns = useSelector((state) => state.columns);
     const isPopUpColumnOpen = useSelector((state) => state.popupColumn.isColumnPopUpOpen);
     const isPopUpTaskOpen = useSelector((state) => state.popupTask.isTaskPopUpOpen);
+    const isSetTaskPopUpOpen = useSelector((state) => state.popupSetTask.isSetTaskOpen);
     const warnings = useSelector((state) => state.warningsColumnPopUp);
     const boardName = useSelector((state) => state.boardName.name)
     const [showFilter, setShowFilter] = useState(false)
@@ -69,12 +70,6 @@ export const Columns = ({projectId, boardId}) => {
                 </div>
             </div>
             { showFilter? <div style={{height: 'auto', marginBottom: 5}}><FilterBar/></div> : null }
-
-            <Link to={`/projects/${projectId}`}>
-                <BackToProjectsButton>
-                    Back to boards
-                </BackToProjectsButton>
-            </Link>
             {warnings.alreadyHere && 'Column with that name is already here!!'}
             <DragDropContext onDragEnd={onDragEnd}>
                 <ColumnsContainer>
@@ -91,6 +86,7 @@ export const Columns = ({projectId, boardId}) => {
             <AddColumnButton onAddColumnClick = {showPopUp}/>
             {isPopUpColumnOpen && <PopUpAddColumn boardId={boardId} />}
             {isPopUpTaskOpen && <PopUpAddTask boardId={boardId} />}
+            {isSetTaskPopUpOpen && <SetTask />}
         </AllColumnsContainer>
     );
 }

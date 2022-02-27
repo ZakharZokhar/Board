@@ -14,6 +14,8 @@ import {
   hideWarningLongDescription,
   displayWarningLongName,
   hideWarningLongName,
+  addNumBoardsInProject,
+  removeNumBoardsInProject,
 } from './actions';
 import {
   createProject, updateUserProjectsIds, getUserById, deleteProjectById
@@ -145,6 +147,25 @@ function projectsReducer(state = [], action) {
     case deleteProject.type:
       deleteProjectById(action.payload);
       return state.filter((project) => project._id !== action.payload);
+
+    case addNumBoardsInProject.type:
+      return state.map((project) => (
+              {...project,
+              numBoards: ((project._id === action.payload) ?
+                  (project.numBoards+1) :
+                  project.numBoards),}
+          )
+      )
+
+    case removeNumBoardsInProject.type:
+      return state.map((project) => (
+              {...project,
+                numBoards: ((project._id === action.payload) ?
+                    (project.numBoards - 1) :
+                    project.numBoards),}
+          )
+      )
+
     default:
       return [
         ...state,
