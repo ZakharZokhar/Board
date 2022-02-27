@@ -5,7 +5,7 @@ import {
     getColumns, getTasks, getUsers,
     getBoardById, updateTaskColumnId,
     updateTaskDescription, updateTaskName,
-    updateTaskAssigned, deleteTask,
+    updateTaskAssigned, deleteTask, updateTaskTime,
 } from "../../../../services/api/user.service";
 
 export const fetchColumnsByBoardIdSuccess = { type: 'FETCH_COLUMN_BY_BOARD_ID_SUCCESS' };
@@ -72,6 +72,8 @@ export const changeTaskNameInColumns = { type: 'CHANGE_TASK_NAME_IN_COLUMNS' };
 
 export const changeTaskAssignedInColumns = { type: 'CHANGE_TASK_ASSIGNED_IN_COLUMNS' };
 
+export const changeTaskTimeInColumns = { type: 'CHANGE_TASK_TIME_IN_COLUMNS' };
+
 export const displayWarningNoSuchEmailInSetTask = { type: 'DISPLAY_WARNING_NO_SUCH_EMAIL_IN_SET_TASK' };
 
 export const hideWarningNoSuchEmailInSetTask = { type: 'HIDE_WARNING_NO_SUCH_EMAIL_IN_SET_TASK' };
@@ -136,9 +138,7 @@ export const deleteColumnFromServer = (id) => async (dispatch) => {
         dispatch({...deleteColumn, payload: id})
         const { data } = await getTasks();
         const tasksInColumn = data.filter((task) => task.statusId === id);
-        for (let i = 0; i < tasksInColumn.length; i++) {
-            await deleteTask(tasksInColumn[i]._id);
-        }
+        Promise.all(tasksInColumn.map((task) => deleteTask(task._id)));
 
     } catch (error) {
         console.log(error)
@@ -159,13 +159,14 @@ export const addNewTaskToServer = (name, description, boardId, columnId, email) 
       const allUsers = await getUsers();
       const [taskUser] = allUsers.data.filter((user) => user.email === email)
       const { data } = await createNewTask({
-        name:name,
+        name: name,
         description: description,
         boardId: boardId,
         statusId: columnId,
         assignedTo: taskUser._id,
         elapsedTime: 0,
       });
+      console.log(data);
       data.userName = taskUser.name;
       data.userImg = taskUser.avatarLink;
       dispatch({...addTaskToColumn, payload: {columnId: columnId, task: data}})
@@ -207,6 +208,15 @@ export const updateTaskAssignedOnSetTask = (taskId, newAssignedId) => async (dis
     }
 }
 
+export const updateTaskTimeOnSetTask = (taskId, newTime) => async (dispatch) => {
+    try {
+        const {data} = await updateTaskTime(taskId, newTime);
+        console.log(data)
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 export const toggleSetTaskOnWithUsers = (taskParams) => async (dispatch) => {
     try {
         const { data } = await getUsers();
@@ -217,6 +227,7 @@ export const toggleSetTaskOnWithUsers = (taskParams) => async (dispatch) => {
                 taskDescription: taskParams.taskDescription,
                 taskId: taskParams.taskId,
                 columnId: taskParams.columnId,
+                taskDuration: taskParams.taskDuration,
                 users: data,
                 }
           });
@@ -232,3 +243,5 @@ export const deleteTaskFromServer = (id) => async (dispatch) => {
         console.log(error);
     }
 }
+
+

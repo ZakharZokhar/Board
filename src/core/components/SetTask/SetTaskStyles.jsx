@@ -51,6 +51,14 @@ export const Header = styled('div')`
 export const LabelWrap = styled('div')`
   display: block;
   padding: 10px 0;
+  word-break: break-word;
+`;
+
+export const InputForTime = styled('input')`
+  height: 20px;
+  width: 40px;
+  display: inline-block;
+  margin: 0 10px;
 `;
 
 export const ButtonStyle = styled('button')`

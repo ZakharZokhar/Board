@@ -71,6 +71,11 @@ const updateTaskAssigned = (id, newAssignedId) => axios.put(
     {assignedTo: newAssignedId},
     authHeader()).then((response) => response
 );
+const updateTaskTime = (id, newTime) => axios.put(
+    `${API_URL}tasks/update/${id}`,
+    {elapsedTime: newTime},
+    authHeader()).then((response) => response
+);
 const deleteTask = (id) => axios.delete(
     `${API_URL}tasks/delete/${id}`,
     authHeader()).then((response) => response);
@@ -103,4 +108,5 @@ export {
   updateTaskName,
   updateTaskAssigned,
   deleteTask,
+  updateTaskTime,
 };

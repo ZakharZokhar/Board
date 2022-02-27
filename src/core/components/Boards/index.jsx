@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import {
-    AllBoardsHolder, BackToProjectsButton,
-    BoardsContainer, BoardProjectName,
+    AllBoardsHolder, BoardsContainer, BoardProjectName,
     BoardProjectDescription,
 } from "./BoardsStyles";
 import {Board} from "../Board";
@@ -38,11 +36,6 @@ export const Boards = ( {projectId} ) => {
             <BoardProjectDescription>
                 {projectDescription}
             </BoardProjectDescription>
-            <Link to={'/projects'}>
-                <BackToProjectsButton>
-                    Back to projects
-                </BackToProjectsButton>
-            </Link>
             <BoardsContainer>
                 <AddElementButton
                     onAddClick = {showPopUp}

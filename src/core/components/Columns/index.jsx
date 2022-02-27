@@ -1,9 +1,8 @@
-import {Link} from "react-router-dom";
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 import {
-    BackToProjectsButton, BoardProjectName,
+  BoardProjectName,
 } from "../Boards/BoardsStyles";
 import { ColumnsContainer, AllColumnsContainer } from "./ColumnsStyles";
 import { AddColumnButton } from "../AddColumnButton";
@@ -59,11 +58,6 @@ export const Columns = ({projectId, boardId}) => {
             <BoardProjectName>
                 {boardName}
             </BoardProjectName>
-            <Link to={`/projects/${projectId}`}>
-                <BackToProjectsButton>
-                    Back to boards
-                </BackToProjectsButton>
-            </Link>
             {warnings.alreadyHere && 'Column with that name is already here!!'}
             <DragDropContext onDragEnd={onDragEnd}>
                 <ColumnsContainer>

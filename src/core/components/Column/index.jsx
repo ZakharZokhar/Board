@@ -41,6 +41,7 @@ export const Column = ( {columnId, columnName, tasksInColumn}) => {
                                 taskIndex = {index}
                                 taskDescription = {task.description}
                                 columnId = {columnId}
+                                taskDuration = {task.elapsedTime}
                             />
                         ))}
                         {provided.placeholder}

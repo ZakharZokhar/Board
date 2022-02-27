@@ -19,6 +19,7 @@ import {
     ButtonStyle,
     InputName,
     LabelWrap,
+    InputForTime,
 } from './SetTaskStyles'
 import {SidebarList} from '../Sidebar/SidebarStyles'
 import {
@@ -33,6 +34,7 @@ import {
   displayWarningNoSuchEmailInSetTask, hideWarningNoSuchEmailInSetTask,
   updateTaskAssignedOnSetTask, changeTaskAssignedInColumns,
   deleteTaskFromColumns, deleteTaskFromServer,
+  updateTaskTimeOnSetTask, changeTaskTimeInColumns,
 } from "../Columns/redux/actions";
 import DropDown from "../../../shared/basic-components/DropDown/DropDown";
 
@@ -42,13 +44,23 @@ export default function SetTask() {
     const users = useSelector((state) => state.popupSetTask.users);
     const emails = users.map((user) => user.email);
     const warnings = useSelector((state) => state.warningsSetTask);
+    const getNormalTimeFromSeconds = (seconds) => {
+        const d = Math.floor(seconds / (3600*24));
+        const h = Math.floor(seconds % (3600*24) / 3600);
+        const m = Math.floor(seconds % 3600 / 60);
+        const s = Math.floor(seconds % 60);
+        return {days: d, hours: h, minutes: m, seconds: s};
+    }
+
     const [description, setDescription] = useState(taskInfo.taskDescription);
     const [isNameEditing, setIsNameEditing] = useState(false);
     const [isAssignedEditing, setIsAssignedEditing] = useState(false);
     const [isDescEditing, setIsDescEditing] = useState(false);
+    const [isDurEditing, setIsDurEditing] = useState(false);
     const [taskName, setTaskName] = useState(taskInfo.taskName);
     const [userName, setUserName] = useState(taskInfo.userName);
-    const [userAvatar, setUserAvatar] = useState(taskInfo.userAvatar)
+    const [userAvatar, setUserAvatar] = useState(taskInfo.userAvatar);
+    const [taskDuration, setTaskDuration] = useState(getNormalTimeFromSeconds(taskInfo.taskDuration));
     const email = useSelector((state) => state.dropDown.inDropDown);
     const link='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png';
     const toggleSetTask = () => {
@@ -56,6 +68,7 @@ export default function SetTask() {
       setIsNameEditing(false);
       setIsAssignedEditing(false);
       setIsDescEditing(false);
+      setIsDurEditing(false);
       dispatch(hideWarningNoSuchEmailInSetTask);
     };
     const handleChangeDesc = (even) => (setDescription(even.target.value));
@@ -119,6 +132,35 @@ export default function SetTask() {
         });
         dispatch(deleteTaskFromServer(taskInfo.taskId));
     }
+    const openEditDuration = () => {
+      setIsDurEditing(true);
+    }
+    const saveEditDuration = () => {
+     const seconds = Math.round(Math.abs(taskDuration.days) *24*3600 +
+        Math.abs(taskDuration.hours)*3600 +
+        Math.abs(taskDuration.minutes)*60 +
+        Math.abs(taskDuration.seconds));
+     setIsDurEditing(false);
+     setTaskDuration(getNormalTimeFromSeconds(seconds));
+     dispatch({...changeTaskTimeInColumns, payload: {
+             columnId: taskInfo.columnId,
+             taskId: taskInfo.taskId,
+             newTime: seconds,
+         }});
+     dispatch(updateTaskTimeOnSetTask(taskInfo.taskId, seconds));
+    }
+    const handleChangeDays = (even) => {
+      setTaskDuration({...taskDuration, days:even.target.value})
+    };
+    const handleChangeHours = (even) => {
+        setTaskDuration({...taskDuration, hours:even.target.value})
+    };
+    const handleChangeMinutes = (even) => {
+        setTaskDuration({...taskDuration, minutes:even.target.value})
+    };
+    const handleChangeSeconds = (even) => {
+        setTaskDuration({...taskDuration, seconds:even.target.value})
+    };
 
     return (
         <PopUp>
@@ -126,7 +168,7 @@ export default function SetTask() {
                 <Header>
                     {isNameEditing ?
                      <InputName maxlength="128" value={taskName} onChange={handleTaskNameChange} /> :
-                     <span>{taskName}</span>
+                     <LabelWrap><span>{taskName}</span></LabelWrap>
                     }
                     <div>
                         <ButtonStyle onClick={openEditName}>
@@ -139,13 +181,41 @@ export default function SetTask() {
                 </Header>
                 <FeedRightbarWrapper>
                     <Feed>
-                        <DivTimer>
-                            <ABold fs={16}>Duration</ABold>
-                            <LabelWrap><SpanStyled>10d 5h 50m 20s</SpanStyled></LabelWrap>
-                            <DivJustifyContentRight>
-                                <BlueButton>Edit</BlueButton>
-                            </DivJustifyContentRight>
-                        </DivTimer>
+                            {isDurEditing ? (
+                              <DivTimer>
+                                <ABold fs={16}>Duration</ABold>
+                                <LabelWrap>
+                                  <InputForTime
+                                      type = {"number"} value={taskDuration.days} onChange={handleChangeDays}
+                                  /> {'days'}
+                                  <InputForTime
+                                      type = {"number"} value={taskDuration.hours} onChange={handleChangeHours}
+                                  /> {'hours'}
+                                  <InputForTime
+                                      type = {"number"} value={taskDuration.minutes} onChange={handleChangeMinutes}
+                                  /> {'minutes'}
+                                  <InputForTime
+                                      type = {"number"} value = {taskDuration.seconds} onChange={handleChangeSeconds}
+                                  /> {'seconds'}
+                                </LabelWrap>
+                                <DivJustifyContentRight>
+                                  <BlueButton onClick={saveEditDuration}>Save</BlueButton>
+                                </DivJustifyContentRight>
+                              </DivTimer> ) : (
+                                <DivTimer>
+                                <ABold fs={16}>Duration</ABold>
+                                <LabelWrap><SpanStyled> {
+                                `${taskDuration.days} days 
+                                ${taskDuration.hours} hours 
+                                ${taskDuration.minutes} minutes 
+                                ${taskDuration.seconds} seconds `
+                            } </SpanStyled></LabelWrap>
+                                <DivJustifyContentRight>
+                                <BlueButton onClick={openEditDuration}>Edit</BlueButton>
+                                </DivJustifyContentRight>
+                                </DivTimer>
+                              )
+                            }
                         <DivAssigned><ABold fs={16}>Assigned to</ABold>
                             {warnings.noSuchEmail && 'User with such email do not exist'}
                             <div>

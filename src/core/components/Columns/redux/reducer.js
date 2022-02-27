@@ -13,7 +13,7 @@ import {
   changeDescriptionOnSetTask, changeTaskDescriptionInColumns,
   changeTaskNameInColumns, displayWarningNoSuchEmailInSetTask,
   hideWarningNoSuchEmailInSetTask, changeTaskAssignedInColumns,
-  deleteTaskFromColumns,
+  deleteTaskFromColumns, changeTaskTimeInColumns,
 } from "./actions";
 
 function columnsReducer(state = [], action) {
@@ -69,6 +69,16 @@ function columnsReducer(state = [], action) {
           )
       )
 
+    case changeTaskTimeInColumns.type:
+      return state.map((column) => (
+              {...column,
+              tasks: ((column._id === action.payload.columnId) ?
+                (column.tasks.map((task) => (
+                task._id === action.payload.taskId ?
+                {...task, elapsedTime: action.payload.newTime} :
+                task))) : (column.tasks)),}
+          )
+      )
     case changeTaskAssignedInColumns.type:
       return state.map((column) => (
               {...column,
@@ -275,6 +285,7 @@ function toggleSetTasksReducer(state = {isSetTaskOpen: false, params: {}}, actio
           userAvatar: action.payload.userAvatar,
           taskId: action.payload.taskId,
           columnId: action.payload.columnId,
+          taskDuration: action.payload.taskDuration,
         },
        users: action.payload.users,
       };
