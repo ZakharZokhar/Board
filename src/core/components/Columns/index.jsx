@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 import {
@@ -14,6 +14,8 @@ import {
     updateTaskAfterDrop,
 } from "./redux/actions";
 import {PopUpAddTask} from "../PopUpAddTask";
+import {FilterButton} from "../../../pages/MembersPage/styles";
+import {FilterBar} from "../FilterBar";
 
 export const Columns = ({projectId, boardId}) => {
     const dispatch = useDispatch();
@@ -22,6 +24,10 @@ export const Columns = ({projectId, boardId}) => {
     const isPopUpTaskOpen = useSelector((state) => state.popupTask.isTaskPopUpOpen);
     const warnings = useSelector((state) => state.warningsColumnPopUp);
     const boardName = useSelector((state) => state.boardName.name)
+    const [showFilter, setShowFilter] = useState(false)
+    const toggleFilter = () => {
+        setShowFilter(!showFilter);
+    };
     const showPopUp = () => {
         dispatch(togglePopUpColumnOn);
     }
@@ -57,6 +63,13 @@ export const Columns = ({projectId, boardId}) => {
             <BoardProjectName>
                 {boardName}
             </BoardProjectName>
+            <div style={{display:"flex", justifyContent: "flex-end"}}>
+                <div className="filter">
+                    <FilterButton onClick={toggleFilter}>Show filter</FilterButton>
+                </div>
+            </div>
+            { showFilter? <div style={{height: 'auto', marginBottom: 5}}><FilterBar/></div> : null }
+
             <Link to={`/projects/${projectId}`}>
                 <BackToProjectsButton>
                     Back to boards
