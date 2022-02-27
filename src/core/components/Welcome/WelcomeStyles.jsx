@@ -94,17 +94,16 @@ export const TextWrapper = styled('h1')`
   height: 100%;
   left: 646px;
   top: 516px;
-
+  font-weight: 300;
   font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
   font-size: 36px;
   line-height: 54px;
   text-align: center;
 
   color: #000000;
 
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 
   /* Inside auto layout */
 
