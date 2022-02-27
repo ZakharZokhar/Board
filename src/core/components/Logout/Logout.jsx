@@ -7,7 +7,6 @@ const Logout = () => {
     return (
         <LogoutButton onClick={() => {
             localStorage.removeItem('tokens');
-
             history.push("/")
         }}>
             Logout
