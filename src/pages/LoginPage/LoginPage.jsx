@@ -12,7 +12,7 @@ const LoginPage = () => {
   const handleSubmit = () => {
     AuthService.login(email, password).then(
       () => {history.push("/projects");
-        localStorage.setItem('userName', JSON.stringify(email))
+
       },
     ).catch((error) => {
       setLoginError(true)

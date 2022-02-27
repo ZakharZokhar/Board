@@ -1,15 +1,18 @@
 import axios from 'axios';
 
 const API_URL = 'http://173.212.214.70:3004/';
+
 const register = (email, name, password) => axios.post(`${API_URL}auth/signup`, {
   email,
   name,
   password,
 }).then((response) => {
   console.log(response);
-  login(email, password);
+  // login(email, password);
+  localStorage.setItem('userName', name);
   return response.data;
 });
+
 const login = (email, password) => axios
   .post(`${API_URL}auth/login`, {
     email,
@@ -24,12 +27,7 @@ const login = (email, password) => axios
   });
 
 
-const logout = () => {
-  localStorage.removeItem('tokens');
-};
-
 export default {
   register,
   login,
-  logout,
 };

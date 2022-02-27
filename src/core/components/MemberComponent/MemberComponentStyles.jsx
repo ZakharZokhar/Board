@@ -18,6 +18,7 @@ export const TaskItem = styled('div')`
     margin: 10px;
     display: flex;
     width: 25%;
+    margin-left: 5px;
   
 `;
 export const TaskText = styled('div')`
@@ -37,9 +38,11 @@ export const Avatar = styled('img')`
 `;
 export const UserName = styled('div')`
 paddingLeft: 10px;
+margin-left: 10px;
 `;
 export const TrashContainer = styled('div')`
 cursor: pointer;
- width: 50px;
- height: 50px;
+ width: 45px;
+ height: 45px;
+ margin-top: 4px;
 `;
