@@ -24,12 +24,12 @@ export default function Sidebar() {
                     </Link>
                 </li>
                 <li>
-                    <PlusIcon1 ml={13.5} mr={13.5} />
+                    <PlusIcon1 />
                     <span onClick={showPopUp}>New board</span>
                 </li>
                 <li>
                     <UserCircleIcon/>
-                    <span>Members</span>
+                    <Link to='/members'><span>Members</span></Link>
                 </li>
             </SidebarList>
         </SidebarWrapper>

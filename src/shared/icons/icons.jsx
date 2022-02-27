@@ -10,37 +10,17 @@ export const PlusIcon = () => (
     </PlusIconStyle>
 )
 export const PlusIcon1 = (props) => (
-    <IconStyle mr={props.mr} ml={props.ml} mt={props.mt} mb={props.mb} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* eslint-disable-next-line max-len */}
-        <path fillRule="evenodd" clipRule="evenodd"
-              d="M6 0C6.55228 0 7 0.447715 7 1V5H11C11.5523 5 12 5.44772 12 6C12 6.55228 11.5523 7 11 7H7V11C7 11.5523 6.55228 12 6 12C5.44772 12 5 11.5523 5 11V7H1C0.447715 7 0 6.55228 0 6C0 5.44772 0.447715 5 1 5H5V1C5 0.447715 5.44772 0 6 0Z"
-              fill="#BFBFBF"/>
+    <IconStyle width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 4C10.5523 4 11 4.44772 11 5V9H15C15.5523 9 16 9.44772 16 10C16 10.5523 15.5523 11 15 11H11V15C11 15.5523 10.5523 16 10 16C9.44772 16 9 15.5523 9 15V11H5C4.44772 11 4 10.5523 4 10C4 9.44772 4.44772 9 5 9H9V5C9 4.44772 9.44772 4 10 4Z" fill="#BFBFBF"/>
     </IconStyle>
 )
+
 export const CloseIcon = () => (
     <CloseIconStyle width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* eslint-disable-next-line max-len */}
         <path d="M1 1L5.0002 5.0004M5.0002 5.0004L9 1M5.0002 5.0004L1 9M5.0002 5.0004L9 9" stroke="#BFBFBF"
               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </CloseIconStyle>
-)
-
-export const CloseIcon1 = (props) => (
-    <IconStyle width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0.5" y="0.5" width="39" height="39" rx="7.5" stroke="#E5E5E5"/>
-        <path d="M16 16L20.0002 20.0004M20.0002 20.0004L24 16M20.0002 20.0004L16 24M20.0002 20.0004L24 24" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <rect x="0.5" y="0.5" width="39" height="39" rx="7.5" stroke="#E5E5E5"/>
-        <path d="M16 16L20.0002 20.0004M20.0002 20.0004L24 16M20.0002 20.0004L16 24M20.0002 20.0004L24 24" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </IconStyle>
-)
-
-export const PlusInTheCircleIcon = (props) => (
-    <IconStyle mr={props.mr} ml={props.ml} mt={props.mt} mb={props.mb} width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#E5E5E5"/>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 14C20.5523 14 21 14.4477 21 15V19H25C25.5523 19 26 19.4477 26 20C26 20.5523 25.5523 21 25 21H21V25C21 25.5523 20.5523 26 20 26C19.4477 26 19 25.5523 19 25V21H15C14.4477 21 14 20.5523 14 20C14 19.4477 14.4477 19 15 19H19V15C19 14.4477 19.4477 14 20 14Z" fill="#BFBFBF"/>
-    <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#E5E5E5"/>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 14C20.5523 14 21 14.4477 21 15V19H25C25.5523 19 26 19.4477 26 20C26 20.5523 25.5523 21 25 21H21V25C21 25.5523 20.5523 26 20 26C19.4477 26 19 25.5523 19 25V21H15C14.4477 21 14 20.5523 14 20C14 19.4477 14.4477 19 15 19H19V15C19 14.4477 19.4477 14 20 14Z" fill="#BFBFBF"/>
-    </IconStyle>
 )
 
 export const DiamondIcon = () => (
@@ -69,7 +49,7 @@ export const GearIcon = (props) => (
     </IconStyle>
 )
 export const UserCircleIcon = (props) => (
-    <IconStyle mr={props.mr} ml={props.ml} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <IconStyle width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="10" cy="8" r="3" stroke="#BFBFBF" stroke-width="2"/>
         <path d="M16 17C16 13.6863 13.3137 11 10 11C6.68629 11 4 13.6863 4 17" stroke="#BFBFBF" stroke-width="2"/>
         <circle cx="10" cy="10" r="9" stroke="#BFBFBF" stroke-width="2"/>
@@ -87,6 +67,25 @@ export const ViewBoardsIcon = (props) => (
         <rect x="12" y="10" width="7" height="9" rx="1" stroke="#BFBFBF" stroke-width="2"/>
         <rect x="12" y="1" width="7" height="5" rx="1" stroke="#BFBFBF" stroke-width="2"/>
         <rect x="1" y="14" width="7" height="5" rx="1" stroke="#BFBFBF" stroke-width="2"/>
+    </IconStyle>
+)
+
+export const CloseIcon1 = (props) => (
+    <IconStyle width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="39" height="39" rx="7.5" stroke="#E5E5E5"/>
+        <path d="M16 16L20.0002 20.0004M20.0002 20.0004L24 16M20.0002 20.0004L16 24M20.0002 20.0004L24 24" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="0.5" y="0.5" width="39" height="39" rx="7.5" stroke="#E5E5E5"/>
+        <path d="M16 16L20.0002 20.0004M20.0002 20.0004L24 16M20.0002 20.0004L16 24M20.0002 20.0004L24 24" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </IconStyle>
+
+)
+
+export const PlusInTheCircleIcon = (props) => (
+    <IconStyle mr={props.mr} ml={props.ml} mt={props.mt} mb={props.mb} width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#E5E5E5"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M20 14C20.5523 14 21 14.4477 21 15V19H25C25.5523 19 26 19.4477 26 20C26 20.5523 25.5523 21 25 21H21V25C21 25.5523 20.5523 26 20 26C19.4477 26 19 25.5523 19 25V21H15C14.4477 21 14 20.5523 14 20C14 19.4477 14.4477 19 15 19H19V15C19 14.4477 19.4477 14 20 14Z" fill="#BFBFBF"/>
+        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#E5E5E5"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M20 14C20.5523 14 21 14.4477 21 15V19H25C25.5523 19 26 19.4477 26 20C26 20.5523 25.5523 21 25 21H21V25C21 25.5523 20.5523 26 20 26C19.4477 26 19 25.5523 19 25V21H15C14.4477 21 14 20.5523 14 20C14 19.4477 14.4477 19 15 19H19V15C19 14.4477 19.4477 14 20 14Z" fill="#BFBFBF"/>
     </IconStyle>
 )
 
@@ -118,9 +117,10 @@ export const StartTimerIcon = (props) => (
 
 export const PencilIcon = (props) => (
     <IconStyle mr={props.mr} ml={props.ml} mt={props.mt} mb={props.mb} width={props.wd} height={props.hg} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 13L2 15V18H5L7 16M4 13L7 16M4 13L12 5M7 16L15 8M12 5L15 2L18 5L15 8M12 5L15 8" stroke="#BFBFBF" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M4 13L2 15V18H5L7 16M4 13L7 16M4 13L12 5M7 16L15 8M12 5L15 2L18 5L15 8M12 5L15 8" stroke="#BFBFBF" stroke-width="2" stroke-linejoin="round"/>
     </IconStyle>
 )
+
 export const ExpandIcon = () => (
     <ExpandIc viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 9L10 13L14 9" stroke="#BFBFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

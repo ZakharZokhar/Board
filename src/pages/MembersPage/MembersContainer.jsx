@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import MemberComponent from "../../core/components/MemberComponent/MemberComponent";
 import GetUsers from "../../services/api/getUsers";
 import {Legend, Wrapper, Header, Title, Titles, ExternalWrap, TitlesEl, FilterButton} from "./styles";
 import {ExpandIcon} from "../../shared/icons/icons";
+import {FilterBar} from "../../core/components/FilterBar";
 
 
 const MembersContainer = () => {
+    const [showFilter, setShowFilter] = useState(false)
+    const toggleFilter = () => {
+        setShowFilter(!showFilter);
+    };
     let members = GetUsers();
     const memberCopy = [...members];
     const nameLength = (e) => {
@@ -22,11 +27,12 @@ const MembersContainer = () => {
             <Header>
                 <Title><h1>Members <span style={{fontWeight: '400'}}>of Big board </span></h1><ExpandIcon/>
                 </Title>
-                <div className="filter">
+                <div className="filter" onClick={toggleFilter}>
                     <FilterButton>Show filter</FilterButton>
                 </div>
             </Header>
         </Wrapper>
+            { showFilter? <div style={{height: 'auto'}}><FilterBar/></div> : null }
             <Legend>
                 <hr/>
                 <Titles>

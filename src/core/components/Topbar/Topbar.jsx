@@ -1,6 +1,9 @@
 import {Link} from 'react-router-dom';
-import {TopbarContainer, TopbarLeft, TopbarRight} from "./TopbarStyles";
+import {LogoutWrapper, TopbarContainer, TopbarLeft, TopbarRight, UserNameStyled} from "./TopbarStyles";
 import {getUserById} from "../../../services/api/user.service";
+import Logout from "../Logout/Logout";
+import {useState} from "react";
+import {ExpandIcon} from "../../../shared/icons/icons";
 
 const Default = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhEbl4Y6lv79GxTlgsqGs5C0iI27aZFhs75w&usqp=CAU';
 
@@ -26,7 +29,7 @@ function UserName() {
 
 export default function Topbar() {
   const [userName, userAvatar] = UserName();
-
+  const [showLogout, setShowLogout] = useState(false);
   return (
     <TopbarContainer>
       <TopbarLeft>
@@ -37,7 +40,11 @@ export default function Topbar() {
       </TopbarLeft>
       <TopbarRight>
         <img src={userAvatar} alt=""/>
-        <div>{userName}</div>
+        <UserNameStyled>{userName}</UserNameStyled>
+        <LogoutWrapper onMouseEnter={() => {setShowLogout(true)}} onMouseLeave={() => {setShowLogout(false)}}>
+        <ExpandIcon />
+        {(showLogout) ? <Logout /> : <span></span>}
+        </LogoutWrapper>
       </TopbarRight>
     </TopbarContainer>
   );

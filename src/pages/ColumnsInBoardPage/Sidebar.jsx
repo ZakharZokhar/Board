@@ -28,12 +28,12 @@ export default function Sidebar({projectId, boardId}) {
                     </Link>
                 </li>
                 <li>
-                    <PlusIcon1 ml={13.5} mr={13.5} />
+                    <PlusIcon1 />
                     <span onClick={showPopUp}>Add new column</span>
                 </li>
                 <li>
                     <UserCircleIcon/>
-                    <span>Members</span>
+                    <Link to='/members'><span>Members</span></Link>
                 </li>
             </SidebarList>
         </SidebarWrapper>

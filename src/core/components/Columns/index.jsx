@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 import {
@@ -14,6 +14,8 @@ import {
 } from "./redux/actions";
 import {PopUpAddTask} from "../PopUpAddTask";
 import SetTask from "../SetTask/SetTask";
+import {FilterButton} from "../../../pages/MembersPage/styles";
+import {FilterBar} from "../FilterBar";
 
 export const Columns = ({projectId, boardId}) => {
     const dispatch = useDispatch();
@@ -23,6 +25,10 @@ export const Columns = ({projectId, boardId}) => {
     const isSetTaskPopUpOpen = useSelector((state) => state.popupSetTask.isSetTaskOpen);
     const warnings = useSelector((state) => state.warningsColumnPopUp);
     const boardName = useSelector((state) => state.boardName.name)
+    const [showFilter, setShowFilter] = useState(false)
+    const toggleFilter = () => {
+        setShowFilter(!showFilter);
+    };
     const showPopUp = () => {
         dispatch(togglePopUpColumnOn);
     }
@@ -58,6 +64,12 @@ export const Columns = ({projectId, boardId}) => {
             <BoardProjectName>
                 {boardName}
             </BoardProjectName>
+            <div style={{display:"flex", justifyContent: "flex-end"}}>
+                <div className="filter">
+                    <FilterButton onClick={toggleFilter}>Show filter</FilterButton>
+                </div>
+            </div>
+            { showFilter? <div style={{height: 'auto', marginBottom: 5}}><FilterBar/></div> : null }
             {warnings.alreadyHere && 'Column with that name is already here!!'}
             <DragDropContext onDragEnd={onDragEnd}>
                 <ColumnsContainer>
