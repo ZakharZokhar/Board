@@ -1,19 +1,21 @@
-import React, {useState} from 'react';
-
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import MemberComponent from "../../core/components/MemberComponent/MemberComponent";
-import GetUsers from "../../services/api/getUsers";
 import {Legend, Wrapper, Header, Title, Titles, ExternalWrap, TitlesEl, FilterButton} from "./styles";
 import {ExpandIcon} from "../../shared/icons/icons";
 import {FilterBar} from "../../core/components/FilterBar";
-
+import { fetchUsers } from "./redux/actions";
 
 const MembersContainer = () => {
+    const dispatch = useDispatch();
     const [showFilter, setShowFilter] = useState(false)
     const toggleFilter = () => {
         setShowFilter(!showFilter);
     };
-    let members = GetUsers();
-    const memberCopy = [...members];
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, []);
+    const memberCopy = useSelector((state) => state.users);
     const nameLength = (e) => {
         if (e.length > 35) {
             return e.substring(35, -35) + '...'

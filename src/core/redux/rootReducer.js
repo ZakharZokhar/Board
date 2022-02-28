@@ -16,6 +16,8 @@ import {
   toggleSetTasksReducer, setTaskWarningReducer,
 } from "../components/Columns/redux/reducer";
 
+import usersReducer from "../../pages/MembersPage/redux/reducer";
+
 import dropDownReducer from "../../shared/basic-components/DropDown/redux/reducer";
 
 export default {
@@ -37,4 +39,5 @@ export default {
   boardName: boardNameReducer,
   popupSetTask: toggleSetTasksReducer,
   warningsSetTask: setTaskWarningReducer,
+  users: usersReducer,
 };

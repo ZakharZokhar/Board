@@ -1,9 +1,12 @@
 import React from 'react';
+import {useDispatch} from "react-redux";
 import {TaskText, TaskItem, Wrapper, Item, Avatar, UserName, TrashContainer} from './MemberComponentStyles'
 import {deleteUsers} from "../../../services/api/deleteUser";
 import {TrashIcon} from "../../../shared/icons/icons";
+import {deleteUserInMembers} from "../../../pages/MembersPage/redux/actions";
 
 const MemberComponent = (props) => {
+    const dispatch = useDispatch();
     const avatars =
         ['https://clck.ru/btFE7', 'https://clck.ru/btFET',
             'https://clck.ru/btFFP', 'https://clck.ru/btFFp',
@@ -11,6 +14,7 @@ const MemberComponent = (props) => {
             'https://clck.ru/btFKC', 'https://clck.ru/btFKd']
 
     const delUser = (id) => {
+        dispatch({...deleteUserInMembers, payload: id})
         deleteUsers(id);
     }
     const rand = () => {
